@@ -1,0 +1,97 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import socialImage from "../assets/images/home/hero-01.webp";
+
+const {
+  title = "Boscofuso",
+  description = "Il mondo e le storie di Boscofuso.",
+  lang = "it",
+  robots = "index,follow",
+} = Astro.props;
+
+const site = Astro.site ?? new URL("https://www.boscofuso.com");
+const pathname = Astro.url.pathname;
+const canonicalURL = new URL(pathname, site);
+
+function localePath(targetLang) {
+  if (targetLang === "it") {
+    if (pathname.startsWith("/en/books/")) {
+      return pathname.replace("/en/books/", "/it/libri/");
+    }
+
+    if (pathname.startsWith("/en/")) {
+      return pathname.replace("/en/", "/it/");
+    }
+
+    return pathname.startsWith("/it/") ? pathname : "/it/";
+  }
+
+  if (pathname.startsWith("/it/libri/")) {
+    return pathname.replace("/it/libri/", "/en/books/");
+  }
+
+  if (pathname.startsWith("/it/")) {
+    return pathname.replace("/it/", "/en/");
+  }
+
+  return pathname.startsWith("/en/") ? pathname : "/en/";
+}
+
+const italianURL = new URL(localePath("it"), site);
+const englishURL = new URL(localePath("en"), site);
+const socialImageURL = new URL(socialImage.src, site);
+
+const ogLocale = lang === "en" ? "en_US" : "it_IT";
+const ogAlternateLocale = lang === "en" ? "it_IT" : "en_US";
+const socialImageAlt = lang === "en"
+  ? "Boscofuso, the illustrated world of Serpiglio and the Stranimali"
+  : "Boscofuso, il mondo illustrato di Serpiglio e degli Stranimali";
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <meta name="theme-color" content="#123f27" />
+
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="it" href={italianURL} />
+    <link rel="alternate" hreflang="en" href={englishURL} />
+    <link rel="alternate" hreflang="x-default" href={italianURL} />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Boscofuso" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={ogAlternateLocale} />
+    <meta property="og:image" content={socialImageURL} />
+    <meta property="og:image:alt" content={socialImageAlt} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageURL} />
+    <meta name="twitter:image:alt" content={socialImageAlt} />
+  </head>
+
+  <body>
+    <Header lang={lang} />
+
+    <main>
+      <slot />
+    </main>
+
+    <Footer lang={lang} />
+  </body>
+</html>

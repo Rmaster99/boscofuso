@@ -1,0 +1,1618 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap");
+
+/* ==================================================
+   01. RESET
+   ================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+
+/* ==================================================
+   02. DESIGN TOKENS
+   ================================================== */
+
+:root {
+  --font-body: "Baloo 2", Arial, Helvetica, sans-serif;
+
+  --container-width: 1280px;
+  --page-padding: 24px;
+
+  --bf-forest: #123f27;
+  --bf-forest-deep: #0a2f1e;
+  --bf-leaf: #6f944e;
+  --bf-cream: #fbf4e4;
+  --bf-cream-deep: #f3e6ca;
+  --bf-text: #2a241d;
+  --bf-gold: #d9a92f;
+  --bf-terracotta: #b9613c;
+
+  --radius-card: 22px;
+}
+
+
+/* ==================================================
+   03. BASE
+   ================================================== */
+
+body {
+  background: var(--bf-cream);
+  color: var(--bf-text);
+  font-family: var(--font-body);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+
+/* ==================================================
+   04. LAYOUT GENERALE
+   ================================================== */
+
+.home-main,
+.feature-links,
+.page-shell {
+  width: min(
+    100% - (var(--page-padding) * 2),
+    var(--container-width)
+  );
+  margin-inline: auto;
+}
+
+.home-main {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.28fr);
+  gap: clamp(1rem, 2vw, 1.75rem);
+  align-items: stretch;
+  padding-block: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.feature-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  padding-block: 1rem 3rem;
+}
+
+
+/* ==================================================
+   05. HEADER
+   ================================================== */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+
+  width: 100%;
+  min-height: 112px;
+
+  /* Allinea logo e navigazione allo stesso contenitore
+     di home-main / feature-links / page-shell. */
+  padding-block: 0.75rem;
+  padding-inline: max(
+    var(--page-padding),
+    calc((100% - var(--container-width)) / 2)
+  );
+
+  background:
+    radial-gradient(circle at 18% 35%, rgba(217, 169, 47, 0.08), transparent 26%),
+    radial-gradient(circle at 82% 70%, rgba(217, 169, 47, 0.06), transparent 24%),
+    linear-gradient(180deg, var(--bf-forest) 0%, var(--bf-forest-deep) 100%);
+  color: var(--bf-cream);
+}
+
+.site-brand {
+  display: block;
+  flex: 0 0 auto;
+  line-height: 0;
+  text-decoration: none;
+}
+
+.site-brand__logo {
+  /* Header: logo aumentato di circa il 20% */
+  width: 110px;
+  height: auto;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(1rem, 2.2vw, 2.2rem);
+  margin-left: auto;
+}
+
+.site-nav a,
+.language-switcher a {
+  text-decoration: none;
+}
+
+.site-nav a {
+  /* Menu header leggermente più grande */
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible,
+.language-switcher a:hover,
+.language-switcher a:focus-visible {
+  color: var(--bf-gold);
+}
+
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: 0.75rem;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.language-current {
+  font-weight: 700;
+}
+
+
+/* ==================================================
+   06. HERO + SLIDER
+   ================================================== */
+
+.home-hero {
+  position: relative;
+  width: 100%;
+  min-height: clamp(500px, 62vw, 760px);
+  padding: 0;
+  overflow: hidden;
+  background: var(--bf-forest);
+  color: #ffffff;
+}
+
+.home-hero__slides {
+  position: absolute;
+  inset: 0;
+}
+
+.home-hero__slide {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1400ms ease-in-out;
+  will-change: opacity;
+}
+
+.home-hero__slide.is-active {
+  opacity: 1;
+}
+
+.home-hero__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.home-hero__shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(14, 28, 18, 0.74) 0%,
+      rgba(14, 28, 18, 0.52) 28%,
+      rgba(14, 28, 18, 0.24) 52%,
+      rgba(14, 28, 18, 0.08) 72%,
+      rgba(14, 28, 18, 0.05) 100%
+    );
+  pointer-events: none;
+}
+
+.home-hero__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  width: min(100% - 2.5rem, 1280px);
+  min-height: clamp(500px, 62vw, 760px);
+  margin-inline: auto;
+  padding: clamp(2.5rem, 6vw, 5rem) 0;
+}
+
+.home-hero__content {
+  max-width: 620px;
+}
+
+.home-hero__serpiglio {
+  display: block;
+  width: clamp(110px, 12vw, 160px);
+  height: auto;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.25));
+}
+
+.home-hero__title {
+  max-width: 11ch;
+  margin: 0 0 1rem;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-size: clamp(2.5rem, 5vw, 5.1rem);
+  line-height: 1.02;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.home-hero__text {
+  max-width: 30rem;
+  margin: 0 0 1.5rem;
+  font-size: clamp(1rem, 1.35vw, 1.2rem);
+  line-height: 1.55;
+}
+
+.home-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.85rem 1.25rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--bf-forest);
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.home-hero__cta:hover {
+  transform: translateY(-1px);
+}
+
+
+/* ==================================================
+   07. HOME - IL MONDO DI BOSCOFUSO
+   ================================================== */
+
+.home-world,
+.home-books {
+  min-width: 0;
+}
+
+.home-world {
+  overflow: hidden;
+  border: 1px solid rgba(42, 36, 29, 0.08);
+  border-radius: var(--radius-card);
+  background: linear-gradient(180deg, #fff8e9 0%, var(--bf-cream-deep) 100%);
+  box-shadow: 0 12px 34px rgba(42, 36, 29, 0.06);
+}
+
+.home-world__visual {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.home-world__image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center 48%;
+  transition: transform 500ms ease;
+}
+
+.home-world__visual:hover .home-world__image {
+  transform: scale(1.025);
+}
+
+.home-world__content {
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  text-align: center;
+}
+
+.home-world__content h2 {
+  margin: 0 0 0.75rem;
+  color: var(--bf-forest);
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-size: clamp(1.55rem, 2.2vw, 2.15rem);
+  line-height: 1.1;
+}
+
+.home-world__content p {
+  max-width: 42rem;
+  margin: 0 auto 1.25rem;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.home-world__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.72rem 1.15rem;
+  border-radius: 999px;
+  background: var(--bf-forest);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.home-world__cta:hover,
+.home-world__cta:focus-visible {
+  background: var(--bf-forest-deep);
+}
+
+
+/* ==================================================
+   08. HOME - CAROSELLO LIBRI
+   ================================================== */
+
+.home-books {
+  overflow: hidden;
+  border: 1px solid rgba(42, 36, 29, 0.08);
+  border-radius: var(--radius-card);
+  background: linear-gradient(180deg, #fffaf0 0%, #f8edd5 100%);
+  box-shadow: 0 12px 34px rgba(42, 36, 29, 0.06);
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.home-books__header {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.home-books h2 {
+  margin: 0;
+  color: var(--bf-forest);
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-size: clamp(1.55rem, 2.2vw, 2.15rem);
+  line-height: 1.1;
+}
+
+.books-carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(170px, 28%);
+  gap: 1rem;
+
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
+  padding-bottom: 0.75rem;
+}
+
+.book-card {
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.book-card__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.book-card__cover {
+  overflow: hidden;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(42, 36, 29, 0.12);
+}
+
+.book-card__image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4.25;
+  object-fit: cover;
+}
+
+.book-card__title {
+  margin: 0.85rem 0 0;
+  color: var(--bf-text);
+  font-size: 0.98rem;
+  line-height: 1.35;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+.book-card__link:hover .book-card__cover,
+.book-card__link:focus-visible .book-card__cover {
+  box-shadow: 0 14px 28px rgba(42, 36, 29, 0.18);
+  transform: translateY(-2px);
+}
+
+.book-card__cover {
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+
+/* ==================================================
+   09. HOME - TRE ACCESSI INFERIORI
+   ================================================== */
+
+.feature-links {
+  align-items: stretch;
+}
+
+.feature-link {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-width: 0;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(42, 36, 29, 0.08);
+  border-radius: var(--radius-card);
+
+  color: var(--bf-text);
+  text-decoration: none;
+
+  box-shadow: 0 10px 30px rgba(42, 36, 29, 0.06);
+
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.feature-link:hover,
+.feature-link:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 34px rgba(42, 36, 29, 0.11);
+}
+
+.feature-link__visual {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 16 / 10;
+
+  overflow: hidden;
+}
+
+.feature-link__image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center 42%;
+
+  transition: transform 500ms ease;
+}
+
+.feature-link:hover .feature-link__image,
+.feature-link:focus-visible .feature-link__image {
+  transform: scale(1.025);
+}
+
+.feature-link__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  padding: clamp(1.15rem, 2vw, 1.5rem);
+}
+
+.feature-link__content h2 {
+  margin: 0 0 0.55rem;
+
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-size: clamp(1.35rem, 1.8vw, 1.75rem);
+  line-height: 1.1;
+}
+
+.feature-link__content p {
+  margin: 0 0 1.1rem;
+
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.feature-link__cta {
+  display: inline-flex;
+  align-items: center;
+
+  margin-top: auto;
+
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.feature-link__cta::after {
+  content: " →";
+  margin-left: 0.35rem;
+}
+
+.feature-link--coloring {
+  background: linear-gradient(180deg, #fff5cf 0%, #f5e2a1 100%);
+}
+
+.feature-link--coloring .feature-link__content h2 {
+  color: #6d5817;
+}
+
+.feature-link--characters {
+  background: linear-gradient(180deg, #edf3df 0%, #dce8c9 100%);
+}
+
+.feature-link--characters .feature-link__content h2 {
+  color: var(--bf-forest);
+}
+
+.feature-link--happy {
+  background: linear-gradient(180deg, #f1e9f3 0%, #dfd2e6 100%);
+}
+
+.feature-link--happy .feature-link__content h2 {
+  color: #57416b;
+}
+
+.feature-link--happy .feature-link__visual {
+  display: grid;
+  place-items: center;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background:
+    radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.9), transparent 28%),
+    linear-gradient(135deg, #f8eff8 0%, #e6d9ea 100%);
+}
+
+.feature-link__image--logo {
+  width: min(88%, 430px);
+  height: auto;
+  max-height: 220px;
+  object-fit: contain;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(42, 36, 29, 0.08);
+}
+
+/* ==================================================
+   10. FOOTER
+   ================================================== */
+
+.site-footer {
+  position: relative;
+  width: 100%;
+  margin-top: 3rem;
+  padding: 0.95rem clamp(1rem, 4vw, 4rem) clamp(3.2rem, 6vw, 4.8rem);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 35%, rgba(217, 169, 47, 0.08), transparent 26%),
+    radial-gradient(circle at 82% 70%, rgba(217, 169, 47, 0.06), transparent 24%),
+    linear-gradient(180deg, var(--bf-forest) 0%, var(--bf-forest-deep) 100%);
+  color: var(--bf-cream);
+}
+
+.site-footer::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(46px, 8.333vw, 120px);
+  pointer-events: none;
+  z-index: 0;
+
+  /* Foliage vettoriale scelto dall'utente */
+  background-image: url("/images/decor/footer-foliage-green.svg");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 100% auto;
+}
+
+.site-footer__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
+  gap: clamp(2rem, 7vw, 7rem);
+  align-items: center;
+  width: min(100%, 1280px);
+  margin-inline: auto;
+}
+
+.site-footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: none;
+}
+
+.site-footer__logo {
+  width: clamp(75px, 8.83vw, 112px);
+  height: auto;
+  margin-bottom: 0;
+}
+
+.site-footer__payoff,
+.site-footer__project p {
+  margin: 0;
+  line-height: 1.35;
+}
+
+.site-footer__payoff {
+  max-width: none;
+  margin: 0;
+  white-space: nowrap;
+  color: rgba(251, 244, 228, 0.88);
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-size: 1.08rem;
+  line-height: 1.25;
+}
+
+.site-footer__project {
+  justify-self: end;
+  max-width: 390px;
+  text-align: left;
+}
+
+.site-footer__project p + p {
+  margin-top: 0;
+}
+
+.site-footer__project a {
+  display: inline-block;
+  margin-top: 0;
+  color: var(--bf-cream);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-color: rgba(217, 169, 47, 0.85);
+}
+
+.site-footer__project a:hover {
+  color: #ffffff;
+}
+
+
+/* ==================================================
+   11. ACCESSIBILITÀ / RIDUZIONE MOVIMENTO
+   ================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .home-hero__slide,
+  .home-world__image {
+    transition: none;
+  }
+
+  .home-hero__cta:hover {
+    transform: none;
+  }
+}
+
+
+/* ==================================================
+   12. RESPONSIVE - TABLET
+   ================================================== */
+
+@media (max-width: 980px) {
+  .site-header {
+    min-height: 96px;
+    flex-wrap: wrap;
+  }
+
+  .site-brand__logo {
+    width: 94px;
+  }
+
+  .site-nav {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+    padding-top: 0.5rem;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .site-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .language-switcher {
+    margin-left: auto;
+  }
+}
+
+
+/* ==================================================
+   13. RESPONSIVE - HERO TABLET/MOBILE
+   ================================================== */
+
+@media (max-width: 900px) {
+  .home-hero,
+  .home-hero__inner {
+    min-height: 580px;
+  }
+
+  .home-hero__shade {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(14, 28, 18, 0.56) 0%,
+        rgba(14, 28, 18, 0.40) 34%,
+        rgba(14, 28, 18, 0.44) 100%
+      );
+  }
+
+  .home-hero__inner {
+    width: min(100% - 2rem, 1280px);
+    align-items: flex-end;
+  }
+
+  .home-hero__content {
+    max-width: 100%;
+    padding-bottom: 0.5rem;
+  }
+
+  .home-hero__title {
+    max-width: 13ch;
+  }
+}
+
+
+/* ==================================================
+   14. RESPONSIVE - MOBILE
+   ================================================== */
+
+@media (max-width: 768px) {
+  :root {
+    --page-padding: 16px;
+  }
+
+  .home-main,
+  .feature-links {
+    grid-template-columns: 1fr;
+  }
+
+  .home-main {
+    padding-block: 1rem 2rem;
+  }
+
+  .feature-links {
+    padding-block: 1rem 2rem;
+  }
+
+  .books-carousel {
+    grid-auto-columns: minmax(150px, 62%);
+  }
+
+  .site-footer {
+    margin-top: 2rem;
+    padding: 1.15rem 1rem 3.2rem;
+  }
+
+  .site-footer::after {
+    height: 72px;
+  }
+
+  .site-footer__brand {
+    gap: 0.85rem;
+  }
+
+  .site-footer__inner {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+    align-items: start;
+  }
+
+  .site-footer__project {
+    justify-self: start;
+    max-width: none;
+  }
+
+  .site-footer__logo {
+    width: 116px;
+  }
+}
+
+
+/* ==================================================
+   15. RESPONSIVE - SMARTPHONE PICCOLO
+   ================================================== */
+
+@media (max-width: 560px) {
+  .site-header {
+    padding-inline: 1rem;
+  }
+
+  .site-brand__logo {
+    width: 82px;
+  }
+
+  .site-nav {
+    gap: 1.1rem;
+  }
+
+  .site-nav a {
+    font-size: 0.82rem;
+  }
+
+  .home-hero,
+  .home-hero__inner {
+    min-height: 540px;
+  }
+
+  .home-hero__inner {
+    width: min(100% - 1.5rem, 1280px);
+    padding-block: 2rem;
+  }
+
+  .home-hero__title {
+    font-size: clamp(2.1rem, 9vw, 3.3rem);
+  }
+
+  .home-hero__text {
+    max-width: 22rem;
+  }
+
+  .home-world__content {
+    padding: 1.25rem;
+  }
+}
+
+
+/* ==================================================
+   FEATURE LINKS - RESPONSIVE FINALE
+   ================================================== */
+
+@media (max-width: 768px) {
+  .feature-link__visual {
+    aspect-ratio: 16 / 9;
+  }
+
+  .feature-link__content {
+    padding: 1.2rem;
+  }
+
+  .happy-word--1 {
+    font-size: clamp(2.8rem, 14vw, 4.6rem);
+  }
+
+  .happy-word--2 {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+  }
+}
+
+
+/* ==================================================
+   HAPPY EDY - LOGO REALE
+   ================================================== */
+
+.feature-link--happy .feature-link__visual {
+  display: grid;
+  place-items: center;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background:
+    radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.9), transparent 28%),
+    linear-gradient(135deg, #f8eff8 0%, #e6d9ea 100%);
+}
+
+.feature-link__image--logo {
+  width: min(88%, 430px);
+  height: auto;
+  max-height: 220px;
+  object-fit: contain;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(42, 36, 29, 0.08);
+}
+
+
+/* ==================================================
+   FEATURE LINKS - IMMAGINI TUTTE COME IL LOGO
+   Stesso ingombro visivo per le tre card.
+   ================================================== */
+
+.feature-link__visual {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 10;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  overflow: hidden;
+}
+
+.feature-link__image,
+.feature-link__image--logo {
+  width: min(88%, 430px);
+  height: auto;
+  max-height: 220px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(42, 36, 29, 0.08);
+  transform: none;
+}
+
+.feature-link:hover .feature-link__image,
+.feature-link:focus-visible .feature-link__image {
+  transform: none;
+}
+
+@media (max-width: 768px) {
+  .feature-link__visual {
+    aspect-ratio: 16 / 10;
+  }
+
+  .feature-link__image,
+  .feature-link__image--logo {
+    width: min(88%, 430px);
+    max-height: 220px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .site-footer__payoff {
+    white-space: normal;
+    font-size: 1rem;
+  }
+
+  .site-footer__logo {
+    width: 81px;
+  }
+}
+
+/* ==================================================
+   HOME - DESCRIZIONE LIBRO AL PASSAGGIO DEL MOUSE
+   ================================================== */
+
+.book-hover-description {
+  width: min(100%, 760px);
+  min-height: 118px;
+  margin: 1.5rem auto 0;
+  padding: 1.15rem 1.25rem 0;
+  border-top: 1px solid rgba(42, 36, 29, 0.24);
+  text-align: center;
+}
+
+.book-hover-description__title {
+  margin: 0 0 0.5rem;
+  color: var(--bf-forest);
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-size: clamp(1.2rem, 1.7vw, 1.55rem);
+  line-height: 1.15;
+}
+
+.book-hover-description__text {
+  max-width: 680px;
+  margin: 0 auto;
+  color: var(--bf-text);
+  font-size: 0.96rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 768px) {
+  .book-hover-description {
+    min-height: 140px;
+    margin-top: 1.15rem;
+    padding-inline: 0.5rem;
+  }
+}
+
+/* ==================================================
+   FEATURE LINKS - IMMAGINI CON STESSO RIQUADRO
+   Da colorare / I personaggi / Happy Edy
+   ================================================== */
+
+.feature-link__visual {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 10;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  overflow: hidden;
+}
+
+/* Tutte e tre le immagini occupano lo stesso rettangolo */
+.feature-link__image,
+.feature-link__image--logo {
+  width: min(88%, 430px);
+  height: 220px;
+  max-height: none;
+
+  object-fit: cover;
+  object-position: center;
+
+  border-radius: 14px;
+  overflow: hidden;
+
+  box-shadow: 0 8px 24px rgba(42, 36, 29, 0.08);
+  transform: none;
+}
+
+/* Il logo Happy Edy non va ritagliato */
+.feature-link__image--logo {
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* Nessuno zoom sulle immagini delle tre card */
+.feature-link:hover .feature-link__image,
+.feature-link:focus-visible .feature-link__image {
+  transform: none;
+}
+
+@media (max-width: 768px) {
+  .feature-link__image,
+  .feature-link__image--logo {
+    width: min(88%, 430px);
+    height: clamp(170px, 42vw, 220px);
+  }
+}
+
+/* ==================================================
+   17. CAROSELLO LIBRI - CONTROLLI STABILI
+   Frecce su desktop/tablet, swipe su touch, scrollbar nascosta.
+   ================================================== */
+
+.books-carousel-shell {
+  position: relative;
+}
+
+.books-carousel {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.books-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.books-carousel__arrow {
+  position: absolute;
+  top: 42%;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid rgba(42, 36, 29, 0.16);
+  border-radius: 50%;
+  background: rgba(251, 244, 228, 0.94);
+  color: var(--bf-forest);
+  font: inherit;
+  font-size: 1.7rem;
+  line-height: 1;
+  box-shadow: 0 6px 18px rgba(42, 36, 29, 0.12);
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.books-carousel__arrow:hover,
+.books-carousel__arrow:focus-visible {
+  background: #ffffff;
+  color: var(--bf-terracotta);
+  outline: none;
+}
+
+.books-carousel__arrow--prev {
+  left: -8px;
+}
+
+.books-carousel__arrow--next {
+  right: -8px;
+}
+
+/* ==================================================
+   18. FEATURE CARDS - TABLET / IPAD
+   Le immagini restano intere: nessun taglio sopra o sotto.
+   ================================================== */
+
+@media (min-width: 769px) and (max-width: 1100px) {
+  .feature-links {
+    gap: 0.9rem;
+  }
+
+  .feature-link__visual {
+    aspect-ratio: 16 / 10;
+    padding: 1rem;
+  }
+
+  .feature-link__image,
+  .feature-link__image--logo {
+    width: 100%;
+    height: 100%;
+    max-height: 220px;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 14px;
+  }
+}
+
+/* Smartphone: stessa logica, immagine intera e riquadro coerente */
+@media (max-width: 768px) {
+  .feature-link__visual {
+    aspect-ratio: 16 / 10;
+    padding: 1rem;
+  }
+
+  .feature-link__image,
+  .feature-link__image--logo {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 12px;
+  }
+
+  .books-carousel__arrow {
+    display: none;
+  }
+}
+
+/* Desktop con mouse: evidenza leggera sulla card attiva al passaggio */
+@media (hover: hover) and (pointer: fine) {
+  .book-card__link:hover .book-card__cover {
+    transform: translateY(-2px);
+  }
+}
+
+/* ==================================================
+   19. FEATURE CARDS - BORDI STONDATI SU SMARTPHONE
+   Fix specifico per Android / Galaxy: forza il clipping reale
+   dell'immagine anche con object-fit: contain.
+   ================================================== */
+
+@media (max-width: 768px) {
+  .feature-link__visual {
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .feature-link__image,
+  .feature-link__image--logo {
+    display: block;
+    border-radius: 14px !important;
+    overflow: hidden;
+    clip-path: inset(0 round 14px);
+    -webkit-clip-path: inset(0 round 14px);
+  }
+}
+
+/* ==================================================
+   20. CAROSELLO LIBRI - SCROLLBAR VISIBILE
+   ================================================== */
+
+.books-carousel {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(18, 63, 39, 0.72) rgba(42, 36, 29, 0.10);
+  -ms-overflow-style: auto;
+  padding-bottom: 0.9rem;
+}
+
+.books-carousel::-webkit-scrollbar {
+  display: block;
+  height: 9px;
+}
+
+.books-carousel::-webkit-scrollbar-track {
+  background: rgba(42, 36, 29, 0.10);
+  border-radius: 999px;
+}
+
+.books-carousel::-webkit-scrollbar-thumb {
+  background: rgba(18, 63, 39, 0.72);
+  border-radius: 999px;
+}
+
+.books-carousel::-webkit-scrollbar-thumb:hover {
+  background: var(--bf-forest);
+}
+
+/* ==================================================
+   24. HERO - 5 IMMAGINI / MASTER 1600 x 600
+   Desktop: rapporto 8:3 per evitare il taglio verticale.
+   Tablet/mobile: altezza maggiore per garantire leggibilità
+   del testo; il crop laterale è inevitabile sui formati stretti.
+   ================================================== */
+
+.home-hero__serpiglio {
+  display: none !important;
+}
+
+/* 1600 x 600 = rapporto 8:3 */
+.home-hero {
+  height: clamp(430px, 37.5vw, 600px);
+  min-height: 0;
+}
+
+.home-hero__inner {
+  position: relative;
+  display: block;
+  height: 100%;
+  min-height: 0;
+  padding: 0;
+}
+
+.home-hero__content {
+  position: absolute;
+  top: clamp(42px, 5vw, 72px);
+  left: 0;
+  max-width: 620px;
+  margin: 0;
+  padding: 0;
+  transform: none !important;
+}
+
+.home-hero__title {
+  margin-top: 0;
+}
+
+/* Tutte le immagini desktop partono centrate.
+   Se una singola slide richiede un'inquadratura diversa,
+   si può agire sulle classi .home-hero__slide--1 ... --5. */
+.home-hero__slide--1 img,
+.home-hero__slide--2 img,
+.home-hero__slide--3 img,
+.home-hero__slide--4 img,
+.home-hero__slide--5 img {
+  object-position: center center;
+}
+
+@media (max-width: 900px) {
+  .home-hero,
+  .home-hero__inner {
+    height: 500px;
+    min-height: 500px;
+  }
+
+  .home-hero__content {
+    top: 42px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-hero,
+  .home-hero__inner {
+    height: 450px;
+    min-height: 450px;
+  }
+
+  .home-hero__content {
+    top: 28px;
+    left: 0;
+    right: 0;
+    max-width: none;
+  }
+
+  /* Punto di partenza mobile:
+     crop spostato verso destra per mantenere visibili
+     i soggetti collocati nella metà destra delle hero. */
+  .home-hero__slide--1 img,
+  .home-hero__slide--2 img,
+  .home-hero__slide--3 img,
+  .home-hero__slide--4 img,
+  .home-hero__slide--5 img {
+    object-position: 68% center;
+  }
+}
+
+@media (max-width: 420px) {
+  .home-hero,
+  .home-hero__inner {
+    height: 430px;
+    min-height: 430px;
+  }
+
+  .home-hero__content {
+    top: 22px;
+  }
+}
+
+/* ==================================================
+   25. PAGINA LIBRI - SCHEDA UNICA 4 VOLUMI
+   Copertina + testo, galleria immagini e pulsanti store.
+   ================================================== */
+
+.books-page {
+  padding-block: clamp(2rem, 5vw, 4.5rem);
+}
+
+.books-page__header {
+  max-width: 760px;
+  margin: 0 auto clamp(2.5rem, 5vw, 4.5rem);
+  text-align: center;
+}
+
+.books-page__header h1 {
+  margin: 0 0 0.75rem;
+  color: var(--bf-forest);
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-size: clamp(2.15rem, 4.2vw, 4rem);
+  line-height: 1.05;
+}
+
+.books-page__header p {
+  max-width: 620px;
+  margin: 0 auto;
+  font-size: clamp(1rem, 1.4vw, 1.12rem);
+  line-height: 1.6;
+}
+
+.books-page__list {
+  display: grid;
+  gap: clamp(3.5rem, 7vw, 6.5rem);
+}
+
+.book-detail {
+  scroll-margin-top: 24px;
+}
+
+.book-detail + .book-detail {
+  padding-top: clamp(3rem, 6vw, 5rem);
+  border-top: 1px solid rgba(42, 36, 29, 0.16);
+}
+
+.book-detail__top {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.55fr);
+  gap: clamp(2rem, 5vw, 5.5rem);
+  align-items: start;
+}
+
+.book-detail__product {
+  width: min(100%, 350px);
+  justify-self: center;
+}
+
+.book-detail__cover-wrap {
+  overflow: hidden;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 16px 32px rgba(42, 36, 29, 0.16);
+}
+
+.book-detail__cover {
+  width: 100%;
+  height: auto;
+}
+
+.book-detail__stores {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.book-detail__store {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0.75rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.1;
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.book-detail__store--amazon {
+  background: var(--bf-forest);
+  color: #ffffff;
+}
+
+.book-detail__store--kobo {
+  border-color: rgba(18, 63, 39, 0.5);
+  background: transparent;
+  color: var(--bf-forest);
+}
+
+.book-detail__store:not(.is-disabled):hover,
+.book-detail__store:not(.is-disabled):focus-visible {
+  transform: translateY(-1px);
+}
+
+.book-detail__store--amazon:not(.is-disabled):hover,
+.book-detail__store--amazon:not(.is-disabled):focus-visible {
+  background: var(--bf-forest-deep);
+}
+
+.book-detail__store--kobo:not(.is-disabled):hover,
+.book-detail__store--kobo:not(.is-disabled):focus-visible {
+  border-color: var(--bf-forest);
+  background: rgba(18, 63, 39, 0.06);
+}
+
+.book-detail__store.is-disabled {
+  opacity: 0.48;
+  cursor: default;
+}
+
+.book-detail__copy {
+  padding-top: clamp(0rem, 1vw, 0.8rem);
+}
+
+.book-detail__label {
+  margin: 0.65rem 0 0;
+  color: var(--bf-terracotta);
+  font-size: 1.47rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.book-detail__copy h2 {
+  max-width: none;
+  margin: 0;
+  color: var(--bf-forest);
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-size: clamp(1.15rem, 2vw, 1.9rem);
+  line-height: 1.08;
+  white-space: nowrap;
+}
+
+.book-detail__rule {
+  width: 100%;
+  height: 1px;
+  margin: clamp(1.15rem, 2vw, 1.5rem) 0;
+  background: rgba(42, 36, 29, 0.16);
+}
+
+.book-detail__description {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(1.03rem, 1.35vw, 1.14rem);
+  line-height: 1.68;
+}
+
+.book-detail__gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.8rem, 2vw, 1.4rem);
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+  scroll-margin-top: 24px;
+}
+
+.book-detail__gallery-card {
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 10px 26px rgba(42, 36, 29, 0.08);
+}
+
+.book-detail__gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.book-detail__gallery-card--placeholder {
+  display: grid;
+  place-items: center;
+  border: 1px dashed rgba(18, 63, 39, 0.3);
+  background: linear-gradient(145deg, rgba(255, 250, 240, 0.9), rgba(243, 230, 202, 0.72));
+  color: rgba(42, 36, 29, 0.58);
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+/* ==================================================
+   26. PAGINA LIBRI - RESPONSIVE
+   ================================================== */
+
+@media (max-width: 900px) {
+  .book-detail__top {
+    grid-template-columns: minmax(190px, 0.78fr) minmax(0, 1.35fr);
+    gap: 2rem;
+  }
+
+  .book-detail__product {
+    width: min(100%, 300px);
+  }
+}
+
+@media (max-width: 680px) {
+  .books-page {
+    padding-block: 1.75rem 3rem;
+  }
+
+  .books-page__header {
+    margin-bottom: 2.5rem;
+  }
+
+  .book-detail__top {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+
+  .book-detail__product {
+    width: min(78vw, 340px);
+  }
+
+  .book-detail__copy {
+    padding-top: 0;
+  }
+
+  .book-detail__copy h2 {
+    max-width: none;
+    font-size: clamp(0.82rem, 3.8vw, 1.35rem);
+    white-space: nowrap;
+  }
+
+  .book-detail__label {
+    font-size: 1.32rem;
+  }
+
+  .book-detail__gallery {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .book-detail__gallery-card {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+
+/* ==================================================
+   27. FOOTER - FIX IPAD / TABLET PORTRAIT
+   A circa 828px il layout desktop a due colonne non ha spazio
+   sufficiente: il blocco a destra finisce sopra al payoff.
+   Su tablet il footer passa quindi a una colonna, senza modificare
+   il logo del footer né il comportamento smartphone.
+   ================================================== */
+
+@media (min-width: 769px) and (max-width: 980px) {
+  .site-footer__inner {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    align-items: start;
+  }
+
+  .site-footer__project {
+    justify-self: start;
+    max-width: none;
+  }
+
+  .site-footer__payoff {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 600px) {
+  .site-footer::after {
+    height: 50px;
+    background-repeat: repeat-x;
+    background-size: auto 50px;
+    background-position: center bottom;
+  }
+}

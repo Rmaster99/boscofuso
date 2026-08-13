@@ -1,0 +1,195 @@
+---
+import { Image } from "astro:assets";
+import coverGrotta from "../assets/images/books/Il segreto della Grotta Smeraldina.webp";
+import coverColorare from "../assets/images/books/Personaggi, storie e disegni da colorare.webp";
+import coverStranimali from "../assets/images/books/Il magico mondo degli Stranimali.webp";
+import coverZebraffa from "../assets/images/books/Una zebraffa a Ramofondo.webp";
+import stranimali01 from "../assets/images/books/previews/stranimali-01.webp";
+import stranimali02 from "../assets/images/books/previews/stranimali-02.webp";
+import stranimali03 from "../assets/images/books/previews/stranimali-03.webp";
+import zebraffa01 from "../assets/images/books/previews/zebraffa-01.webp";
+import zebraffa02 from "../assets/images/books/previews/zebraffa-02.webp";
+import zebraffa03 from "../assets/images/books/previews/zebraffa-03.webp";
+import grotta01 from "../assets/images/books/previews/grotta-smeraldina-01.webp";
+import grotta02 from "../assets/images/books/previews/grotta-smeraldina-02.webp";
+import grotta03 from "../assets/images/books/previews/grotta-smeraldina-03.webp";
+import colorare01 from "../assets/images/books/previews/colorare-01.webp";
+import colorare02 from "../assets/images/books/previews/colorare-02.webp";
+import colorare03 from "../assets/images/books/previews/colorare-03.webp";
+
+const { lang = "it" } = Astro.props;
+
+/*
+  I link Amazon/Kobo e le tre immagini interne di ogni libro
+  verranno inseriti qui quando avremo gli URL e gli asset definitivi.
+  Lasciarli vuoti mantiene visibile la struttura senza creare link falsi.
+*/
+const books = lang === "en"
+  ? [
+      {
+        id: "vol-1",
+        label: "Vol. 1",
+        title: "The Origins of Boscofuso",
+        cover: coverStranimali,
+        gallery: [stranimali01, stranimali02, stranimali03],
+        description: "Welcome to Boscofuso, a place no map has ever found, where trees seem to talk, paths change shape and impossible creatures born from the meeting of two different animals live together: the Stranimali. This is where Serpiglio’s adventure begins. Half snake and half rabbit, he is curious, clever and always ready to look at things from a different point of view. Together with Scimmiocero, Nella the Leonella and many new friends, Serpiglio discovers Ramofondo, the village of the Stranimali, and faces small mysteries, unexpected problems and situations that put everyone’s courage and imagination to the test. A celebration that does not go as planned, a river that suddenly changes course, Nella’s mysterious missing roar and a strange disappearance in the forest are only some of the adventures waiting for the reader. Filled with funny moments, original characters and a world rich in details to discover, each story shows how being different can become a strength, unusual ideas can prove valuable and sometimes listening to one another is the best way to find a solution. The first journey into the world of Boscofuso begins here.",
+        amazonUrl: "https://www.amazon.com/dp/B0FNJJZ24B",
+        koboUrl: "",
+      },
+      {
+        id: "vol-2",
+        label: "Vol. 2",
+        title: "Zebraffa comes to Ramofondo",
+        cover: coverZebraffa,
+        gallery: [zebraffa01, zebraffa02, zebraffa03],
+        description: "Someone new is about to arrive in Ramofondo. Her name is Raffa, a Zebraffa — half zebra and half giraffe — and from their very first meeting Serpiglio and the other Stranimali realise that she sees the world in her own special way. Raffa does not like rushing without knowing where she is going. She prefers to observe before acting and, when everyone else has already decided what to do, she often needs a little more time to understand. At first, finding the right rhythm is not easy, especially for Scimmiocero, who lives everything at full speed. But the inhabitants of Ramofondo soon discover that stopping, waiting and looking more carefully can completely change what once seemed obvious. Through new games, small challenges, moments of friendship and a special day spent gathering salciarance, Raffa slowly finds her place in the group, while Serpiglio and his friends learn that being together does not mean everyone has to do the same thing at the same time. A new Boscofuso adventure where even a slower step can take you a long way, and every different way of being can become something valuable for everyone.",
+        amazonUrl: "https://www.amazon.com/dp/B0GKVDBPXS",
+        koboUrl: "",
+      },
+      {
+        id: "vol-3",
+        label: "Vol. 3",
+        title: "The Secret of the Emerald Cave",
+        cover: coverGrotta,
+        gallery: [grotta01, grotta02, grotta03],
+        description: "Something is wrong in Boscofuso. The light of the Emerald Cave, the place where everything began, has started to flicker, and the Stranimali can feel that something inside them is changing. Serpiglio and Scimmiocero are the first to notice it, but soon the impossible happens: the two natures that make up each Stranimale begin to separate. Serpiglio is no longer one creature, but a rabbit and a snake who think, react and move in completely different ways. And the same thing is happening throughout Ramofondo. To discover what is really going on, Serpiglio must travel towards the Emerald Cave with Gufatto, crossing an increasingly unstable Boscofuso and learning to cooperate with the very part of himself that seems so different. Difficult paths, unexpected encounters and a mysterious light that is slowly fading turn the journey into one of Serpiglio’s most important adventures. Deep inside the cave lies a secret that cannot be solved with strength alone. A new journey into the heart of Boscofuso, where Serpiglio discovers that being made of different parts does not mean being divided — and that sometimes, to feel whole again, we first have to learn to listen to every part of ourselves.",
+        amazonUrl: "https://www.amazon.com/dp/B0GX9C9STN",
+        koboUrl: "",
+      },
+      {
+        id: "da-colorare",
+        label: "Coloring book",
+        title: "Characters, stories and coloring pages",
+        cover: coverColorare,
+        gallery: [colorare01, colorare02, colorare03],
+        description: "Who are the Stranimali of Boscofuso really? This book is a fun way to meet them one by one and discover their personalities, special abilities, secret hobbies and all the little quirks that make each of them unique. Serpiglio, Scimmiocero, Nella the Leonella, Pingy the Pinguane, Guffy the Gufatto, Raffa the Zebraffa and many others open the doors to their world and guide the reader through Boscofuso and the village of Ramofondo. But this time reading is only the beginning: every character also has a page to colour and a space where children can imagine spending an entire day together, deciding what they would do, what they would eat and what adventures might happen. At the end, it is time to create something completely new: your very own Stranimale, choosing its name, the animals that make it up, its appearance, talent, special ability and even its secret hobby. A book to read, colour and complete, designed to let children step inside the world of Boscofuso and turn every page into a new opportunity to imagine, create and play.",
+        amazonUrl: "https://www.amazon.com/dp/B0GLMVVHL5",
+        koboUrl: "",
+      },
+    ]
+  : [
+      {
+        id: "vol-1",
+        label: "Vol. 1",
+        title: "Le origini di Boscofuso",
+        cover: coverStranimali,
+        gallery: [stranimali01, stranimali02, stranimali03],
+        description: "Benvenuti a Boscofuso, un luogo che nessuna mappa conosce, dove gli alberi sembrano parlare, i sentieri cambiano aspetto e vivono creature impossibili nate dall’incontro tra animali diversi: gli Stranimali. È qui che comincia l’avventura di Serpiglio, metà serpente e metà coniglio, curioso, intelligente e sempre pronto a guardare le cose da un punto di vista diverso. Insieme a Scimmiocero, Nella la Leonella e tanti nuovi amici, Serpiglio scoprirà Ramofondo, il villaggio degli Stranimali, e affronterà piccoli misteri, imprevisti e situazioni che metteranno alla prova il coraggio e la fantasia di tutti. Tra momenti divertenti, personaggi originali e un mondo ricco di dettagli da scoprire, ogni storia racconta qualcosa di importante senza rinunciare al gioco e alla sorpresa: essere diversi può diventare una forza, le idee più strane possono rivelarsi preziose e spesso basta imparare ad ascoltarsi per trovare una soluzione. Il primo viaggio nel mondo di Boscofuso comincia da qui.",
+        amazonUrl: "https://www.amazon.it/dp/B0FNJJZ24B",
+        koboUrl: "",
+      },
+      {
+        id: "vol-2",
+        label: "Vol. 2",
+        title: "Una zebraffa a Ramofondo",
+        cover: coverZebraffa,
+        gallery: [zebraffa01, zebraffa02, zebraffa03],
+        description: "A Ramofondo sta per arrivare qualcuno di nuovo. Si chiama Raffa, è una Zebraffa — metà zebra e metà giraffa — e fin dal primo incontro Serpiglio e gli altri Stranimali capiscono che vede il mondo in modo tutto suo. Raffa non ama correre senza sapere dove andare, preferisce osservare prima di agire e, quando gli altri hanno già deciso cosa fare, spesso lei ha ancora bisogno di qualche momento per capire. Presto gli abitanti di Ramofondo scopriranno che fermarsi, aspettare e guardare con più attenzione può cambiare completamente ciò che sembrava ovvio. Tra nuovi giochi, piccole difficoltà, momenti di amicizia e una speciale giornata dedicata alla raccolta delle salciarance, Raffa troverà poco alla volta il proprio posto nel gruppo, mentre Serpiglio e i suoi amici impareranno che stare insieme non significa fare tutti le stesse cose nello stesso momento. Una nuova avventura nel mondo di Boscofuso, dove anche un passo più lento può portare molto lontano e ogni modo diverso di essere può diventare una risorsa per tutti.",
+        amazonUrl: "https://www.amazon.it/dp/B0GKVDBPXS",
+        koboUrl: "",
+      },
+      {
+        id: "vol-3",
+        label: "Vol. 3",
+        title: "Il segreto della Grotta Smeraldina",
+        cover: coverGrotta,
+        gallery: [grotta01, grotta02, grotta03],
+        description: "A Boscofuso qualcosa non va. La luce della Grotta Smeraldina, il luogo da cui tutto ha avuto origine, ha iniziato a tremare e gli Stranimali sentono che qualcosa dentro di loro sta cambiando. Serpiglio e Scimmiocero sono i primi ad accorgersene, ma ben presto accade l’impossibile: le due nature che compongono ogni Stranimale iniziano a separarsi. Serpiglio non è più uno solo, ma un coniglio e un serpente che pensano, reagiscono e si muovono in modo diverso. E la stessa cosa sta succedendo in tutto Ramofondo. Per capire cosa sta accadendo, Serpiglio dovrà affrontare un viaggio verso la Grotta Smeraldina insieme a Gufatto, attraversando un Boscofuso sempre più instabile e imparando a collaborare proprio con quella parte di sé che sembra così diversa. Un nuovo viaggio nel cuore di Boscofuso, dove il mistero della Grotta Smeraldina nasconde una scoperta importante.",
+        amazonUrl: "https://www.amazon.it/dp/B0GX9C9STN",
+        koboUrl: "",
+      },
+      {
+        id: "da-colorare",
+        label: "Libro da colorare",
+        title: "Personaggi, storie e disegni da colorare",
+        cover: coverColorare,
+        gallery: [colorare01, colorare02, colorare03],
+        description: "Chi sono davvero gli Stranimali di Boscofuso? Questo libro è il modo più divertente per conoscerli da vicino, uno per uno, scoprendo il loro carattere, le loro abilità speciali, gli hobby segreti e tutte quelle piccole stranezze che li rendono unici. Serpiglio, Scimmiocero, Nella la Leonella, Pingy il Pinguane, Guffy il Gufatto, Raffa la Zebraffa e tanti altri aprono le porte del loro mondo e accompagnano il lettore alla scoperta di Boscofuso e del villaggio di Ramofondo. Ma questa volta non basta leggere: ogni personaggio ha anche una pagina da colorare e uno spazio in cui immaginare una giornata insieme a lui, inventando cosa fare, cosa mangiare e quali avventure potrebbero accadere. Alla fine arriva anche il momento di creare qualcosa di completamente nuovo: inventare il proprio Stranimale, scegliendo il nome, gli animali da unire, l’aspetto, il talento, l’abilità speciale e perfino il suo hobby segreto. Un libro da leggere, colorare e completare, pensato per entrare davvero nel mondo di Boscofuso e trasformare ogni pagina in una nuova occasione per immaginare.",
+        amazonUrl: "https://www.amazon.it/dp/B0GLMVVHL5",
+        koboUrl: "",
+      },
+    ];
+
+const t = lang === "en"
+  ? {
+      pageTitle: "Boscofuso stories",
+      intro: "Discover the books and take a closer look inside each Boscofuso adventure.",
+      amazon: "Buy on Amazon",
+      kobo: "Buy on Kobo",
+      galleryAlt: "Book image",
+      galleryPlaceholder: "Book image",
+    }
+  : {
+      pageTitle: "Le storie di Boscofuso",
+      intro: "Scopri i libri e guarda più da vicino le avventure del mondo di Boscofuso.",
+      amazon: "Acquista su Amazon",
+      kobo: "Acquista su Kobo",
+      galleryAlt: "Immagine del libro",
+      galleryPlaceholder: "Immagine del libro",
+    };
+---
+
+<section class="books-page page-shell">
+  <header class="books-page__header">
+    <h1>{t.pageTitle}</h1>
+    <p>{t.intro}</p>
+  </header>
+
+  <div class="books-page__list">
+    {books.map((book) => (
+      <article class="book-detail" id={book.id}>
+        <div class="book-detail__top">
+          <div class="book-detail__product">
+            <div class="book-detail__cover-wrap">
+              <Image
+                src={book.cover}
+                alt={book.title}
+                class="book-detail__cover"
+                widths={[320, 440, 620]}
+                sizes="(max-width: 768px) 72vw, 340px"
+                loading="lazy"
+              />
+            </div>
+
+
+            <div class="book-detail__stores" aria-label={lang === "en" ? "Purchase options" : "Opzioni di acquisto"}>
+              {book.amazonUrl && (
+                <a class="book-detail__store book-detail__store--amazon" href={book.amazonUrl} target="_blank" rel="noopener noreferrer">
+                  {t.amazon}
+                </a>
+              )}
+
+              {book.koboUrl && (
+                <a class="book-detail__store book-detail__store--kobo" href={book.koboUrl} target="_blank" rel="noopener noreferrer">
+                  {t.kobo}
+                </a>
+              )}
+            </div>
+          </div>
+
+          <div class="book-detail__copy">
+            <h2>{book.title}</h2>
+            <p class="book-detail__label">{book.label}</p>
+            <div class="book-detail__rule" aria-hidden="true"></div>
+            <p class="book-detail__description">{book.description}</p>
+          </div>
+        </div>
+
+        <div class="book-detail__gallery">
+          {book.gallery.map((image, imageIndex) => (
+            <figure class="book-detail__gallery-card">
+              <Image
+                src={image}
+                alt={`${book.title} – ${t.galleryAlt} ${imageIndex + 1}`}
+                class="book-detail__gallery-image"
+                widths={[480, 800, 1200, 1600]}
+                sizes="(max-width: 680px) 100vw, 33vw"
+                loading="lazy"
+              />
+            </figure>
+          ))}
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

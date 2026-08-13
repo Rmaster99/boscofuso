@@ -1,0 +1,27 @@
+---
+import { Image } from "astro:assets";
+
+const {
+  image,
+  title,
+  href = "#",
+  alt = title,
+} = Astro.props;
+---
+
+<article class="book-card">
+  <a class="book-card__link" href={href}>
+    <div class="book-card__cover">
+      <Image
+        src={image}
+        alt={alt}
+        class="book-card__image"
+        widths={[220, 320, 440]}
+        sizes="(max-width: 768px) 62vw, (max-width: 1100px) 24vw, 18vw"
+        loading="lazy"
+      />
+    </div>
+
+    <h3 class="book-card__title">{title}</h3>
+  </a>
+</article>

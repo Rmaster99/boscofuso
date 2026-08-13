@@ -1,0 +1,108 @@
+---
+import { Image } from "astro:assets";
+import serpyImg from "../assets/images/coloring/serpy.webp";
+import facoImg from "../assets/images/coloring/faco.webp";
+import nellaImg from "../assets/images/coloring/nella.webp";
+import pingyImg from "../assets/images/coloring/pingy.webp";
+import guffyImg from "../assets/images/coloring/guffy.webp";
+import cappyImg from "../assets/images/coloring/cappy.webp";
+import gabbyImg from "../assets/images/coloring/gabby.webp";
+import bekoImg from "../assets/images/coloring/beko.webp";
+import dankoImg from "../assets/images/coloring/danko.webp";
+import raffaImg from "../assets/images/coloring/raffa.webp";
+import dodoImg from "../assets/images/coloring/dodo.webp";
+import lillyImg from "../assets/images/coloring/lilly.webp";
+import lelaImg from "../assets/images/coloring/lela.webp";
+import milaImg from "../assets/images/coloring/mila.webp";
+import ippaImg from "../assets/images/coloring/ippa.webp";
+
+const { lang = "it" } = Astro.props;
+
+const drawings = lang === "en"
+  ? [
+  { id: "serpy", name: "Serpy the Serpiglio", image: serpyImg, pdf: "/downloads/da-colorare/serpy.pdf" },
+  { id: "faco", name: "Facò the Scimmiocero", image: facoImg, pdf: "/downloads/da-colorare/faco.pdf" },
+  { id: "nella", name: "Nella the Leonella", image: nellaImg, pdf: "/downloads/da-colorare/nella.pdf" },
+  { id: "pingy", name: "Pingy the Pinguane", image: pingyImg, pdf: "/downloads/da-colorare/pingy.pdf" },
+  { id: "guffy", name: "Guffy the Gufatto", image: guffyImg, pdf: "/downloads/da-colorare/guffy.pdf" },
+  { id: "cappy", name: "Cappy the Capralla", image: cappyImg, pdf: "/downloads/da-colorare/cappy.pdf" },
+  { id: "gabby", name: "Prof. Gabby the Gattolone", image: gabbyImg, pdf: "/downloads/da-colorare/gabby.pdf" },
+  { id: "beko", name: "Dr. Beko the Policheco", image: bekoImg, pdf: "/downloads/da-colorare/beko.pdf" },
+  { id: "danko", name: "Captain Danko the Acquillone", image: dankoImg, pdf: "/downloads/da-colorare/danko.pdf" },
+  { id: "raffa", name: "Raffa the Zebraffa", image: raffaImg, pdf: "/downloads/da-colorare/raffa.pdf" },
+  { id: "dodo", name: "Dodo the Panduro", image: dodoImg, pdf: "/downloads/da-colorare/dodo.pdf" },
+  { id: "lilly", name: "Lilly the Tartallina", image: lillyImg, pdf: "/downloads/da-colorare/lilly.pdf" },
+  { id: "lela", name: "Lela the Panteralla", image: lelaImg, pdf: "/downloads/da-colorare/lela.pdf" },
+  { id: "mila", name: "Mila the Maialele", image: milaImg, pdf: "/downloads/da-colorare/mila.pdf" },
+  { id: "ippa", name: "Ippa the Ippoparda", image: ippaImg, pdf: "/downloads/da-colorare/ippa.pdf" }
+]
+  : [
+  { id: "serpy", name: "Serpy il Serpiglio", image: serpyImg, pdf: "/downloads/da-colorare/serpy.pdf" },
+  { id: "faco", name: "Facò lo Scimmiocero", image: facoImg, pdf: "/downloads/da-colorare/faco.pdf" },
+  { id: "nella", name: "Nella la Leonella", image: nellaImg, pdf: "/downloads/da-colorare/nella.pdf" },
+  { id: "pingy", name: "Pingy il Pinguane", image: pingyImg, pdf: "/downloads/da-colorare/pingy.pdf" },
+  { id: "guffy", name: "Guffy il Gufatto", image: guffyImg, pdf: "/downloads/da-colorare/guffy.pdf" },
+  { id: "cappy", name: "Cappy la Capralla", image: cappyImg, pdf: "/downloads/da-colorare/cappy.pdf" },
+  { id: "gabby", name: "Prof. Gabby il Gattolone", image: gabbyImg, pdf: "/downloads/da-colorare/gabby.pdf" },
+  { id: "beko", name: "Dott. Beko il Policheco", image: bekoImg, pdf: "/downloads/da-colorare/beko.pdf" },
+  { id: "danko", name: "Capitano Danko l’Acquillone", image: dankoImg, pdf: "/downloads/da-colorare/danko.pdf" },
+  { id: "raffa", name: "Raffa la Zebraffa", image: raffaImg, pdf: "/downloads/da-colorare/raffa.pdf" },
+  { id: "dodo", name: "Dodo il Panduro", image: dodoImg, pdf: "/downloads/da-colorare/dodo.pdf" },
+  { id: "lilly", name: "Lilly la Tartallina", image: lillyImg, pdf: "/downloads/da-colorare/lilly.pdf" },
+  { id: "lela", name: "Lela la Panteralla", image: lelaImg, pdf: "/downloads/da-colorare/lela.pdf" },
+  { id: "mila", name: "Mila la Maialele", image: milaImg, pdf: "/downloads/da-colorare/mila.pdf" },
+  { id: "ippa", name: "Ippa la Ippoparda", image: ippaImg, pdf: "/downloads/da-colorare/ippa.pdf" }
+];
+
+const t = lang === "en"
+  ? {
+      title: "Color Boscofuso",
+      intro: "Choose a character, download the drawing and print it whenever you want.",
+      download: "Download drawing",
+      open: "Open printable drawing",
+    }
+  : {
+      title: "Da colorare",
+      intro: "Scegli un personaggio, scarica il disegno e stampalo quando vuoi.",
+      download: "Scarica il disegno",
+      open: "Apri il disegno da stampare",
+    };
+---
+
+<section class="coloring-page page-shell">
+  <header class="coloring-page__header">
+    <h1>{t.title}</h1>
+    <p>{t.intro}</p>
+  </header>
+
+  <div class="coloring-grid">
+    {drawings.map((drawing) => (
+      <article class="coloring-card">
+        <a
+          class="coloring-card__visual"
+          href={drawing.pdf}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${t.open}: ${drawing.name}`}
+        >
+          <Image
+            src={drawing.image}
+            alt={drawing.name}
+            class="coloring-card__image"
+            widths={[360, 560, 800, 1024]}
+            sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+            loading="lazy"
+          />
+        </a>
+
+        <div class="coloring-card__content">
+          <h2>{drawing.name}</h2>
+          <a class="coloring-card__download" href={drawing.pdf} download>
+            <span aria-hidden="true">↓</span>
+            {t.download}
+          </a>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

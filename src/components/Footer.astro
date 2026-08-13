@@ -1,0 +1,47 @@
+---
+import { Image } from "astro:assets";
+import boscofusoLogo from "../assets/images/brand/boscofuso-logo.png";
+
+const { lang = "it" } = Astro.props;
+const base = `/${lang}`;
+const footerLogo = boscofusoLogo;
+const footerLogoAlt = "Boscofuso";
+
+const content = lang === "en"
+  ? {
+      payoff: "Illustrated stories for little explorers and big dreamers.",
+      project: "Happy Edy - independent publishing project.",
+      rights: "All rights reserved.",
+      privacy: "Privacy",
+    }
+  : {
+      payoff: "Storie illustrate per piccoli esploratori e grandi sognatori.",
+      project: "Happy Edy - progetto editoriale indipendente.",
+      rights: "Tutti i diritti riservati.",
+      privacy: "Privacy",
+    };
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <Image
+        class="site-footer__logo"
+        src={footerLogo}
+        alt={footerLogoAlt}
+        widths={[81, 112, 160]}
+        sizes="(max-width: 768px) 81px, 112px"
+        format="webp"
+        quality={90}
+        loading="lazy"
+      />
+      <p class="site-footer__payoff">{content.payoff}</p>
+    </div>
+
+    <div class="site-footer__project">
+      <p>{content.project}</p>
+      <p>© 2026 Happy Edy — {content.rights}</p>
+      <a href={`${base}/privacy/`}>{content.privacy}</a>
+    </div>
+  </div>
+</footer>

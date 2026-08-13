@@ -1,0 +1,191 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../styles/privacy.css";
+
+const privacyContact = "happyedizioni@yahoo.com";
+---
+
+<BaseLayout
+  title="Privacy & Cookie Policy | Boscofuso"
+  description="Privacy and cookie information for the Boscofuso website."
+  lang="en"
+  robots="noindex,follow"
+>
+  <section class="privacy-page">
+    <div class="privacy-page__container">
+      <header class="privacy-page__header">
+        <p class="privacy-page__eyebrow">Boscofuso · Happy Edy</p>
+        <h1>Privacy & Cookie Policy</h1>
+        <p class="privacy-page__updated">Last updated: 13 August 2026</p>
+      </header>
+
+      <section class="privacy-page__section">
+        <h2>1. Data controller</h2>
+        <p>
+          The website <strong>boscofuso.com</strong> is dedicated to the independent
+          <strong>Happy Edy</strong> publishing project and to the fictional world of Boscofuso.
+        </p>
+        <p>
+          <strong>Privacy contact:</strong> {privacyContact}
+        </p>
+      </section>
+
+      <section class="privacy-page__section">
+        <h2>2. Data processed</h2>
+
+        <div class="privacy-page__subsection">
+          <h3>Browsing data</h3>
+          <p>
+            When you visit the website, the technical systems required to operate it may
+            automatically process information such as your IP address, date and time of the request,
+            requested page, browser and device type, network information and technical data used for
+            security and proper delivery of the website.
+          </p>
+        </div>
+
+        <div class="privacy-page__subsection">
+          <h3>Data provided voluntarily</h3>
+          <p>
+            The current Boscofuso source code does not contain contact forms, account registration,
+            restricted areas or newsletter forms. The website therefore does not directly collect,
+            through its own forms, names, email addresses or other information voluntarily entered
+            by visitors.
+          </p>
+        </div>
+
+        <div class="privacy-page__subsection">
+          <h3>Children’s data</h3>
+          <p>
+            Boscofuso includes content suitable for younger audiences, but the website does not
+            require children to register and is not designed to knowingly collect personal data from
+            children through forms, profiles or profiling tools.
+          </p>
+        </div>
+      </section>
+
+      <section class="privacy-page__section">
+        <h2>3. Purposes and legal bases</h2>
+        <p>Technical data may be processed in order to:</p>
+        <ul class="privacy-page__list">
+          <li>deliver the website and its content;</li>
+          <li>ensure security, stability and prevention of abuse or attacks;</li>
+          <li>diagnose technical errors and service issues;</li>
+          <li>comply with applicable legal obligations.</li>
+        </ul>
+        <p>
+          Depending on the circumstances, the legal basis is the legitimate interest in operating
+          and securing the website and compliance with legal obligations.
+        </p>
+      </section>
+
+      <section class="privacy-page__section">
+        <h2>4. Hosting and Cloudflare</h2>
+        <p>
+          The website is published using Cloudflare services. In providing infrastructure, content
+          delivery and security functions, Cloudflare may process technical data relating to user
+          requests, including IP addresses and network traffic information.
+        </p>
+        <p>
+          Certain Cloudflare security functions may also use strictly necessary technical cookies or
+          equivalent technologies. Their presence depends on the services and security measures
+          actually enabled for the domain.
+        </p>
+      </section>
+
+      <section class="privacy-page__section">
+        <h2>5. Google Fonts</h2>
+        <p>
+          The website currently uses Google Fonts to load the “Baloo 2” typeface. Your browser
+          therefore makes a request to Google servers to obtain the stylesheet and font files; this
+          request may transmit technical information to Google, including your IP address and browser
+          information.
+        </p>
+        <p>
+          Google processes this information according to its own terms and privacy information.
+        </p>
+      </section>
+
+      <section class="privacy-page__section">
+        <h2>6. Cookies and tracking technologies</h2>
+        <p>
+          The current website source code does not contain advertising tools, profiling cookies,
+          marketing pixels or analytics systems installed by the website.
+        </p>
+        <p>
+          Strictly necessary technical cookies or equivalent technologies may nevertheless be used
+          for infrastructure operation and security, for example in connection with specific
+          Cloudflare functions. Technical cookies used solely for strictly necessary purposes do not
+          require prior consent under the applicable rules, while appropriate information must still
+          be provided.
+        </p>
+      </section>
+
+      <section class="privacy-page__section">
+        <h2>7. Links to external websites</h2>
+        <p>
+          Boscofuso may contain links to external platforms, including Amazon, Kobo or other stores
+          and services. When you follow one of these links, you leave boscofuso.com and any subsequent
+          processing is governed by the terms and privacy notices of the external website.
+        </p>
+        <p>
+          Boscofuso does not automatically receive personal data that you may later provide to those
+          platforms simply because you reached them through a link on this website.
+        </p>
+      </section>
+
+      <section class="privacy-page__section">
+        <h2>8. Data retention</h2>
+        <p>
+          Any technical and security data are retained only for as long as necessary for the purposes
+          for which they are processed and in accordance with the retention periods applied by the
+          relevant technical providers. The website does not maintain a database of registered users.
+        </p>
+      </section>
+
+      <section class="privacy-page__section">
+        <h2>9. Recipients and international transfers</h2>
+        <p>
+          Technical data may be processed by providers required for the operation of the website,
+          particularly Cloudflare and, for font delivery, Google. These providers may operate through
+          globally distributed infrastructure, including outside the European Economic Area, and
+          apply their own compliance mechanisms and safeguards for international transfers.
+        </p>
+      </section>
+
+      <section class="privacy-page__section">
+        <h2>10. Your rights</h2>
+        <p>
+          Where provided by applicable law, you may request access to your personal data,
+          rectification, erasure, restriction of processing, objection and data portability, and you
+          may lodge a complaint with the competent supervisory authority.
+        </p>
+        <p>
+          Requests may be sent to the privacy contact indicated in section 1.
+        </p>
+      </section>
+
+      <section class="privacy-page__section">
+        <h2>11. Changes to this notice</h2>
+        <p>
+          This page may be updated when the website features, technical services or applicable law
+          change. The date of the latest revision is shown at the top of this page.
+        </p>
+      </section>
+
+      <a class="privacy-page__back" href="/en/">← Back to the website</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
+
+  const goToTop = () => {
+    window.scrollTo(0, 0);
+  };
+
+  goToTop();
+  window.addEventListener("pageshow", goToTop);
+</script>

@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import worldImage from "../assets/images/home/hero-01.webp";
+
+const { lang = "it" } = Astro.props;
+
+const content = lang === "en"
+  ? {
+      title: "Boscofuso world",
+      text: "Boscofuso is a place of winding paths, tiny houses, unexpected encounters and stories waiting to be discovered. Enter its world and follow Serpiglio through adventures, mysteries and wonder.",
+      cta: "Explore it!",
+      alt: "The enchanted world of Boscofuso.",
+    }
+  : {
+      title: "Il mondo di Boscofuso",
+      text: "Boscofuso è un luogo fatto di sentieri, piccole case, incontri inattesi e storie da scoprire. Entra nel suo mondo e segui Serpiglio tra avventure, misteri e meraviglia.",
+      cta: "Esploralo!",
+      alt: "Il mondo incantato di Boscofuso.",
+    };
+
+const base = `/${lang}`;
+---
+
+<section class="home-world">
+  <a
+    class="home-world__visual"
+    href={`${base}/mondo-di-boscofuso/`}
+    aria-label={content.cta}
+  >
+    <Image
+      src={worldImage}
+      alt={content.alt}
+      class="home-world__image"
+      widths={[480, 720, 960]}
+      sizes="(max-width: 768px) calc(100vw - 32px), 42vw"
+      loading="lazy"
+    />
+  </a>
+
+  <div class="home-world__content">
+    <h2>{content.title}</h2>
+    <p>{content.text}</p>
+
+    <a class="home-world__cta" href={`${base}/mondo-di-boscofuso/`}>
+      {content.cta}
+    </a>
+  </div>
+</section>

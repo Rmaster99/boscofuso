@@ -1,0 +1,49 @@
+HAPPY EDY - IMMAGINI LIBRI
+
+libro-01/
+  copertina.webp
+  foto-01.webp
+  foto-02.webp
+  foto-03.webp
+
+libro-02/
+  copertina.webp
+  foto-01.webp
+  foto-02.webp
+  foto-03.webp
+
+libro-03/
+  copertina.webp
+  foto-01.webp
+  foto-02.webp
+  foto-03.webp
+
+libro-04/
+  copertina.webp
+  foto-01.webp
+  foto-02.webp
+  foto-03.webp
+
+libro-05/
+  copertina.webp
+  foto-01.webp
+  foto-02.webp
+  foto-03.webp
+
+libro-06/
+  copertina.webp
+  foto-01.webp
+  foto-02.webp
+  foto-03.webp
+
+libro-07/
+  copertina.webp
+  foto-01.webp
+  foto-02.webp
+  foto-03.webp
+
+libro-08/
+  copertina.webp
+  foto-01.webp
+  foto-02.webp
+  foto-03.webp

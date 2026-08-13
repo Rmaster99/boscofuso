@@ -1,0 +1,109 @@
+---
+import { Image } from "astro:assets";
+import hero01 from "../assets/images/home/hero-01.webp";
+import hero02 from "../assets/images/home/hero-02.webp";
+import hero03 from "../assets/images/home/hero-03.webp";
+import hero04 from "../assets/images/home/hero-04.webp";
+import hero05 from "../assets/images/home/hero-05.webp";
+
+const { lang = "it" } = Astro.props;
+
+const content = lang === "en"
+  ? {
+      title: "Stories that make imagination grow.",
+      text: "Discover Boscofuso and the adventures of Serpiglio.",
+      cta: "Discover the stories",
+      sliderLabel: "Hero image gallery",
+    }
+  : {
+      title: "Storie che fanno crescere l’immaginazione.",
+      text: "Scopri il mondo di Boscofuso e le avventure di Serpiglio.",
+      cta: "Scopri le storie",
+      sliderLabel: "Galleria immagini hero",
+    };
+
+const slides = [
+  { src: hero01 },
+  { src: hero02 },
+  { src: hero03 },
+  { src: hero04 },
+  { src: hero05 },
+];
+---
+
+<section class="home-hero hero-slider">
+  <div class="home-hero__slides" aria-label={content.sliderLabel}>
+    {slides.map((slide, index) => (
+      <figure
+        class={`home-hero__slide home-hero__slide--${index + 1} ${index === 0 ? "is-active" : ""}`}
+        data-hero-slide
+        aria-hidden={index === 0 ? "false" : "true"}
+      >
+        <Image
+          src={slide.src}
+          alt=""
+          widths={[800, 1200, 1600]}
+          sizes="100vw"
+          format="webp"
+          quality={90}
+          loading={index === 0 ? "eager" : "lazy"}
+        />
+      </figure>
+    ))}
+
+    <div class="home-hero__shade" aria-hidden="true"></div>
+  </div>
+
+  <div class="home-hero__inner">
+    <div class="home-hero__content">
+      <h1 class="home-hero__title">{content.title}</h1>
+
+      <p class="home-hero__text">{content.text}</p>
+
+      <a
+  class="home-hero__cta"
+  href={lang === "en" ? "/en/books/" : "/it/libri/"}
+>
+        {content.cta}
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const initHeroSliders = () => {
+    document.querySelectorAll(".hero-slider").forEach((root) => {
+      if (root.dataset.heroInitialized === "true") return;
+
+      const slides = Array.from(root.querySelectorAll("[data-hero-slide]"));
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      if (slides.length === 0) return;
+
+      root.dataset.heroInitialized = "true";
+
+      let current = 0;
+
+      const setActive = (nextIndex) => {
+        slides.forEach((slide, index) => {
+          const isActive = index === nextIndex;
+          slide.classList.toggle("is-active", isActive);
+          slide.setAttribute("aria-hidden", isActive ? "false" : "true");
+        });
+
+        current = nextIndex;
+      };
+
+      setActive(0);
+
+      if (!reduceMotion && slides.length > 1) {
+        window.setInterval(() => {
+          setActive((current + 1) % slides.length);
+        }, 5000);
+      }
+    });
+  };
+
+  initHeroSliders();
+  document.addEventListener("astro:page-load", initHeroSliders);
+</script>

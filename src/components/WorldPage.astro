@@ -1,0 +1,296 @@
+---
+import { Image } from "astro:assets";
+import "../styles/world.css";
+
+import worldMap from "../assets/images/world/mappa-boscofuso.webp";
+import ramofondoImage from "../assets/images/world/ramofondo.webp";
+import grottaImage from "../assets/images/world/grotta-smeraldina.webp";
+import cactusettaImage from "../assets/images/world/cactusetta.webp";
+import rosolivoImage from "../assets/images/world/rosolivo.webp";
+import fungopinoImage from "../assets/images/world/fungopino.webp";
+import raduraImage from "../assets/images/world/radura-intrecci.webp";
+import lagoImage from "../assets/images/world/lago-specchiato.webp";
+import salciaranciaImage from "../assets/images/world/salciarancia.webp";
+import sentieroImage from "../assets/images/world/sentiero-foglie-miste.webp";
+
+const { lang = "it" } = Astro.props;
+
+const t = lang === "en"
+  ? {
+      title: "Boscofuso world",
+      intro: [
+        "There is a place no map knows. But anyone who has already been there recognises it at once. Its name is Boscofuso.",
+        "Boscofuso began when a spark of pure energy fell from the sky and transformed the great forest. The animals became Stranimali, while trees, leaves and plants began to merge into new and unexpected forms. From that moment on, every corner of the forest became a discovery.",
+      ],
+      mapTitle: "Explore the map",
+      mapHint: "Select the name of a place on the map to discover it below.",
+      mapAlt: "Illustrated map of Boscofuso showing Ramofondo, Emerald Cave, Cactusetta, Rosolivo, Clearing of Intertwined Branches, Mirror Lake, Salciarancia and the Mixed Leaves Path.",
+    }
+  : {
+      title: "Il mondo di Boscofuso",
+      intro: [
+        "C’è un luogo che nessuna mappa conosce. Ma chi ci è già stato… lo riconosce subito. Si chiama Boscofuso.",
+        "Boscofuso nacque quando una scintilla di energia pura cadde dal cielo e trasformò la grande foresta. Gli animali diventarono Stranimali, mentre alberi, foglie e piante cominciarono a fondersi in forme nuove e sorprendenti. Da quel momento, ogni angolo del bosco diventò una scoperta.",
+      ],
+      mapTitle: "Esplora la mappa",
+      mapHint: "Clicca sul nome di un luogo nella mappa per scoprirlo più in basso.",
+      mapAlt: "Mappa illustrata di Boscofuso con Ramofondo, Grotta Smeraldina, Cactusetta, Rosolivo, Radura degli Intrecci, Lago Specchiato, Salciarancia e Sentiero delle Foglie Miste.",
+    };
+
+const places = lang === "en"
+  ? [
+      {
+        id: "ramofondo",
+        title: "Ramofondo",
+        image: ramofondoImage,
+        alt: "Ramofondo village among the trees of Boscofuso",
+        paragraphs: [
+          "Ramofondo is not just a village. It is like a nest grown among the roots of Boscofuso, where dreams walk barefoot and branches clasp one another like friendly hands. The houses do not have stone walls, but woven walls made of salciarancia and orticaluna, with curved roofs of intertwined leaves and scented flowers that change colour with the mood of the sky. The windows are round openings, like curious eyes always ready to look out at the world. At the centre lies the Great Circle, a perfectly circular clearing where tree trunks bend down to listen and stones warm in the sun like cushions made for stories. Every path leading to Ramofondo is different: one is made entirely of heart-shaped leaves, another plays at every step like a natural xylophone, and another changes its route every day, for those who love getting lost and finding their way again. At night, Ramofondo glows with luccilume, small luminous spheres floating in the air like whispering lanterns. The Stranimali chase them laughing, while the grown-ups sit beneath the intreccipini — pine trees with spiral-shaped crowns — and tell one another their dreams. Above every roof is a leaf as large as an embrace, with an intertwined circle at its centre: it is the symbol of the village. A sign that here, even though everyone is different, everyone is part of the same design.",
+        ],
+      },
+      {
+        id: "grotta-smeraldina",
+        title: "Emerald Cave",
+        image: grottaImage,
+        alt: "The Emerald Cave in Boscofuso",
+        paragraphs: [
+          "There is a place in Boscofuso that does not allow itself to be found easily. It appears only when the sky turns turquoise-lilac and the wind whispers ancient songs. It is hidden among the folds of Monte Misto, a mountain that changes shape every day: sometimes it has three peaks, sometimes only one, and sometimes it seems to disappear completely. The Emerald Cave is set into the mountain’s most hidden side like a jewel in a crown. Its entrance is wrapped in glowing vines that shine even in the dark, and mosses that laugh softly when touched. Inside, it is never dark. A soft blue light pulses from walls of living crystal. The floor looks like glass, yet feels warm as a feather. From the stalactites fall drops that sound like music boxes, while butterflies made of pollen and dreams dance in the air. This is where Serpiglio was born. This is where, even today, the first spark of every Stranimale is kindled.",
+        ],
+      },
+      {
+        id: "cactusetta",
+        title: "Cactusetta",
+        fusion: "cactus + violetta = cactus + violet",
+        image: cactusettaImage,
+        alt: "Cactusetta in Boscofuso",
+        paragraphs: [
+          "Cactusetta is a thorny, sturdy and rather peculiar plant that grows in rare clusters along the sunniest edges of Boscofuso’s paths. It has a squat, rounded body covered in glossy spines arranged in spirals. But what makes it truly unique are the tiny violet flowers nestled among the thorns like precious stones. These flowers have a special trait: they open only when they hear a joke. Not just any sound, and not a melody — an actual joke, a laugh, something playful. When they open, they release a sweet fragrance and sparkle for a few seconds. The children of Boscofuso often gather in a circle to tell jokes to the plant, which answers with little amused creaks. Some Cactusette even seem to develop their own tastes: some prefer dry jokes, others wordplay, while others giggle only at the funny stories of the Stranimali.",
+        ],
+      },
+      {
+        id: "rosolivo",
+        title: "Rosolivo",
+        fusion: "rosa + ulivo = rose + olive tree",
+        image: rosolivoImage,
+        alt: "The Rosolivo in Boscofuso",
+        paragraphs: [
+          "The Rosolivo stands alone in a small circular clearing, like an ancient silent guardian. Its thin, flexible branches are entirely silver, but not rigid: they move gently in the wind like threads of liquid silk. Its leaves resemble petals, very pale pink in colour, and as they fall they release an intense scent of wild rose capable of calming anyone who breathes it in. Some leaves shine with their own light, while others dissolve at the touch, leaving behind a fragrant trail. The trunk is twisted like that of an ancient olive tree, but flecked with silver and veined with pink. It is said that the Rosolivo “listens”, and that anyone who whispers among its roots receives, in a dream, answers to difficult questions. The light around it is always like twilight, filled with honey-coloured reflections. It is often surrounded by small silent animals, as if they were paying it reverence.",
+        ],
+      },
+      {
+        id: "fungopino",
+        title: "Fungopino",
+        fusion: "fungo + pino = mushroom + pine",
+        image: fungopinoImage,
+        alt: "Fungopino trees in the forest of Boscofuso",
+        paragraphs: [
+          "The Fungopino is an extraordinary hybrid tree, born from the fusion of an ancient Scots pine and a giant woodland mushroom. Its shape is unmistakable: it has the tall, straight trunk of a pine, but is topped by an enormous mushroom cap, broad and soft, which changes colour depending on the humidity in the air.",
+          "Its bark, mottled with shades of brown and violet, gives off a scent of resin and damp moss. Bioluminescent filaments hang from the cap and glow at night like tiny natural lanterns. Some of them make sounds like little bells when brushed by the wind.",
+          "The ground around the Fungopino is fertile, covered with colourful moulds and small translucent shoots. The Stranimali often gather at its base to rest beneath its cool shade.",
+        ],
+      },
+      {
+        id: "radura-degli-intrecci",
+        title: "Clearing of Intertwined Branches",
+        image: raduraImage,
+        alt: "The Clearing of Intertwined Branches in Boscofuso",
+        paragraphs: [
+          "The Clearing of Intertwined Branches is one of the most welcoming places in Boscofuso. The trees surrounding it grow very close together, and their branches stretch towards one another until they intertwine and embrace, forming natural arches, little alcoves and shady shelters. Among the roots and beneath the canopies there is room for every animal that needs to stop, rest or feel safe. When the wind blows, the branches move together as though the trees were holding one another even more tightly. For this reason, the Clearing of Intertwined Branches is considered a place of protection and friendship, where no one ever feels truly alone.",
+        ],
+      },
+      {
+        id: "lago-specchiato",
+        title: "Mirror Lake",
+        image: lagoImage,
+        alt: "Mirror Lake surrounded by the forest",
+        paragraphs: [
+          "Mirror Lake lies hidden among mossy hills and silent trees that lean towards the water as if looking at themselves. Its surface is perfectly smooth, like liquid glass, and reflects not what is… but what could be. Anyone who looks into the lake does not see only their own reflection, but a version of themselves fused with another real or imaginary creature: a child might see themselves with dragonfly wings, an owl with the tail of a fish, or a lioness with the eyes of a fawn. It is a place of possibilities, where identity and desire blend together. At night, the lake shines with its own light, as if stars were resting on its bottom. Around it grow rare plants called lucelene, which give off soft glows like slow-burning flames. The silence is hushed, almost sacred. This is where important questions are asked. This is where one dreams of who one might become.",
+        ],
+      },
+      {
+        id: "salciarancia",
+        title: "Salciarancia",
+        fusion: "salice + arancia = willow + orange",
+        image: salciaranciaImage,
+        alt: "The Salciarancia in Boscofuso",
+        paragraphs: [
+          "In Boscofuso there grows a fruit that cannot be found anywhere else. It is called the salciarancia. It grows on truly unusual trees, with a sturdy trunk like an orange tree and long, slender, flexible branches like those of a willow. For this reason, salciarance appear almost everywhere: some grow low down, within easy reach of a paw, while others hang so high that they seem suspended in the sky. Their flesh is sweet and fragrant, with a fresh note reminiscent of the forest after rain. When ripening season arrives and the trees fill with colourful fruit, everyone in Ramofondo knows that one of the most eagerly awaited traditions of the year is about to begin. It is time to make salciarancia jam.",
+        ],
+      },
+      {
+        id: "sentiero-foglie-miste",
+        title: "Mixed Leaves Path",
+        image: sentieroImage,
+        alt: "The Mixed Leaves Path in Boscofuso",
+        paragraphs: [
+          "The Mixed Leaves Path is a wonderfully colourful avenue that crosses Boscofuso like a long living ribbon. The trees along it grow leaves unlike any others: each seems to have been born from the fusion of two different leaves, with curious shapes, points, curves and intertwined veins. Whenever someone walks along the path, the leaves slowly change colour as they pass, turning green, yellow, orange, red and violet. With every step, the landscape seems to transform, as if the forest itself wanted to accompany travellers on their way. It is one of the most cheerful and surprising places in Boscofuso, where even a simple walk can become a little adventure.",
+        ],
+      },
+    ]
+  : [
+      {
+        id: "ramofondo",
+        title: "Ramofondo",
+        image: ramofondoImage,
+        alt: "Il villaggio di Ramofondo tra gli alberi di Boscofuso",
+        paragraphs: [
+          "Ramofondo non è solo un villaggio. È come un nido cresciuto tra le radici del Boscofuso, dove i sogni camminano a zampe scalze e i rami si stringono come mani amiche. Le case non hanno muri di pietra, ma pareti intrecciate di salciarancia e orticaluna, con tetti ricurvi fatti di foglie intrecciate e fiori profumati che cambiano colore con l’umore del cielo.Le finestre sono aperture rotonde, come occhi curiosi sempre pronti a guardare il mondo. Al centro c’è il Grande Cerchio, una radura perfettamente circolare dove i tronchi si chinano per ascoltare e le pietre si scaldano al sole come cuscini per le storie. Ogni sentiero che porta a Ramofondo è diverso: ce n’è uno fatto solo di foglie a forma di cuore, uno che suona a ogni passo come uno xilofono naturale, e uno che cambia percorso ogni giorno, per chi ama perdersi e ritrovarsi. Di notte, Ramofondo si illumina con le luccilume, piccole sfere luminose che galleggiano nell’aria come lanterne sussurranti. Gli Stranimali le inseguono ridendo, mentre i grandi si siedono sotto gli intreccipini — pini dalla chioma a spirale — a raccontarsi i sogni. Sopra ogni tetto, una foglia grande come un abbraccio, con un cerchio intrecciato al centro: è il simbolo del villaggio. Segno che qui, anche se si è tutti diversi, si è parte dello stesso disegno.",
+        ],
+      },
+      {
+        id: "grotta-smeraldina",
+        title: "Grotta Smeraldina",
+        image: grottaImage,
+        alt: "La Grotta Smeraldina nella mappa di Boscofuso",
+        paragraphs: [
+          "C'è un luogo nel Boscofuso che non si lascia trovare facilmente. Appare solo quando il cielo è turchese-lilla e il vento sussurra canzoni antiche. È nascosta tra le pieghe del Monte Misto, una montagna che ogni giorno cambia forma: a volte ha tre cime, a volte una sola, a volte pare scomparire del tutto. La Grotta Smeraldina è incastonata nel fianco più nascosto del monte, come una gemma in una corona. Il suo ingresso è avvolto da liane luminose che brillano anche al buio, e muschi che ridono piano se li sfiori. Dentro, non è mai buio. Una luce azzurra e morbida pulsa dalle pareti di cristallo vivo. Il pavimento sembra di vetro, ma è caldo come piuma. Dalle stalattiti gocciolano stille che suonano come carillon, e nell’aria danzano farfalle fatte di polline e sogno. È qui che è nato Serpiglio. È qui che si accende, ancora oggi, la prima scintilla di ogni Stranimale."
+          ],
+              },
+      {
+        id: "cactusetta",
+        title: "Cactusetta",
+        fusion: "cactus + violetta",
+        image: cactusettaImage,
+        alt: "Cactusetta nella mappa di Boscofuso",
+        paragraphs: [
+          "La Cactusetta è una pianta spinosa, robusta e bizzarra che vive in gruppi rari lungo i bordi assolati dei sentieri di Boscofuso. Ha un corpo tozzo e globoso, ricoperto di aculei lucidi disposti a spirale. Ma ciò che la rende unica sono i minuscoli fiori viola, incastonati tra le spine come pietre preziose. Questi fiori hanno una particolarità: si aprono solo se sentono una barzelletta. Non qualsiasi suono, né una melodia: proprio una battuta, una risata, qualcosa di giocoso. Quando lo fanno, rilasciano una fragranza zuccherina e scintillano per qualche secondo. I bambini di Boscofuso si mettono spesso in cerchio a raccontare barzellette alla pianta, che risponde con piccoli scricchiolii divertiti. Alcune Cactusette sembrano sviluppare gusti particolari: alcune preferiscono battute secche, altre giochi di parole, altre ancora ridacchiano solo con le storie buffe degli Stranimali.",
+        ],
+      },
+      {
+        id: "rosolivo",
+        title: "Rosolivo",
+        fusion: "rosa + ulivo",
+        image: rosolivoImage,
+        alt: "Il Rosolivo nella mappa di Boscofuso",
+        paragraphs: [
+          "Il Rosolivo sorge solitario in una piccola radura circolare, come un antico guardiano silenzioso. I suoi rami sottili e flessuosi sono interamente argentati, ma non rigidi: si muovono dolcemente al vento come fili di seta liquida. Le foglie sono simili a petali, di un rosa chiarissimo, e cadendo rilasciano nell’aria un intenso profumo di rosa canina, capace di calmare chi lo respira. Alcune foglie brillano di luce propria, altre si dissolvono al tocco lasciando una scia profumata. Il tronco è contorto come quello di un olivo secolare, ma screziato d’argento e venato di rosa. Si dice che il Rosolivo “ascolti”, e che chi sussurra tra le sue radici riceva, in sogno, risposte a domande difficili. La luce intorno a lui è perennemente crepuscolare, con riflessi color miele. Spesso è circondato da piccoli animali silenziosi, come se lo venerassero.",
+        ],
+      },
+      {
+        id: "fungopino",
+        title: "Fungopino",
+        fusion: "fungo + pino",
+        image: fungopinoImage,
+        alt: "I Fungopini nel bosco di Boscofuso",
+        paragraphs: [
+          "Il Fungopino è un albero ibrido straordinario, nato dalla fusione tra un antico pino silvestre e un fungo gigante del sottobosco. La sua forma è inconfondibile: ha il tronco alto e dritto come quello di un pino, ma sormontato da un enorme cappello fungino, larga e morbida, che cambia colore in base all’umidità dell’aria.",
+          "La corteccia, screziata di toni marrone e viola, emana un profumo di resina e muschio umido. Dal cappello pendono filamenti bioluminescenti, che brillano di notte come piccole lanterne naturali. Alcuni di essi emettono suoni simili a campanellini quando sfiorati dal vento.",
+          "Intorno al Fungopino il terreno è fertile, coperto da muffe colorate e piccoli germogli traslucidi. Gli Stranimali si riuniscono spesso alla sua base per riposarsi sotto la sua ombra fresca",
+        ],
+      },
+      {
+        id: "radura-degli-intrecci",
+        title: "Radura degli Intrecci",
+        image: raduraImage,
+        alt: "La Radura degli Intrecci nella mappa di Boscofuso",
+        paragraphs: [
+          "La Radura degli Intrecci era uno dei luoghi più accoglienti di Boscofuso. Gli alberi che la circondavano crescevano vicinissimi e i loro rami si allungavano gli uni verso gli altri fino a intrecciarsi e abbracciarsi, formando archi naturali, piccole nicchie e ripari ombrosi. Tra le radici e sotto le chiome trovavano posto tutti gli animali che avevano bisogno di fermarsi, riposare o sentirsi al sicuro. Quando soffiava il vento, i rami si muovevano insieme come se gli alberi si stringessero ancora di più. Per questo la Radura degli Intrecci era considerata un luogo di protezione e amicizia, dove nessuno si sentiva mai davvero solo.",
+        ],
+      },
+      {
+        id: "lago-specchiato",
+        title: "Lago Specchiato",
+        image: lagoImage,
+        alt: "Il Lago Specchiato circondato dal bosco",
+        paragraphs: [
+          "Il Lago Specchiato giace nascosto tra colline muschiose e alberi silenziosi che si chinano verso l’acqua come per osservare sé stessi. La sua superficie è perfettamente liscia, come vetro liquido, e riflette non ciò che è… ma ciò che potrebbe essere. Chi si specchia nel lago non vede solo il proprio riflesso, ma una versione fusa con un’altra creatura reale o immaginaria: un bambino può vedersi con le ali di una libellula, un gufo con la coda di un pesce, una leonessa con occhi da cerbiatto. È un luogo di possibilità, dove identità e desiderio si mescolano. Di notte, il lago brilla di luce propria, come se contenesse stelle sul fondo. Intorno ad esso crescono piante rare, chiamate lucelene, che emettono bagliori morbidi come fiammelle lente. Il silenzio è ovattato, sacro. Qui si fanno domande importanti. Qui si sogna chi si potrebbe diventare.",
+        ],
+      },
+      {
+        id: "salciarancia",
+        title: "Salciarancia",
+        fusion: "salice + arancia",
+        image: salciaranciaImage,
+        alt: "Salciarancia nella mappa di Boscofuso",
+        paragraphs: [
+          "A Boscofuso cresceva un frutto che non si trovava in nessun altro luogo. Si chiamava salciarancia. Nasceva su alberi davvero particolari, con il tronco robusto come quello di un arancio e i rami lunghi, sottili e flessibili come quelli di un salice. Per questo le salciarance spuntavano un po’ dappertutto: alcune crescevano in basso, a portata di zampa, mentre altre pendevano così in alto da sembrare sospese nel cielo. La loro polpa era dolce e profumata, con una nota fresca che ricordava il bosco dopo la pioggia. Quando arrivava il momento della maturazione e gli alberi si riempivano di frutti colorati, a Ramofondo tutti sapevano che stava per iniziare una delle tradizioni più attese dell’anno. Era il momento di preparare la marmellata di salciarance."
+          ],
+              },
+      {
+        id: "sentiero-foglie-miste",
+        title: "Sentiero delle Foglie Miste",
+        image: sentieroImage,
+        alt: "Il Sentiero delle Foglie Miste nella mappa di Boscofuso",
+        paragraphs: [
+          "Il Sentiero delle Foglie Miste era un viale coloratissimo che attraversava il Boscofuso come un lungo nastro vivente. Sugli alberi crescevano foglie mai uguali tra loro: ognuna sembrava nata dalla fusione di due foglie diverse, con forme curiose, punte, curve e venature intrecciate. Quando qualcuno percorreva il sentiero, le foglie cambiavano lentamente colore al suo passaggio, tingendosi di verde, giallo, arancio, rosso e viola. A ogni passo il paesaggio sembrava trasformarsi, come se il bosco stesso volesse accompagnare i viaggiatori lungo il cammino. Era uno dei luoghi più allegri e sorprendenti di Boscofuso, dove anche una semplice passeggiata poteva diventare una piccola avventura.",
+        ],
+      },
+    ];
+
+const hotspots = [
+  { id: "grotta-smeraldina", label: lang === "en" ? "Emerald Cave" : "Grotta Smeraldina", left: 6, top: 18, width: 34, height: 8 },
+  { id: "cactusetta", label: "Cactusetta", left: 65, top: 18, width: 30, height: 8 },
+  { id: "rosolivo", label: "Rosolivo", left: 7, top: 56, width: 29, height: 8 },
+  { id: "ramofondo", label: "Ramofondo", left: 36, top: 58, width: 30, height: 8 },
+  { id: "radura-degli-intrecci", label: lang === "en" ? "Clearing of Intertwined Branches" : "Radura degli Intrecci", left: 67, top: 54, width: 32, height: 9 },
+  { id: "lago-specchiato", label: lang === "en" ? "Mirror Lake" : "Lago Specchiato", left: 67, top: 72, width: 30, height: 8 },
+  { id: "salciarancia", label: "Salciarancia", left: 7, top: 88, width: 31, height: 9 },
+  { id: "sentiero-foglie-miste", label: lang === "en" ? "Mixed Leaves Path" : "Sentiero delle Foglie Miste", left: 48, top: 84, width: 37, height: 11 },
+];
+---
+
+<section class="world-page">
+  <header class="world-page__intro page-shell">
+    <h1>{t.title}</h1>
+    <div class="world-page__intro-copy">
+      {t.intro.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+  </header>
+
+  <section class="world-map-section page-shell" aria-labelledby="world-map-title">
+    <h2 id="world-map-title">{t.mapTitle}</h2>
+
+    <div class="world-map" data-world-map>
+      <Image
+        src={worldMap}
+        alt={t.mapAlt}
+        class="world-map__image"
+        widths={[640, 900, 1200]}
+        sizes="(max-width: 768px) calc(100vw - 32px), min(74vw, 980px)"
+        loading="eager"
+      />
+
+      {hotspots.map((hotspot) => (
+        <a
+          class="world-map__hotspot"
+          href={`#${hotspot.id}`}
+          aria-label={`${lang === "en" ? "Go to" : "Vai a"} ${hotspot.label}`}
+          title={hotspot.label}
+          style={`left:${hotspot.left}%;top:${hotspot.top}%;width:${hotspot.width}%;height:${hotspot.height}%;`}
+        >
+          <span class="sr-only">{hotspot.label}</span>
+        </a>
+      ))}
+    </div>
+
+    <p class="world-map__hint">{t.mapHint}</p>
+  </section>
+
+  <div class="world-places page-shell">
+    {places.map((place) => (
+      <article class="world-place" id={place.id}>
+        <h2>{place.title}</h2>
+        <p class={`world-place__fusion ${place.fusion ? "" : "is-empty"}`}>
+          {place.fusion ? `(${place.fusion})` : " "}
+        </p>
+
+        <div class="world-place__body">
+          <div class="world-place__visual">
+            <Image
+              src={place.image}
+              alt={place.alt}
+              class="world-place__image"
+              widths={[420, 640, 900]}
+              sizes="(max-width: 768px) calc(100vw - 32px), 38vw"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="world-place__copy">
+            {place.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

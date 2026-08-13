@@ -1,0 +1,509 @@
+---
+import { Image } from "astro:assets";
+import boscofusoLogo from "../assets/images/brand/boscofuso-logo.png";
+
+const { lang = "it" } = Astro.props;
+
+const t = lang === "en"
+  ? {
+      home: "HOME",
+      books: "Books",
+      world: "Boscofuso world",
+      coloring: "Coloring",
+      characters: "Characters",
+      otherBooks: "Happy Edy",
+      navLabel: "Main navigation",
+      languageLabel: "Choose language",
+      menuOpenLabel: "Open menu",
+      menuCloseLabel: "Close menu",
+    }
+  : {
+      home: "HOME",
+      books: "Libri",
+      world: "Il mondo di Boscofuso",
+      coloring: "Da colorare",
+      characters: "I personaggi",
+      otherBooks: "Happy Edy",
+      navLabel: "Navigazione principale",
+      languageLabel: "Scegli lingua",
+      menuOpenLabel: "Apri menu",
+      menuCloseLabel: "Chiudi menu",
+    };
+
+const base = `/${lang}`;
+const pathname = Astro.url.pathname;
+const isHappyEdy = pathname.includes("/happy-edy");
+const brandLogo = boscofusoLogo;
+const brandAlt = "Boscofuso";
+const brandHref = `${base}/`;
+
+function languageUrl(targetLang) {
+  if (targetLang === "it") {
+    if (pathname.startsWith("/en/books/")) return pathname.replace("/en/books/", "/it/libri/");
+    if (pathname.startsWith("/en/")) return pathname.replace("/en/", "/it/");
+    return "/it/";
+  }
+
+  if (pathname.startsWith("/it/libri/")) return pathname.replace("/it/libri/", "/en/books/");
+  if (pathname.startsWith("/it/")) return pathname.replace("/it/", "/en/");
+  return "/en/";
+}
+---
+
+<header class={`site-header ${isHappyEdy ? "site-header--happy" : ""}`}>
+  <a class="site-brand" href={brandHref} aria-label={lang === "en" ? "Boscofuso home" : "Home Boscofuso"}>
+    <Image
+      src={brandLogo}
+      alt={brandAlt}
+      class="site-brand__logo"
+      widths={[82, 94, 110, 160]}
+      sizes="(max-width: 560px) 82px, (max-width: 980px) 94px, 110px"
+      format="webp"
+      quality={90}
+      loading="eager"
+    />
+  </a>
+
+  <nav class="site-nav" id="site-nav" aria-label={t.navLabel} data-site-nav>
+    <a href={`${base}/`}>{t.home}</a>
+    <a href={lang === "en" ? "/en/books/" : "/it/libri/"}>{t.books}</a>
+    <a href={`${base}/mondo-di-boscofuso/`}>{t.world}</a>
+    <a href={`${base}/da-colorare/`}>{t.coloring}</a>
+    <a href={`${base}/personaggi/`}>{t.characters}</a>
+    <a href={`${base}/happy-edy/`}>{t.otherBooks}</a>
+  </nav>
+
+  <div class="langx" data-langx>
+    <button
+      class="langx__trigger"
+      type="button"
+      aria-haspopup="true"
+      aria-expanded="false"
+      aria-label={t.languageLabel}
+      data-langx-trigger
+    >
+      <span class={`langx__flag langx__flag--${lang}`} aria-hidden="true"></span>
+      <span class="langx__code">{lang.toUpperCase()}</span>
+      <span class="langx__chevron" aria-hidden="true"></span>
+    </button>
+
+    <div class="langx__menu" data-langx-menu>
+      <a
+        class={`langx__item ${lang === "it" ? "is-active" : ""}`}
+        href={languageUrl("it")}
+        hreflang="it"
+      >
+        <span class="langx__flag langx__flag--it" aria-hidden="true"></span>
+        <span>IT</span>
+      </a>
+
+      <a
+        class={`langx__item ${lang === "en" ? "is-active" : ""}`}
+        href={languageUrl("en")}
+        hreflang="en"
+      >
+        <span class="langx__flag langx__flag--en" aria-hidden="true"></span>
+        <span>EN</span>
+      </a>
+    </div>
+  </div>
+
+  <button
+    class="mobile-menu-toggle"
+    type="button"
+    aria-controls="site-nav"
+    aria-expanded="false"
+    aria-label={t.menuOpenLabel}
+    data-mobile-menu-toggle
+    data-open-label={t.menuOpenLabel}
+    data-close-label={t.menuCloseLabel}
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<script>
+  function initHeaderControls() {
+    /* LANGUAGE */
+    document.querySelectorAll("[data-langx]").forEach((root) => {
+      if (root.dataset.ready === "1") return;
+      root.dataset.ready = "1";
+
+      const trigger = root.querySelector("[data-langx-trigger]");
+      const menu = root.querySelector("[data-langx-menu]");
+      if (!trigger || !menu) return;
+
+      const closeLang = () => {
+        root.classList.remove("is-open");
+        trigger.setAttribute("aria-expanded", "false");
+      };
+
+      trigger.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const open = root.classList.toggle("is-open");
+        trigger.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+
+      document.addEventListener("click", (event) => {
+        const target = event.target;
+        if (!(target instanceof Node)) return;
+        if (!root.contains(target)) closeLang();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeLang();
+      });
+    });
+
+    /* MOBILE MENU */
+    document.querySelectorAll(".site-header").forEach((siteHeader) => {
+      if (siteHeader.dataset.mobileReady === "1") return;
+      siteHeader.dataset.mobileReady = "1";
+
+      const toggle = siteHeader.querySelector("[data-mobile-menu-toggle]");
+      const nav = siteHeader.querySelector("[data-site-nav]");
+      if (!toggle || !nav) return;
+
+      const openLabel = toggle.dataset.openLabel || "Open menu";
+      const closeLabel = toggle.dataset.closeLabel || "Close menu";
+
+      const closeMenu = () => {
+        siteHeader.classList.remove("mobile-menu-open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", openLabel);
+      };
+
+      toggle.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const open = siteHeader.classList.toggle("mobile-menu-open");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        toggle.setAttribute("aria-label", open ? closeLabel : openLabel);
+      });
+
+      nav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
+
+      document.addEventListener("click", (event) => {
+        const target = event.target;
+        if (!(target instanceof Node)) return;
+        if (!siteHeader.contains(target)) closeMenu();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeMenu();
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) closeMenu();
+      });
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initHeaderControls, { once: true });
+  } else {
+    initHeaderControls();
+  }
+
+  document.addEventListener("astro:page-load", initHeaderControls);
+</script>
+
+<style>
+  .langx {
+    position: relative;
+    flex: 0 0 auto;
+    margin-left: 0.8rem;
+    z-index: 200;
+  }
+
+  .langx__trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    height: 38px;
+    padding: 0 0.8rem 0 0.45rem;
+
+    border: 1px solid rgba(251, 244, 228, 0.22);
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.08);
+    color: #fbf4e4;
+
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1;
+
+    cursor: pointer;
+  }
+
+  .langx__trigger:hover,
+  .langx__trigger:focus-visible {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: #d9a92f;
+    outline: none;
+  }
+
+  .langx__flag {
+    position: relative;
+    display: block;
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.25);
+  }
+
+  .langx__flag--it {
+    background: linear-gradient(
+      90deg,
+      #009246 0 33.333%,
+      #ffffff 33.333% 66.666%,
+      #ce2b37 66.666% 100%
+    );
+  }
+
+  .langx__flag--en {
+    background:
+      linear-gradient(33deg, transparent 42%, #fff 42% 47%, #c8102e 47% 53%, #fff 53% 58%, transparent 58%),
+      linear-gradient(-33deg, transparent 42%, #fff 42% 47%, #c8102e 47% 53%, #fff 53% 58%, transparent 58%),
+      linear-gradient(90deg, transparent 40%, #fff 40% 60%, transparent 60%),
+      linear-gradient(0deg, transparent 40%, #fff 40% 60%, transparent 60%),
+      linear-gradient(90deg, transparent 45%, #c8102e 45% 55%, transparent 55%),
+      linear-gradient(0deg, transparent 45%, #c8102e 45% 55%, transparent 55%),
+      #012169;
+  }
+
+  .langx__code {
+    min-width: 18px;
+    text-align: center;
+  }
+
+  .langx__chevron {
+    width: 8px;
+    height: 8px;
+    margin-left: 0.05rem;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg) translateY(-2px);
+    transition: transform 160ms ease;
+  }
+
+  .langx.is-open .langx__chevron {
+    transform: rotate(225deg) translate(-1px, -1px);
+  }
+
+  .langx__menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+
+    display: none;
+    min-width: 104px;
+    padding: 6px;
+
+    border: 1px solid rgba(251,244,228,.14);
+    border-radius: 12px;
+
+    background: #0a2f1e;
+    box-shadow: 0 14px 34px rgba(0,0,0,.28);
+  }
+
+  .langx.is-open .langx__menu {
+    display: grid;
+    gap: 3px;
+  }
+
+  .langx__item {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+
+    padding: 0.45rem 0.55rem;
+    border-radius: 8px;
+
+    color: #fbf4e4;
+    text-decoration: none;
+
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .langx__item:hover,
+  .langx__item:focus-visible {
+    background: rgba(255,255,255,.08);
+    color: #d9a92f;
+    outline: none;
+  }
+
+  .langx__item.is-active {
+    background: rgba(217,169,47,.11);
+  }
+
+  .langx__item .langx__flag {
+    width: 22px;
+    height: 22px;
+    flex-basis: 22px;
+  }
+
+  /* HAPPY EDY - logo e controlli header */
+
+  .site-header--happy .langx__menu {
+    background: #293E4F;
+  }
+
+  .site-header--happy .langx__trigger:hover,
+  .site-header--happy .langx__trigger:focus-visible {
+    border-color: rgba(255, 255, 255, 0.65);
+  }
+
+  .site-header--happy .langx__item:hover,
+  .site-header--happy .langx__item:focus-visible {
+    color: #ffffff;
+  }
+
+  .site-header--happy .langx__item.is-active {
+    background: rgba(255, 255, 255, 0.10);
+  }
+
+  @media (max-width: 980px) {
+    .langx {
+      margin-left: auto;
+    }
+  }
+
+
+  /* ==================================================
+     MOBILE HEADER - OVERRIDE DEFINITIVO
+     Nasconde SEMPRE il menu desktop sotto 768px.
+     ================================================== */
+
+  .mobile-menu-toggle {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .site-header {
+      position: relative;
+      flex-wrap: nowrap !important;
+      min-height: 82px !important;
+      padding: 0.6rem 1rem !important;
+      gap: 0.65rem !important;
+    }
+
+    .site-brand {
+      order: 1;
+      flex: 0 0 auto;
+    }
+
+    .site-brand__logo {
+      width: 66px !important;
+    }
+
+
+    .langx {
+      order: 2;
+      margin-left: auto !important;
+    }
+
+    .mobile-menu-toggle {
+      order: 3;
+      display: grid !important;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      padding: 9px;
+      border: 1px solid rgba(251, 244, 228, 0.22);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fbf4e4;
+      cursor: pointer;
+    }
+
+    .mobile-menu-toggle span {
+      display: block;
+      width: 21px;
+      height: 2px;
+      margin: 2.5px 0;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+
+    .site-header .site-nav {
+      position: absolute !important;
+      top: 100% !important;
+      left: 0 !important;
+      right: 0 !important;
+      z-index: 190 !important;
+
+      display: none !important;
+      width: 100% !important;
+      margin: 0 !important;
+      padding: 0.75rem 1rem 1rem !important;
+
+      flex-direction: column !important;
+      align-items: stretch !important;
+      justify-content: flex-start !important;
+      gap: 0 !important;
+
+      overflow: visible !important;
+      background: #0a2f1e !important;
+      border-top: 1px solid rgba(251, 244, 228, 0.10);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.24);
+    }
+
+    .site-header.mobile-menu-open .site-nav {
+      display: flex !important;
+    }
+
+    .site-header--happy .site-nav {
+      background: #293E4F !important;
+    }
+
+    .site-header .site-nav a {
+      display: block;
+      padding: 0.8rem 0.25rem;
+      border-bottom: 1px solid rgba(251, 244, 228, 0.09);
+      font-size: 0.82rem !important;
+      white-space: normal;
+    }
+
+    .site-header .site-nav a:last-child {
+      border-bottom: 0;
+    }
+
+    .site-header.mobile-menu-open .mobile-menu-toggle span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .site-header.mobile-menu-open .mobile-menu-toggle span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .site-header.mobile-menu-open .mobile-menu-toggle span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+
+  @media (max-width: 420px) {
+    .site-header {
+      padding-inline: 0.75rem !important;
+    }
+
+    .site-brand__logo {
+      width: 60px !important;
+    }
+
+
+    .langx__trigger {
+      height: 36px;
+    }
+  }
+</style>

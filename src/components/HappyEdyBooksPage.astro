@@ -1,0 +1,345 @@
+---
+import { Image } from "astro:assets";
+import happyEdyLogo from "../assets/images/brand/happy-edy-logo.webp";
+import cover01 from "../assets/images/happy-edy/books/libro-01/copertina.webp";
+import photo011 from "../assets/images/happy-edy/books/libro-01/foto-01.webp";
+import photo012 from "../assets/images/happy-edy/books/libro-01/foto-02.webp";
+import photo013 from "../assets/images/happy-edy/books/libro-01/foto-03.webp";
+import cover02 from "../assets/images/happy-edy/books/libro-02/copertina.webp";
+import photo021 from "../assets/images/happy-edy/books/libro-02/foto-01.webp";
+import photo022 from "../assets/images/happy-edy/books/libro-02/foto-02.webp";
+import photo023 from "../assets/images/happy-edy/books/libro-02/foto-03.webp";
+import cover03 from "../assets/images/happy-edy/books/libro-03/copertina.webp";
+import photo031 from "../assets/images/happy-edy/books/libro-03/foto-01.webp";
+import photo032 from "../assets/images/happy-edy/books/libro-03/foto-02.webp";
+import photo033 from "../assets/images/happy-edy/books/libro-03/foto-03.webp";
+import cover04 from "../assets/images/happy-edy/books/libro-04/copertina.webp";
+import photo041 from "../assets/images/happy-edy/books/libro-04/foto-01.webp";
+import photo042 from "../assets/images/happy-edy/books/libro-04/foto-02.webp";
+import photo043 from "../assets/images/happy-edy/books/libro-04/foto-03.webp";
+import cover05 from "../assets/images/happy-edy/books/libro-05/copertina.webp";
+import photo051 from "../assets/images/happy-edy/books/libro-05/foto-01.webp";
+import photo052 from "../assets/images/happy-edy/books/libro-05/foto-02.webp";
+import photo053 from "../assets/images/happy-edy/books/libro-05/foto-03.webp";
+import cover06 from "../assets/images/happy-edy/books/libro-06/copertina.webp";
+import photo061 from "../assets/images/happy-edy/books/libro-06/foto-01.webp";
+import photo062 from "../assets/images/happy-edy/books/libro-06/foto-02.webp";
+import photo063 from "../assets/images/happy-edy/books/libro-06/foto-03.webp";
+import cover07 from "../assets/images/happy-edy/books/libro-07/copertina.webp";
+import photo071 from "../assets/images/happy-edy/books/libro-07/foto-01.webp";
+import photo072 from "../assets/images/happy-edy/books/libro-07/foto-02.webp";
+import photo073 from "../assets/images/happy-edy/books/libro-07/foto-03.webp";
+import cover08 from "../assets/images/happy-edy/books/libro-08/copertina.webp";
+import photo081 from "../assets/images/happy-edy/books/libro-08/foto-01.webp";
+import photo082 from "../assets/images/happy-edy/books/libro-08/foto-02.webp";
+import photo083 from "../assets/images/happy-edy/books/libro-08/foto-03.webp";
+
+const { lang = "it" } = Astro.props;
+
+const booksIt = [
+  {
+    id: "libro-01",
+    title: "Sette modi per incontrare Babbo Natale",
+    description: "Parti per un’avventura incantata con Sette Modi per incontrare Babbo Natale, una raccolta tenera e fantasiosa per scoprire la magia del Natale. In questo libro incantato, i bambini di ogni età resteranno affascinati da sette modi straordinari per incontrare Babbo Natale nella notte più speciale dell’anno.\n\nOgni racconto è un inno alla gentilezza, alla speranza e alla gioia di donare.\n\nSette Modi per incontrare Babbo Natale è un libro perfetto per accompagnare i momenti più dolci delle feste, con sette storie che celebrano la meraviglia del Natale.",
+    cover: cover01,
+    amazon: "https://www.amazon.it/dp/B0FR9LFZLL",
+    kobo: "",
+    gallery: [photo011, photo012, photo013],
+  },
+  {
+    id: "libro-02",
+    title: "Diario per pensieri positivi",
+    description: "Un Diario della gratitudine è un potente strumento per aiutarti a concentrarti sugli aspetti positivi della tua vita. Registrando regolarmente le cose per cui sei grato, puoi allenare la tua mente a cercare il bene in ogni situazione. \n\nQuesto diario è un luogo in cui puoi riflettere sulle tue benedizioni, esprimere apprezzamento per le persone e le cose della tua vita e coltivare un atteggiamento più positivo. L'atto di scrivere ciò per cui sei grato può aiutarti a cambiare prospettiva, aumentando i tuoi sentimenti di felicità e appagamento. È un modo semplice ma efficace per portare più gioia nella tua vita.",
+    cover: cover02,
+    amazon: "https://www.amazon.it/dp/B0CCCVMXK6",
+    kobo: "",
+    gallery: [photo021, photo022, photo023],
+  },
+  {
+    id: "libro-03",
+    title: "Gratitude Journal MANDALA",
+    description: "Un Diario della gratitudine è un potente strumento per aiutarti a concentrarti sugli aspetti positivi della tua vita. Registrando regolarmente le cose per cui sei grato, puoi allenare la tua mente a cercare il bene in ogni situazione. \n\nQuesto diario è un luogo in cui puoi riflettere sulle tue benedizioni, esprimere apprezzamento per le persone e le cose della tua vita e coltivare un atteggiamento più positivo. L'atto di scrivere ciò per cui sei grato può aiutarti a cambiare prospettiva, aumentando i tuoi sentimenti di felicità e appagamento. È un modo semplice ma efficace per portare più gioia nella tua vita. (Frasi motivazionali in inglese)",
+    cover: cover03,
+    amazon: "https://www.amazon.it/dp/B0CCCWXP2F",
+    kobo: "",
+    gallery: [photo031, photo032, photo033],
+  },
+  {
+    id: "libro-04",
+    title: "Gratitude Journal BLU",
+    description: "Un Diario della Gratitudine è uno strumento potente che può aiutarti a concentrarti sugli aspetti positivi della tua vita. Annotando regolarmente le cose per cui sei grato, puoi allenare la mente a cercare il lato positivo in ogni situazione. \n\nPuoi utilizzare questo diario nel modo che senti più adatto a te. Puoi scriverci ogni giorno, ogni settimana oppure ogni volta che senti il bisogno di concentrarti sulla gratitudine. Puoi parlare di cose importanti, come la famiglia e gli amici, oppure di piccoli momenti, come un pasto delizioso o un bel tramonto. In ogni pagina troverai anche una frase motivazionale, pensata per offrirti uno spunto positivo e accompagnare la tua riflessione. \n\nLa cosa più importante è scrivere con sincerità e riflessione. Man mano che riempirai le pagine di questo diario, potresti accorgerti di diventare più consapevole delle cose positive presenti nella tua vita e più riconoscente per tutto ciò che hai. (Frasi motivazionali in inglese)",
+    cover: cover04,
+    amazon: "https://www.amazon.it/dp/B0C47Q56YV",
+    kobo: "",
+    gallery: [photo041, photo042, photo043],
+  },
+  {
+    id: "libro-05",
+    title: "Gratitude Journal SALVIA",
+    description: "Un Diario della Gratitudine è uno strumento potente che può aiutarti a concentrarti sugli aspetti positivi della tua vita. Annotando regolarmente le cose per cui sei grato, puoi allenare la mente a cercare il lato positivo in ogni situazione. \n\nPuoi utilizzare questo diario nel modo che senti più adatto a te. Puoi scriverci ogni giorno, ogni settimana oppure ogni volta che senti il bisogno di concentrarti sulla gratitudine. Puoi parlare di cose importanti, come la famiglia e gli amici, oppure di piccoli momenti, come un pasto delizioso o un bel tramonto. In ogni pagina troverai anche una frase motivazionale, pensata per offrirti uno spunto positivo e accompagnare la tua riflessione. \n\nLa cosa più importante è scrivere con sincerità e riflessione. Man mano che riempirai le pagine di questo diario, potresti accorgerti di diventare più consapevole delle cose positive presenti nella tua vita e più riconoscente per tutto ciò che hai. (Frasi motivazionali in inglese)",
+    cover: cover05,
+    amazon: "https://www.amazon.it/dp/B0C47R2M7Z",
+    kobo: "",
+    gallery: [photo051, photo052, photo053],
+  },
+  {
+    id: "libro-06",
+    title: "Gratitude Journal PINK",
+    description: "Un Diario della Gratitudine è uno strumento potente che può aiutarti a concentrarti sugli aspetti positivi della tua vita. Annotando regolarmente le cose per cui sei grato, puoi allenare la mente a cercare il lato positivo in ogni situazione. \n\nPuoi utilizzare questo diario nel modo che senti più adatto a te. Puoi scriverci ogni giorno, ogni settimana oppure ogni volta che senti il bisogno di concentrarti sulla gratitudine. Puoi parlare di cose importanti, come la famiglia e gli amici, oppure di piccoli momenti, come un pasto delizioso o un bel tramonto. In ogni pagina troverai anche una frase motivazionale, pensata per offrirti uno spunto positivo e accompagnare la tua riflessione. \n\nLa cosa più importante è scrivere con sincerità e riflessione. Man mano che riempirai le pagine di questo diario, potresti accorgerti di diventare più consapevole delle cose positive presenti nella tua vita e più riconoscente per tutto ciò che hai. (Frasi motivazionali in inglese)",
+    cover: cover06,
+    amazon: "https://www.amazon.it/dp/B0C47LFXTR",
+    kobo: "",
+    gallery: [photo061, photo062, photo063],
+  },
+  {
+    id: "libro-07",
+    title: "Gratitude Journal YELLOW",
+    description: "Un Diario della Gratitudine è uno strumento potente che può aiutarti a concentrarti sugli aspetti positivi della tua vita. Annotando regolarmente le cose per cui sei grato, puoi allenare la mente a cercare il lato positivo in ogni situazione. \n\nPuoi utilizzare questo diario nel modo che senti più adatto a te. Puoi scriverci ogni giorno, ogni settimana oppure ogni volta che senti il bisogno di concentrarti sulla gratitudine. Puoi parlare di cose importanti, come la famiglia e gli amici, oppure di piccoli momenti, come un pasto delizioso o un bel tramonto. In ogni pagina troverai anche una frase motivazionale, pensata per offrirti uno spunto positivo e accompagnare la tua riflessione. \n\nLa cosa più importante è scrivere con sincerità e riflessione. Man mano che riempirai le pagine di questo diario, potresti accorgerti di diventare più consapevole delle cose positive presenti nella tua vita e più riconoscente per tutto ciò che hai. (Frasi motivazionali in inglese)",
+    cover: cover07,
+    amazon: "https://www.amazon.it/dp/B0C47YRJS5",
+    kobo: "",
+    gallery: [photo071, photo072, photo073],
+  },
+  {
+    id: "libro-08",
+    title: "Gratitude Journal GREEN",
+    description: "Un Diario della Gratitudine è uno strumento potente che può aiutarti a concentrarti sugli aspetti positivi della tua vita. Annotando regolarmente le cose per cui sei grato, puoi allenare la mente a cercare il lato positivo in ogni situazione. \n\nPuoi utilizzare questo diario nel modo che senti più adatto a te. Puoi scriverci ogni giorno, ogni settimana oppure ogni volta che senti il bisogno di concentrarti sulla gratitudine. Puoi parlare di cose importanti, come la famiglia e gli amici, oppure di piccoli momenti, come un pasto delizioso o un bel tramonto. In ogni pagina troverai anche una frase motivazionale, pensata per offrirti uno spunto positivo e accompagnare la tua riflessione. \n\nLa cosa più importante è scrivere con sincerità e riflessione. Man mano che riempirai le pagine di questo diario, potresti accorgerti di diventare più consapevole delle cose positive presenti nella tua vita e più riconoscente per tutto ciò che hai. (Frasi motivazionali in inglese)",
+    cover: cover08,
+    amazon: "https://www.amazon.it/dp/B0CCCVDTX7",
+    kobo: "",
+    gallery: [photo081, photo082, photo083],
+  }
+];
+
+const booksEn = [
+  {
+    id: "libro-01",
+    title: "Seven Ways to Meet Santa Claus",
+    description: "Set off on an enchanted adventure with Seven Ways to Meet Santa Claus, a tender and imaginative collection that brings the magic of Christmas to life. In this enchanting book, children of all ages will be fascinated by seven extraordinary ways to meet Santa Claus on the most special night of the year.\n\nEach story is a celebration of kindness, hope and the joy of giving.\n\nSeven Ways to Meet Santa Claus is the perfect book to accompany the sweetest moments of the holiday season, with seven stories that celebrate the wonder of Christmas.",
+    cover: cover01,
+    amazon: "https://www.amazon.com/dp/B0FR9LFZLL",
+    kobo: "",
+    gallery: [photo011, photo012, photo013],
+  },
+  {
+    id: "libro-02",
+    title: "Journal for Positive Thoughts",
+    description: "A Gratitude Journal is a powerful tool to help you focus on the positive aspects of your life. By regularly recording the things you are grateful for, you can train your mind to look for the good in every situation.\n\nThis journal is a place where you can reflect on your blessings, express appreciation for the people and things in your life, and cultivate a more positive attitude. The act of writing down what you are grateful for can help you shift your perspective, increasing your feelings of happiness and fulfillment. It is a simple but effective way to bring more joy into your life. (Motivational quotes in Italian)",
+    cover: cover02,
+    amazon: "https://www.amazon.com/dp/B0CCCVMXK6",
+    kobo: "",
+    gallery: [photo021, photo022, photo023],
+  },
+  {
+    id: "libro-03",
+    title: "Gratitude Journal MANDALA",
+    description: "A Gratitude Journal is a powerful tool to help you focus on the positive aspects of your life. By regularly recording the things you are grateful for, you can train your mind to look for the good in every situation.\n\nThis journal is a place where you can reflect on your blessings, express appreciation for the people and things in your life, and cultivate a more positive attitude. The act of writing down what you are grateful for can help you shift your perspective, increasing your feelings of happiness and fulfillment. It is a simple but effective way to bring more joy into your life. (Motivational quotes in Italian)",
+    cover: cover03,
+    amazon: "https://www.amazon.com/dp/B0CCCWXP2F",
+    kobo: "",
+    gallery: [photo031, photo032, photo033],
+  },
+  {
+    id: "libro-04",
+    title: "Gratitude Journal BLU",
+    description: "A Gratitude Journal is a powerful tool that can help you focus on the positive aspects of your life. By regularly writing down the things you are grateful for, you can train your mind to look for the positive side of every situation. \n\nYou can use this journal in whatever way feels most natural to you. You can write in it every day, every week, or whenever you feel the need to focus on gratitude. You can reflect on important things, such as family and friends, or on small moments, like a delicious meal or a beautiful sunset. On every page, you will also find a motivational quote designed to offer a positive thought and support your reflection. \n\nThe most important thing is to write honestly and thoughtfully. As you fill the pages of this journal, you may find yourself becoming more aware of the positive things in your life and more appreciative of everything you have. (Motivational quotes in English)",
+    cover: cover04,
+    amazon: "https://www.amazon.com/dp/B0C47Q56YV",
+    kobo: "",
+    gallery: [photo041, photo042, photo043],
+  },
+  {
+    id: "libro-05",
+    title: "Gratitude Journal SALVIA",
+    description: "A Gratitude Journal is a powerful tool that can help you focus on the positive aspects of your life. By regularly writing down the things you are grateful for, you can train your mind to look for the positive side of every situation. \n\nYou can use this journal in whatever way feels most natural to you. You can write in it every day, every week, or whenever you feel the need to focus on gratitude. You can reflect on important things, such as family and friends, or on small moments, like a delicious meal or a beautiful sunset. On every page, you will also find a motivational quote designed to offer a positive thought and support your reflection. \n\nThe most important thing is to write honestly and thoughtfully. As you fill the pages of this journal, you may find yourself becoming more aware of the positive things in your life and more appreciative of everything you have. (Motivational quotes in English)",
+    cover: cover05,
+    amazon: "https://www.amazon.com/dp/B0C47R2M7Z",
+    kobo: "",
+    gallery: [photo051, photo052, photo053],
+  },
+  {
+    id: "libro-06",
+    title: "Gratitude Journal PINK",
+    description: "A Gratitude Journal is a powerful tool that can help you focus on the positive aspects of your life. By regularly writing down the things you are grateful for, you can train your mind to look for the positive side of every situation. \n\nYou can use this journal in whatever way feels most natural to you. You can write in it every day, every week, or whenever you feel the need to focus on gratitude. You can reflect on important things, such as family and friends, or on small moments, like a delicious meal or a beautiful sunset. On every page, you will also find a motivational quote designed to offer a positive thought and support your reflection. \n\nThe most important thing is to write honestly and thoughtfully. As you fill the pages of this journal, you may find yourself becoming more aware of the positive things in your life and more appreciative of everything you have. (Motivational quotes in English)",
+    cover: cover06,
+    amazon: "https://www.amazon.com/dp/B0C47LFXTR",
+    kobo: "",
+    gallery: [photo061, photo062, photo063],
+  },
+  {
+    id: "libro-07",
+    title: "Gratitude Journal YELLOW",
+    description: "A Gratitude Journal is a powerful tool that can help you focus on the positive aspects of your life. By regularly writing down the things you are grateful for, you can train your mind to look for the positive side of every situation. \n\nYou can use this journal in whatever way feels most natural to you. You can write in it every day, every week, or whenever you feel the need to focus on gratitude. You can reflect on important things, such as family and friends, or on small moments, like a delicious meal or a beautiful sunset. On every page, you will also find a motivational quote designed to offer a positive thought and support your reflection. \n\nThe most important thing is to write honestly and thoughtfully. As you fill the pages of this journal, you may find yourself becoming more aware of the positive things in your life and more appreciative of everything you have. (Motivational quotes in English)",
+    cover: cover07,
+    amazon: "https://www.amazon.com/dp/B0C47YRJS5",
+    kobo: "",
+    gallery: [photo071, photo072, photo073],
+  },
+  {
+    id: "libro-08",
+    title: "Gratitude Journal GREEN",
+    description: "A Gratitude Journal is a powerful tool that can help you focus on the positive aspects of your life. By regularly writing down the things you are grateful for, you can train your mind to look for the positive side of every situation. \n\nYou can use this journal in whatever way feels most natural to you. You can write in it every day, every week, or whenever you feel the need to focus on gratitude. You can reflect on important things, such as family and friends, or on small moments, like a delicious meal or a beautiful sunset. On every page, you will also find a motivational quote designed to offer a positive thought and support your reflection. \n\nThe most important thing is to write honestly and thoughtfully. As you fill the pages of this journal, you may find yourself becoming more aware of the positive things in your life and more appreciative of everything you have. (Motivational quotes in English)",
+    cover: cover08,
+    amazon: "https://www.amazon.com/dp/B0CCCVDTX7",
+    kobo: "",
+    gallery: [photo081, photo082, photo083],
+  }
+];
+
+const books = lang === "en" ? booksEn : booksIt;
+
+const t = lang === "en"
+  ? {
+      title: "Happy Edy books",
+      intro: "Stories, journals and books created to accompany imagination, emotions and special moments.",
+      amazon: "Buy on Amazon",
+      kobo: "Buy on Kobo",
+      galleryAlt: "Book preview",
+    }
+  : {
+      title: "I libri di Happy Edy",
+      intro: "Storie, diari e libri pensati per accompagnare fantasia, emozioni e momenti speciali.",
+      amazon: "Acquista su Amazon",
+      kobo: "Acquista su Kobo",
+      galleryAlt: "Anteprima del libro",
+    };
+---
+
+<section class="happy-books page-shell">
+  <header class="happy-books__header">
+    <div class="happy-books__identity">
+      <Image
+        src={happyEdyLogo}
+        alt="Happy Edy"
+        class="happy-books__logo"
+        loading="eager"
+      />
+      <h1>{t.title}</h1>
+    </div>
+    <p>{t.intro}</p>
+  </header>
+
+  <div class="happy-books__list">
+    {books.map((book, index) => (
+      <article class="happy-book" id={book.id}>
+        <div class="happy-book__main">
+          <div class="happy-book__cover-wrap">
+            <Image
+              src={book.cover}
+              alt={book.title}
+              class="happy-book__cover"
+              widths={[320, 480, 640, 800]}
+              sizes="(max-width: 760px) 70vw, 320px"
+              loading={index === 0 ? "eager" : "lazy"}
+            />
+
+            <div class="happy-book__actions">
+              {book.amazon && (
+                <a class="happy-book__button" href={book.amazon} target="_blank" rel="noopener noreferrer">{t.amazon}</a>
+              )}
+
+              {book.kobo && (
+                <a class="happy-book__button happy-book__button--secondary" href={book.kobo} target="_blank" rel="noopener noreferrer">{t.kobo}</a>
+              )}
+            </div>
+          </div>
+
+          <div class="happy-book__copy">
+            <div class="happy-book__title-row">
+              <h2>{book.title}</h2>
+
+              {lang === "it" && ["libro-04", "libro-05", "libro-06", "libro-07", "libro-08"].includes(book.id) && (
+                <svg
+                  class="happy-book__language-flag"
+                  viewBox="0 0 60 36"
+                  role="img"
+                  aria-label="Edizione in inglese"
+                >
+                  <defs>
+                    <clipPath id={`uk-wave-${book.id}`}>
+                      <path d="M1 3 C12 -1 22 5 34 2 C44 0 52 5 59 2 L58 33 C49 36 39 31 29 34 C18 37 9 31 1 34 Z" />
+                    </clipPath>
+                  </defs>
+
+                  <g clip-path={`url(#uk-wave-${book.id})`}>
+                    <rect width="60" height="36" fill="#012169" />
+
+                    <path d="M0 0 L60 36 M60 0 L0 36"
+                      stroke="#FFFFFF"
+                      stroke-width="9"
+                    />
+                    <path d="M0 0 L60 36 M60 0 L0 36"
+                      stroke="#C8102E"
+                      stroke-width="4"
+                    />
+
+                    <path d="M30 0 V36 M0 18 H60"
+                      stroke="#FFFFFF"
+                      stroke-width="12"
+                    />
+                    <path d="M30 0 V36 M0 18 H60"
+                      stroke="#C8102E"
+                      stroke-width="7"
+                    />
+                  </g>
+
+                  <path
+                    d="M1 3 C12 -1 22 5 34 2 C44 0 52 5 59 2 L58 33 C49 36 39 31 29 34 C18 37 9 31 1 34 Z"
+                    fill="none"
+                    stroke="rgba(0,0,0,0.14)"
+                    stroke-width="0.8"
+                  />
+                </svg>
+              )}
+
+              {lang === "en" && index <= 2 && (
+                <svg
+                  class="happy-book__language-flag"
+                  viewBox="0 0 60 36"
+                  role="img"
+                  aria-label="Italian edition"
+                >
+                  <defs>
+                    <clipPath id={`it-wave-${book.id}`}>
+                      <path d="M1 3 C12 -1 22 5 34 2 C44 0 52 5 59 2 L58 33 C49 36 39 31 29 34 C18 37 9 31 1 34 Z" />
+                    </clipPath>
+                  </defs>
+
+                  <g clip-path={`url(#it-wave-${book.id})`}>
+                    <rect x="0" y="0" width="20" height="36" fill="#009246" />
+                    <rect x="20" y="0" width="20" height="36" fill="#FFFFFF" />
+                    <rect x="40" y="0" width="20" height="36" fill="#CE2B37" />
+                  </g>
+
+                  <path
+                    d="M1 3 C12 -1 22 5 34 2 C44 0 52 5 59 2 L58 33 C49 36 39 31 29 34 C18 37 9 31 1 34 Z"
+                    fill="none"
+                    stroke="rgba(0,0,0,0.14)"
+                    stroke-width="0.8"
+                  />
+                </svg>
+              )}
+            </div>
+
+            <p>{book.description}</p>
+          </div>
+        </div>
+
+        <div class="happy-book__gallery" aria-label={`${t.galleryAlt}: ${book.title}`}>
+          {book.gallery.map((image, imageIndex) => (
+            <div class="happy-book__gallery-item">
+              <Image
+                src={image}
+                alt={`${t.galleryAlt} ${imageIndex + 1}: ${book.title}`}
+                class="happy-book__gallery-image"
+                widths={[480, 720, 1000, 1400]}
+                sizes="(max-width: 760px) 100vw, 33vw"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

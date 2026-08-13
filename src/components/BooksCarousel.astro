@@ -1,0 +1,192 @@
+---
+import { Image } from "astro:assets";
+import coverGrotta from "../assets/images/books/Il segreto della Grotta Smeraldina.webp";
+import coverColorare from "../assets/images/books/Personaggi, storie e disegni da colorare.webp";
+import coverStranimali from "../assets/images/books/Il magico mondo degli Stranimali.webp";
+import coverZebraffa from "../assets/images/books/Una zebraffa a Ramofondo.webp";
+
+const { lang = "it" } = Astro.props;
+
+const books = lang === "en"
+  ? [
+    { title: "Vol.1 - The Origins of Boscofuso", image: coverStranimali, href: "/en/books/#vol-1", description: "Meet the Stranimali, curious creatures born from imagination, and enter a world of friendship, surprises and small adventures." },
+      { title: "Vol.2 - Zebraffa comes to Ramofondo", image: coverZebraffa, href: "/en/books/#vol-2", description: "An unusual new arrival shakes up everyday life in Ramofondo and turns a simple encounter into an adventure full of discovery." },
+      { title: "Vol.3 - The Secret of the Emerald Cave", image: coverGrotta, href: "/en/books/#vol-3", description: "Serpiglio sets out on a new adventure through Boscofuso, following clues and unexpected encounters toward a mysterious cave hidden in the forest." },
+      { title: "Characters, stories and coloring pages", image: coverColorare, href: "/en/books/#da-colorare", description: "A playful book to discover the characters of Boscofuso through short stories, activities and illustrations ready to be colored." },
+      
+    ]
+
+  : [
+    { title: "Vol.1 - Le origini di Boscofuso", image: coverStranimali, href: "/it/libri/#vol-1", description: "Scopri gli Stranimali, creature curiose nate dalla fantasia, e lasciati guidare in un mondo fatto di amicizia, sorprese e piccole avventure." },
+      { title: "Vol.2 - Una zebraffa a Ramofondo", image: coverZebraffa, href: "/it/libri/#vol-2", description: "Un nuovo e insolito arrivo sconvolge la tranquillità di Ramofondo e trasforma un semplice incontro in un’avventura tutta da scoprire." },
+      { title: "Vol.3 - Il segreto della Grotta Smeraldina", image: coverGrotta, href: "/it/libri/#vol-3", description: "Serpiglio parte per una nuova avventura nel mondo di Boscofuso, seguendo indizi e incontri inattesi fino a una misteriosa grotta nascosta nel bosco." },
+      { title: "Personaggi, storie e disegni da colorare", image: coverColorare, href: "/it/libri/#da-colorare", description: "Un libro da vivere e colorare per conoscere i personaggi di Boscofuso attraverso piccole storie, attività e tante illustrazioni." },
+      
+    ];
+
+const sectionTitle = lang === "en" ? "Boscofuso stories" : "Le storie di Boscofuso";
+---
+
+<section class="home-books" id="storie" data-books-hover>
+  <header class="home-books__header">
+    <h2>{sectionTitle}</h2>
+  </header>
+
+  <div class="books-carousel-shell">
+    <button
+      class="books-carousel__arrow books-carousel__arrow--prev"
+      type="button"
+      aria-label={lang === "en" ? "Previous books" : "Libri precedenti"}
+      data-books-prev
+    >
+      ‹
+    </button>
+
+    <div class="books-carousel" aria-label={sectionTitle} data-books-carousel>
+      {books.map((book, index) => (
+        <article
+          class="book-card"
+          data-book-card
+          data-book-title={book.title}
+          data-book-description={book.description}
+        >
+          <a class="book-card__link" href={book.href} data-book-link>
+            <div class="book-card__cover">
+              <Image src={book.image} alt={book.title} class="book-card__image" loading={index === 0 ? "eager" : "lazy"} />
+            </div>
+            <h3 class="book-card__title">{book.title}</h3>
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <button
+      class="books-carousel__arrow books-carousel__arrow--next"
+      type="button"
+      aria-label={lang === "en" ? "Next books" : "Libri successivi"}
+      data-books-next
+    >
+      ›
+    </button>
+  </div>
+
+  <div class="book-hover-description" aria-live="polite">
+    <h3 class="book-hover-description__title" data-book-description-title>{books[0].title}</h3>
+    <p class="book-hover-description__text" data-book-description-text>{books[0].description}</p>
+  </div>
+</section>
+
+<script>
+  function initBooksCarousel() {
+    document.querySelectorAll("[data-books-hover]").forEach((section) => {
+      const carousel = section.querySelector("[data-books-carousel]");
+      const prev = section.querySelector("[data-books-prev]");
+      const next = section.querySelector("[data-books-next]");
+      const title = section.querySelector("[data-book-description-title]");
+      const text = section.querySelector("[data-book-description-text]");
+
+      if (!carousel || !title || !text) return;
+      if (section.dataset.booksReady === "1") return;
+      section.dataset.booksReady = "1";
+
+      const showBook = (card) => {
+        if (!(card instanceof HTMLElement)) return;
+        const nextTitle = card.dataset.bookTitle;
+        const nextDescription = card.dataset.bookDescription;
+        if (nextTitle) title.textContent = nextTitle;
+        if (nextDescription) text.textContent = nextDescription;
+      };
+
+      /* Desktop con mouse: il passaggio sopra una copertina
+         aggiorna titolo e descrizione. Il click continua ad aprire il libro. */
+      carousel.addEventListener("mouseover", (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const card = target.closest("[data-book-card]");
+        if (card && carousel.contains(card)) showBook(card);
+      });
+
+      carousel.addEventListener("focusin", (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const card = target.closest("[data-book-card]");
+        if (card && carousel.contains(card)) showBook(card);
+      });
+
+      /* Tablet e smartphone: mentre si scorre il carosello,
+         aggiorna la descrizione con il libro più vicino al centro.
+         Il tap sulla copertina resta libero e apre subito la pagina del libro. */
+      const isTouchLike = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+
+      if (isTouchLike) {
+        let scrollFrame = 0;
+
+        const updateFromCenteredCard = () => {
+          scrollFrame = 0;
+
+          const carouselRect = carousel.getBoundingClientRect();
+          const carouselCenter = carouselRect.left + carouselRect.width / 2;
+
+          let closestCard = null;
+          let closestDistance = Infinity;
+
+          carousel.querySelectorAll("[data-book-card]").forEach((card) => {
+            if (!(card instanceof HTMLElement)) return;
+
+            const rect = card.getBoundingClientRect();
+
+            /* Considera solo le card almeno parzialmente visibili. */
+            if (rect.right <= carouselRect.left || rect.left >= carouselRect.right) return;
+
+            const cardCenter = rect.left + rect.width / 2;
+            const distance = Math.abs(cardCenter - carouselCenter);
+
+            if (distance < closestDistance) {
+              closestDistance = distance;
+              closestCard = card;
+            }
+          });
+
+          if (closestCard) showBook(closestCard);
+        };
+
+        carousel.addEventListener(
+          "scroll",
+          () => {
+            if (scrollFrame) cancelAnimationFrame(scrollFrame);
+            scrollFrame = requestAnimationFrame(updateFromCenteredCard);
+          },
+          { passive: true }
+        );
+
+        /* All'apertura mantiene coerente la descrizione con il libro visibile. */
+        requestAnimationFrame(updateFromCenteredCard);
+      }
+
+      const scrollOneCard = (direction) => {
+        const card = carousel.querySelector("[data-book-card]");
+        if (!(card instanceof HTMLElement)) return;
+
+        const styles = getComputedStyle(carousel);
+        const gap = parseFloat(styles.columnGap || styles.gap || "0");
+        const amount = card.getBoundingClientRect().width + gap;
+
+        carousel.scrollBy({
+          left: direction * amount,
+          behavior: "smooth",
+        });
+      };
+
+      prev?.addEventListener("click", () => scrollOneCard(-1));
+      next?.addEventListener("click", () => scrollOneCard(1));
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initBooksCarousel, { once: true });
+  } else {
+    initBooksCarousel();
+  }
+
+  document.addEventListener("astro:page-load", initBooksCarousel);
+</script>

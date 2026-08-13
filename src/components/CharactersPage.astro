@@ -1,0 +1,531 @@
+---
+import { Image } from "astro:assets";
+import serpyImg from "../assets/images/characters/serpy.webp";
+import facoImg from "../assets/images/characters/faco.webp";
+import nellaImg from "../assets/images/characters/nella.webp";
+import pingyImg from "../assets/images/characters/pingy.webp";
+import guffyImg from "../assets/images/characters/guffy.webp";
+import cappyImg from "../assets/images/characters/cappy.webp";
+import gabbyImg from "../assets/images/characters/gabby.webp";
+import bekoImg from "../assets/images/characters/beko.webp";
+import dankoImg from "../assets/images/characters/danko.webp";
+import raffaImg from "../assets/images/characters/raffa.webp";
+import dodoImg from "../assets/images/characters/dodo.webp";
+import lillyImg from "../assets/images/characters/lilly.webp";
+import lelaImg from "../assets/images/characters/lela.webp";
+import milaImg from "../assets/images/characters/mila.webp";
+import ippaImg from "../assets/images/characters/ippa.webp";
+import overviewImg from "../assets/images/characters/personaggi-boscofuso.webp";
+
+const { lang = "it" } = Astro.props;
+
+const characters = lang === "en"
+  ? [
+    {
+      id: "serpy",
+      name: "Serpy the Serpiglio",
+      fusion: "serpente + coniglio = snake + rabbit",
+      image: serpyImg,
+      fields: [
+        { label: "Appearance", text: "Long, flexible emerald-green and orange snake body, with a furry rabbit head, very long ears, trembling whiskers, and bright, lively eyes." },
+        { label: "Personality", text: "Clever, lightning-fast in his thinking, silent as a shadow. He loves solving problems with ingenuity, never with force." },
+        { label: "Special ability", text: "He can squeeze almost anywhere and slip out of even the trickiest situations - literally!" },
+        { label: "Secret hobby", text: "He collects forgotten objects and turns them into small gadgets to use on missions." },
+        { label: "Funny fact", text: "He gets the hiccups every time he tells a lie (and only Guffy knows it…)." }
+      ],
+    },
+    {
+      id: "faco",
+      name: "Facò the Scimmiocero",
+      fusion: "scimmia + facocero = monkey + warthog",
+      image: facoImg,
+      fields: [
+        { label: "Appearance", text: "Stocky warthog body with curved tusks, mottled grey skin and a curled tail. He has a lively monkey-like head, big clever eyes, and wears an open denim vest that is always a little rumpled." },
+        { label: "Personality", text: "Curious like a monkey, stubborn like a warthog. Scimmiocero is energetic, talkative and always ready to stick his nose (and paws) where he should not." },
+        { label: "Special ability", text: "He is brilliant at digging secret tunnels with his snout… and can find almost anything that has been lost in the forest!" },
+        { label: "Secret hobby", text: "He collects colored seeds and sorts them into strange geometric shapes." },
+        { label: "Funny fact", text: "He is afraid of red balloons (but he will never admit it)." },
+        { label: "Favorite quote", text: "“If you can’t find the road… dig it!”" }
+      ],
+    },
+    {
+      id: "nella",
+      name: "Nella the Leonella",
+      fusion: "leone + pipistrella = lion + bat",
+      image: nellaImg,
+      fields: [
+        { label: "Appearance", text: "Elegant lioness body, a soft mane like a crown of golden petals, large amber eyes, and a small crown." },
+        { label: "Personality", text: "Wise, protective, a little vain but always kind." },
+        { label: "Special ability", text: "A roar that calms arguments and helps everyone make peace." },
+        { label: "Secret hobby", text: "She collects rare flowers and writes songs in her greenhouse." },
+        { label: "Funny fact", text: "She is allergic to honey… and to applause that is too loud!" },
+        { label: "Favorite quote", text: "“A true queen listens before she roars.”" }
+      ],
+    },
+    {
+      id: "pingy",
+      name: "Pingy the Pinguane",
+      fusion: "pinguino + cane = penguin + dog",
+      image: pingyImg,
+      fields: [
+        { label: "Appearance", text: "Round penguin body, webbed feet, a long scaly prehensile tail, and contrasting ice-white and tropical-green colors. His eyes are lively and slightly crooked." },
+        { label: "Personality", text: "Hilarious, hyperactive and unpredictable. He is always making jokes (some good, some… well!), but he has a heart of gold." },
+        { label: "Special ability", text: "He slides, climbs, imitates voices… and is the best mimic in the group." },
+        { label: "Secret hobby", text: "He wants to become a “swamp comedian” and tests his sketches in front of the frogs." },
+        { label: "Funny fact", text: "He has the unusual talent of laughing even while he sleeps." },
+        { label: "Favorite quote", text: "“If it doesn’t make you laugh… wait! I’ll try again!”" }
+      ],
+    },
+    {
+      id: "guffy",
+      name: "Guffy the Gufatto",
+      fusion: "gufo + gatto = owl + cat",
+      image: guffyImg,
+      fields: [
+        { label: "Appearance", text: "Soft, compact body, feathered owl wings, and huge bright eyes that can see even in the heart of the night." },
+        { label: "Personality", text: "Intelligent, ironic, a little grumpy but tender-hearted." },
+        { label: "Special ability", text: "He solves riddles and mysteries in the dark and has an infallible memory." },
+        { label: "Secret hobby", text: "He collects keys and ancient forgotten objects." },
+        { label: "Funny fact", text: "He is afraid of… butterflies! “They’re too unpredictable.”" },
+        { label: "Favorite quote", text: "“Silence always says more than a thousand meows.”" }
+      ],
+    },
+    {
+      id: "cappy",
+      name: "Cappy the Capralla",
+      fusion: "capra + pappagalla = goat + parrot",
+      image: cappyImg,
+      fields: [
+        { label: "Appearance", text: "Stocky, bouncy little white goat body, with a funny parrot face, two adorable little horns and eyes full of mischief." },
+        { label: "Personality", text: "Carefree, creative and always looking for new mischief - but never to hurt anyone." },
+        { label: "Special ability", text: "She can jump extremely high, making anyone chasing her lose track of her." },
+        { label: "Secret hobby", text: "She collects funny-shaped leaves and pastes them into “secret laughter diaries”." },
+        { label: "Funny fact", text: "When she is happy… her wings shine and buzz like a kazoo." }
+      ],
+    },
+    {
+      id: "gabby",
+      name: "Prof. Gabby the Gattolone",
+      fusion: "gatto + leone = cat + lion",
+      image: gabbyImg,
+      fields: [
+        { label: "Appearance", text: "Large, majestic lion body with a thick light-orange mane and the face of an elderly cat. He has deep eyes, grey eyebrows, a pipe always in his mouth, and slow, solemn movements." },
+        { label: "Personality", text: "Calm, observant and very wise. He speaks little, but when he does everyone listens. Behind his slightly gruff manner is a tender heart and sharp sense of irony." },
+        { label: "Special ability", text: "He knows proverbs, stories and teachings from every age; he immediately recognizes other people’s emotions even when they are not expressed." },
+        { label: "Secret hobby", text: "He carves wooden walking sticks and collects them; each one represents a stage of life." },
+        { label: "Funny fact", text: "He often falls asleep while telling a story… but always manages to resume from the exact sentence when he wakes up!" },
+        { label: "Favorite quote", text: "“To truly understand something, sometimes you only need to remain silent.”" }
+      ],
+    },
+    {
+      id: "beko",
+      name: "Dr. Beko the Policheco",
+      fusion: "polipo + tricheco = octopus + walrus",
+      image: bekoImg,
+      fields: [
+        { label: "Appearance", text: "He has the soft, flexible body of an octopus and the head of a wise but friendly walrus, with large tufted whiskers and short, rounded tusks." },
+        { label: "Personality", text: "Patient, empathetic and very gentle. When someone gets hurt, he arrives immediately… shuffling and puffing like an old kettle." },
+        { label: "Special abilities", text: "He uses his tentacles as medical tools: one is always cool for checking a fever, another is used for lightning-fast bandages." },
+        { label: "Secret hobby", text: "He collects colorful bandages with funny patterns that he makes himself using hand-dyed seaweed." },
+        { label: "Favorite quote", text: "“A laugh a day keeps the doctor away… but I’ll stay anyway, just to be safe!”" }
+      ],
+    },
+    {
+      id: "danko",
+      name: "Captain Danko the Acquillone",
+      fusion: "aquila + stallone = eagle + stallion",
+      image: dankoImg,
+      fields: [
+        { label: "Appearance", text: "Powerful white stallion body and majestic eagle wings that open with elegance and strength. He always wears a police captain’s hat with a golden badge." },
+        { label: "Personality", text: "Brave, protective and loyal. Always ready to step in to defend the weaker and restore peace in Boscofuso." },
+        { label: "Special ability", text: "He flies at extremely high speed and can see through fog or darkness thanks to his “justice sight”." },
+        { label: "Secret hobby", text: "He collects antique whistles! He has one for every situation… even for calling disobedient squirrels." },
+        { label: "Favorite quote", text: "“True strength is not seen in muscles, but in the choices you make to help others.”" }
+      ],
+    },
+    {
+      id: "raffa",
+      name: "Raffa the Zebraffa",
+      fusion: "zebra + giraffa = zebra + giraffe",
+      image: raffaImg,
+      fields: [
+        { label: "Appearance", text: "She has an agile black-and-white striped zebra body, rising into a long giraffe neck that lets her see beyond the treetops." },
+        { label: "Personality", text: "Optimistic, attentive and incredibly patient. She waits until everyone has spoken before saying her piece, and when she does it is always something wise (or incredibly funny)." },
+        { label: "Special ability", text: "Wide-sight: she can see much farther than the other Stranimali, both physically and emotionally. She notices problems before they arrive." },
+        { label: "Secret hobby", text: "She draws fantastic maps… backwards! She starts from the end and then discovers the route. Nobody can read them, but they are beautiful." },
+        { label: "Favorite quote", text: "“To really see far… sometimes you just have to stand still.”" }
+      ],
+    },
+    {
+      id: "dodo",
+      name: "Dodo the Panduro",
+      fusion: "panda + canguro = panda + kangaroo",
+      image: dodoImg,
+      fields: [
+        { label: "Appearance", text: "A round, cuddly kangaroo body with muscular hind legs and a long kangaroo tail. He has a small pouch full of strange tools and black patches around his eyes that look like permanent “thinking eyebrows”." },
+        { label: "Personality", text: "Brilliant, curious and absent-minded in his manner… but extremely attentive to details! He talks to himself while thinking and sometimes forgets to eat because he is so focused." },
+        { label: "Role in the group", text: "The problem-solving inventor. When everyone is in trouble, Dodo arrives with an improvised gadget that (almost always) works!" },
+        { label: "Special ability", text: "He builds tools and traps from whatever he finds around him, and designs maps, bridges, vehicles and flying backpacks… all funny, but ingenious!" },
+        { label: "Secret hobby", text: "He writes the “Manual of Improbable Solutions”, updating it every evening before bed." },
+        { label: "Funny fact", text: "When he has a brilliant idea, his tail suddenly straightens like an antenna!" },
+        { label: "Favorite quote", text: "“Every problem is just an idea wearing the wrong clothes.”" }
+      ],
+    },
+    {
+      id: "lilly",
+      name: "Lilly the Tartallina",
+      fusion: "tartaruga + gallina = turtle + hen",
+      image: lillyImg,
+      fields: [
+        { label: "Appearance", text: "Stocky olive-green turtle body, a gentle feathered hen head with a collar of colorful feathers, and round, caring eyes." },
+        { label: "Personality", text: "Patient and thoughtful; she loves observing the world slowly and curiously." },
+        { label: "Special ability", text: "She can decipher ancient maps and remember every detail… even the ones everyone else forgets." },
+        { label: "Secret hobby", text: "She writes slow, thoughtful poems under the moonlight." },
+        { label: "Funny fact", text: "When she gets too emotional… she hides inside her shell with a “clok!”" },
+        { label: "Favorite quote", text: "“Every slow step has a wise destination.”" }
+      ],
+    },
+    {
+      id: "lela",
+      name: "Lela the Panteralla",
+      fusion: "pantera + cavalla = panther + mare",
+      image: lelaImg,
+      fields: [
+        { label: "Appearance", text: "Slender mare body with glossy coal-black fur, a gentle but determined panther face, and a wavy blond mane. She has large amber eyes and an always-alert gaze." },
+        { label: "Personality", text: "Protective, empathetic and quietly brave. She is always the one who notices when someone is sad or needs help." },
+        { label: "Special ability", text: "She has extremely fine hearing and can even hear the whispers of the wind. Nobody gets lost in Boscofuso when she is nearby." },
+        { label: "Secret hobby", text: "She writes poems using fallen petals as paper and drops of dew as ink." },
+        { label: "Favorite quote", text: "“There is no greater strength than a heart that listens.”" }
+      ],
+    },
+    {
+      id: "mila",
+      name: "Mila the Maialele",
+      fusion: "maiale + elefante = pig + elephant",
+      image: milaImg,
+      fields: [
+        { label: "Appearance", text: "Round little elephant body with large ears, grey armored skin and strong, stable legs." },
+        { label: "Personality", text: "Energetic, determined, noisy but incredibly sweet with her friends. She loves being noticed, but cannot stand injustice." },
+        { label: "Special ability", text: "With her trunk she can lift enormous rocks… or spray jets of water to “cool things down”." },
+        { label: "Secret hobby", text: "She is a devoted tap dancer (in the rain!)." },
+        { label: "Funny fact", text: "When she is happy… she trumpets and grunts at the same time!" },
+        { label: "Favorite quote", text: "“No weight is too heavy if you lift it with your heart.”" }
+      ],
+    },
+    {
+      id: "ippa",
+      name: "Ippa the Ippoparda",
+      fusion: "ippopotamo + leoparda = hippopotamus + leopard",
+      image: ippaImg,
+      fields: [
+        { label: "Appearance", text: "She has the short, massive body of a hippopotamus and the elegant head of a leopardess, with large dark-brown eyes and a gentle smile. Her coat is golden with large, widely spaced spots. She wears a light apron with blue details and a small crooked chef’s hat, and often carries a wooden spoon." },
+        { label: "Personality", text: "Sunny, patient and welcoming, Ippa loves being with others and making them feel good. She is calm, kind and always ready to help." },
+        { label: "Special ability", text: "She knows how to combine ingredients and emotions: she can turn every situation into something positive, just as she does with her recipes." },
+        { label: "Secret hobby", text: "She writes recipes on little sheets scented with spices and gives them to her friends." },
+        { label: "Funny fact", text: "When she is happy, she moves her tail without realizing it and scatters a little flour everywhere." },
+        { label: "Favorite quote", text: "“With the right ingredients, everything tastes better!”" }
+      ],
+    }
+  ]
+  : [
+    {
+      id: "serpy",
+      name: "Serpy il Serpiglio",
+      fusion: "serpente + coniglio",
+      image: serpyImg,
+      fields: [
+        { label: "Aspetto", text: "Corpo lungo e flessibile da serpente verde smeraldo/arancio, con una testolina pelosa da coniglio, orecchie lunghissime e baffetti tremolanti, occhi vispi e luminosi." },
+        { label: "Carattere", text: "Furbo, velocissimo di mente, silenzioso come un’ombra. Ama risolvere problemi con astuzia, mai con forza." },
+        { label: "Abilità speciale", text: "Si infila ovunque e riesce a sgattaiolare fuori anche dalle situazioni più spinose, letteralmente!" },
+        { label: "Hobby segreto", text: "Raccoglie oggetti dimenticati e li trasforma in piccoli gadget da usare in missione." },
+        { label: "Curiosità buffa", text: "Ha il singhiozzo ogni volta che racconta una bugia (e lo sa solo Guffy…)." }
+      ],
+    },
+    {
+      id: "faco",
+      name: "Facò lo Scimmiocero",
+      fusion: "scimmia + facocero",
+      image: facoImg,
+      fields: [
+        { label: "Aspetto", text: "Corpo tozzo da facocero, con zanne curve, pelle grigia screziata e coda a ricciolo. Ha una testa vivace da scimmia, con occhi grandi e furbi, e indossa un gilet di jeans aperto e sempre un po’ stropicciato." },
+        { label: "Carattere", text: "Curioso come una scimmia, testardo come un facocero. Scimmiocero è energico, chiacchierone e sempre pronto a mettere il naso (e le zampe) dove non dovrebbe." },
+        { label: "Abilità speciale", text: "È abilissimo a scavare gallerie segrete con il muso… e riesce a ritrovare qualsiasi cosa perduta nel bosco!" },
+        { label: "Hobby segreto", text: "Colleziona semi colorati che poi ordina secondo forme geometriche strane." },
+        { label: "Curiosità buffa", text: "Ha paura dei palloncini rossi (ma non lo ammetterà mai)." },
+        { label: "Citazione preferita", text: "“Se non trovi la strada… scavala!”" }
+      ],
+    },
+    {
+      id: "nella",
+      name: "Nella la Leonella",
+      fusion: "leone + pipistrella",
+      image: nellaImg,
+      fields: [
+        { label: "Aspetto", text: "Corpo elegante da leonessa, criniera morbida come una corona di petali dorati, occhi grandi color ambra, indossa una piccola corona." },
+        { label: "Carattere", text: "Saggia, protettiva, un po’ vanitosa ma sempre gentile." },
+        { label: "Abilità speciale", text: "Ruggito che calma i litigi e mette tutti d’accordo." },
+        { label: "Hobby segreto", text: "Colleziona fiori rari e compone canzoni nella sua serra." },
+        { label: "Curiosità buffa", text: "È allergica al miele… e agli applausi troppo forti!" },
+        { label: "Citazione preferita", text: "“Una vera regina ascolta prima di ruggire.”" }
+      ],
+    },
+    {
+      id: "pingy",
+      name: "Pingy il Pinguane",
+      fusion: "pinguino + cane",
+      image: pingyImg,
+      fields: [
+        { label: "Aspetto", text: "Corpo panciuto da pinguino, zampe palmate, coda squamosa lunga e prensile, colori a contrasto tra bianco ghiaccio e verde tropicale. Occhi vispi e un po’ storti." },
+        { label: "Carattere", text: "Esilarante, iperattivo, imprevedibile. Fa sempre battute (alcune buone, alcune… bah!), ma con un cuore d’oro." },
+        { label: "Abilità speciale", text: "Scivola, si arrampica, mima voci… ed è il miglior imitatore del gruppo." },
+        { label: "Hobby segreto", text: "Vuole diventare un “comico da palude” e prova i suoi sketch davanti alle rane." },
+        { label: "Curiosità buffa", text: "Ha il singolare talento di ridere anche mentre dorme." },
+        { label: "Citazione preferita", text: "“Se non ti fa ridere… aspetta! Ci riprovo!”" }
+      ],
+    },
+    {
+      id: "guffy",
+      name: "Guffy il Gufatto",
+      fusion: "gufo + gatto",
+      image: guffyImg,
+      fields: [
+        { label: "Aspetto", text: "Corpo morbido e compatto, ali piumate da gufo, occhi enormi e luminosi che vedono anche nel cuore della notte." },
+        { label: "Carattere", text: "Intelligente, ironico, un po’ burbero ma dal cuore tenero." },
+        { label: "Abilità speciale", text: "Risolve enigmi e misteri nel buio, ha una memoria infallibile." },
+        { label: "Hobby segreto", text: "Colleziona chiavi e antichi oggetti dimenticati." },
+        { label: "Curiosità buffa", text: "Ha paura… delle farfalle! “Sono troppo imprevedibili”." },
+        { label: "Citazione preferita", text: "“Il silenzio dice sempre più di mille miagolii.”" }
+      ],
+    },
+    {
+      id: "cappy",
+      name: "Cappy la Capralla",
+      fusion: "capra + pappagalla",
+      image: cappyImg,
+      fields: [
+        { label: "Aspetto", text: "Corpo tozzo e saltellante da capretta bianca, con un simpatico visino da pappagallo, due carinissimi cornetti e occhietti pieni di guizzi." },
+        { label: "Carattere", text: "Spensierata, creativa, sempre in cerca di nuove marachelle da combinare — ma senza mai far male a nessuno." },
+        { label: "Abilità speciale", text: "Riesce a saltare molto in alto, facendo perdere le sue tracce a chi la insegue." },
+        { label: "Hobby segreto", text: "Colleziona foglie dalle forme buffe e le incolla in “diari segreti delle risate”." },
+        { label: "Curiosità buffa", text: "Quando è felice… le ali le brillano e ronzano come un kazoo." }
+      ],
+    },
+    {
+      id: "gabby",
+      name: "Prof. Gabby il Gattolone",
+      fusion: "gatto + leone",
+      image: gabbyImg,
+      fields: [
+        { label: "Aspetto", text: "Corpo massiccio e maestoso da leone, con folta criniera arancio chiaro e muso da gatto anziano. Ha occhi grandi e profondi, sopracciglia grigie, una pipa sempre in bocca e movimenti lenti e solenni." },
+        { label: "Carattere", text: "Calmo, osservatore, molto saggio. Parla poco, ma quando lo fa tutti ascoltano. Ha un animo tenero nascosto dietro modi un po’ burberi e un’ironia affilata." },
+        { label: "Abilità speciale", text: "Conosce proverbi, storie e insegnamenti di ogni epoca; riconosce subito le emozioni degli altri anche quando non vengono espresse." },
+        { label: "Hobby segreto", text: "Intaglia bastoni da passeggio in legno e li colleziona; ognuno rappresenta una fase della vita." },
+        { label: "Curiosità buffa", text: "Si addormenta spesso mentre racconta… ma riesce sempre a riprendere la frase esatta al risveglio!" },
+        { label: "Citazione preferita", text: "“Per capire davvero qualcosa, a volte bisogna solo restare in silenzio.”" }
+      ],
+    },
+    {
+      id: "beko",
+      name: "Dott. Beko il Policheco",
+      fusion: "polipo + tricheco",
+      image: bekoImg,
+      fields: [
+        { label: "Aspetto", text: "Ha il corpo morbido e flessuoso di un polipo e la testa di un tricheco saggio ma simpatico, con grandi baffi a ciuffo e zanne corte e smussate." },
+        { label: "Carattere", text: "Paziente, empatico e molto dolce. Quando qualcuno si fa male, arriva subito… strisciando e sbuffando come un vecchio bollitore." },
+        { label: "Abilità speciali", text: "Usa i tentacoli come strumenti medici: uno è sempre fresco per misurare la febbre, un altro serve per fasciature lampo." },
+        { label: "Hobby segreto", text: "Colleziona bende colorate con disegni buffi, che crea lui stesso con alghe tinte a mano." },
+        { label: "Citazione preferita", text: "“Una risata al giorno toglie il medico di torno… ma io resto lo stesso, per sicurezza!”" }
+      ],
+    },
+    {
+      id: "danko",
+      name: "Capitano Danko l’Acquillone",
+      fusion: "aquila + stallone",
+      image: dankoImg,
+      fields: [
+        { label: "Aspetto", text: "Corpo possente da stallone bianco e ali maestose da aquila che si aprono con eleganza e potenza. Porta sempre un cappello da capitano della polizia, con stemma dorato." },
+        { label: "Carattere", text: "Coraggioso, protettivo, leale. Sempre pronto a intervenire per difendere i più deboli e riportare la pace a Boscofuso." },
+        { label: "Abilità speciale", text: "Vola ad altissima velocità e riesce a vedere anche attraverso la nebbia o il buio grazie alla sua “vista del giustiziere”." },
+        { label: "Hobby segreto", text: "Colleziona fischietti antichi! Ne ha uno per ogni situazione… anche per richiamare gli scoiattoli disobbedienti." },
+        { label: "Citazione preferita", text: "“La vera forza non si vede nei muscoli, ma nelle scelte che fai per aiutare gli altri.”" }
+      ],
+    },
+    {
+      id: "raffa",
+      name: "Raffa la Zebraffa",
+      fusion: "zebra + giraffa",
+      image: raffaImg,
+      fields: [
+        { label: "Aspetto", text: "Ha il corpo agile e zebrato in bianco e nero, ma si slancia in un lungo collo da giraffa che le permette di guardare oltre la cima degli alberi." },
+        { label: "Carattere", text: "Ottimista, attenta e incredibilmente paziente, è quella che aspetta che tutti abbiano parlato prima di dire la sua, e quando lo fa è sempre qualcosa di saggio (o incredibilmente buffo)." },
+        { label: "Abilità speciale", text: "Vistavasta: può vedere molto più lontano degli altri Stranimali, sia in senso fisico che emotivo. Riconosce i problemi prima che arrivino." },
+        { label: "Hobby segreto", text: "Disegna mappe fantastiche… ma al contrario! Inizia dalla fine e poi scopre il percorso. Nessuno riesce a leggerle, ma sono bellissime." },
+        { label: "Citazione preferita", text: "“Per vedere davvero lontano… a volte bisogna solo restare fermi.”" }
+      ],
+    },
+    {
+      id: "dodo",
+      name: "Dodo il Panduro",
+      fusion: "panda + canguro",
+      image: dodoImg,
+      fields: [
+        { label: "Aspetto", text: "Corpo rotondetto e tenero di un canguro, ma con zampe posteriori muscolose e una lunga coda da canguro. Ha un piccolo marsupio pieno di attrezzi strani, e macchie nere attorno agli occhi che sembrano sempre “sopracciglia pensanti”." },
+        { label: "Carattere", text: "Geniale, curioso, distratto nei modi… ma attentissimo nei dettagli! Parla da solo mentre pensa e spesso si dimentica di mangiare da quanto è concentrato." },
+        { label: "Ruolo nel gruppo", text: "L’inventore risolvi-problemi. Quando tutti sono nei guai, Dodo arriva con un aggeggio improvvisato che (quasi sempre) funziona!" },
+        { label: "Abilità speciale", text: "Costruisce strumenti e trappole con qualsiasi cosa trovi intorno, progetta mappe, ponti, veicoli, zainetti volanti… tutti buffi, ma geniali!" },
+        { label: "Hobby segreto", text: "Scrive il “Manuale delle Soluzioni Improbabili” che aggiorna ogni sera prima di dormire." },
+        { label: "Curiosità buffa", text: "Quando ha un’idea geniale, la sua coda si raddrizza di colpo come un’antenna!" },
+        { label: "Citazione preferita", text: "“Ogni problema è solo un’idea vestita male.”" }
+      ],
+    },
+    {
+      id: "lilly",
+      name: "Lilly la Tartallina",
+      fusion: "tartaruga + gallina",
+      image: lillyImg,
+      fields: [
+        { label: "Aspetto", text: "Corpo tozzo da tartaruga verde oliva, testa piumata di gallina gentile con collare di penne colorate, occhi rotondi e premurosi." },
+        { label: "Carattere", text: "Paziente, riflessiva, ama osservare il mondo con lentezza e curiosità." },
+        { label: "Abilità speciale", text: "Sa decifrare le mappe antiche e ricordare ogni dettaglio… anche quello che tutti dimenticano." },
+        { label: "Hobby segreto", text: "Scrive poesie lente e profonde sotto la luce della luna." },
+        { label: "Curiosità buffa", text: "Quando si emoziona troppo… si rifugia nel guscio con un “clok!”" },
+        { label: "Citazione preferita", text: "“Ogni passo lento ha una meta saggia.”" }
+      ],
+    },
+    {
+      id: "lela",
+      name: "Lela la Panteralla",
+      fusion: "pantera + cavalla",
+      image: lelaImg,
+      fields: [
+        { label: "Aspetto", text: "Corpo slanciato da cavalla con pelo lucido color carbone, muso dolce ma deciso da pantera, criniera bionda e ondulata. Occhi grandi color ambra e sguardo sempre vigile." },
+        { label: "Carattere", text: "Protettiva, empatica e silenziosamente coraggiosa. È quella che si accorge sempre se qualcuno è triste o ha bisogno di aiuto." },
+        { label: "Abilità speciale", text: "Ha un udito finissimo e riesce a sentire persino i sussurri del vento. Nessuno si perde nel Boscofuso se c’è lei nei paraggi." },
+        { label: "Hobby segreto", text: "Scrive poesie usando i petali caduti come carta e le gocce di rugiada come inchiostro." },
+        { label: "Citazione preferita", text: "“Non c’è forza più grande di un cuore che ascolta.”" }
+      ],
+    },
+    {
+      id: "mila",
+      name: "Mila la Maialele",
+      fusion: "maiale + elefante",
+      image: milaImg,
+      fields: [
+        { label: "Aspetto", text: "Corpicino rotondo da elefantina e orecchie grandi, pelle grigia e corazzata, zampotte forti e stabili." },
+        { label: "Carattere", text: "Energica, determinata, chiassosa ma dolcissima con gli amici. Ama farsi notare, ma non sopporta le ingiustizie." },
+        { label: "Abilità speciale", text: "Con la proboscide solleva massi enormi… o lancia getti d’acqua per “calmare gli animi”." },
+        { label: "Hobby segreto", text: "È un’assidua ballerina di tip tap (sotto la pioggia!)." },
+        { label: "Curiosità buffa", text: "Quando è felice… barrisce e grugnisce contemporaneamente!" },
+        { label: "Citazione preferita", text: "“Nessun peso è troppo se lo alzi con il cuore.”" }
+      ],
+    },
+    {
+      id: "ippa",
+      name: "Ippa la Ippoparda",
+      fusion: "ippopotamo + leoparda",
+      image: ippaImg,
+      fields: [
+        { label: "Aspetto", text: "Ha un corpo corto e massiccio da ippopotamo e la testa elegante di una leopardessa, con occhi grandi color marrone scuro e un sorriso gentile. Il manto è dorato con macchie grandi e distanziate. Indossa un grembiule chiaro con dettagli azzurri e un piccolo cappello da cuoca storto. Spesso tiene un mestolo di legno." },
+        { label: "Carattere", text: "Solare, paziente e accogliente, Ippa ama stare con gli altri e farli sentire bene. È calma, gentile e sempre pronta ad aiutare." },
+        { label: "Abilità speciale", text: "Sa unire ingredienti ed emozioni: riesce a trasformare ogni situazione in qualcosa di positivo, proprio come fa con le sue ricette." },
+        { label: "Hobby segreto", text: "Scrive ricette su foglietti profumati di spezie e li regala agli amici." },
+        { label: "Curiosità buffa", text: "Quando è felice, muove la coda senza accorgersene e sparge un po’ di farina ovunque." },
+        { label: "Citazione preferita", text: "“Con gli ingredienti giusti, tutto diventa più buono!”" }
+      ],
+    }
+  ];
+
+const t = lang === "en"
+  ? {
+      title: "Boscofuso characters",
+      intro: "Meet the Stranimali who live in Boscofuso. Tap a character in the group image to jump directly to their profile.",
+      overviewAlt: "The fifteen Stranimali of Boscofuso",
+      overviewHint: "Choose a character to discover their profile.",
+      backToTop: "Back to the characters",
+    }
+  : {
+      title: "I personaggi di Boscofuso",
+      intro: "Conosci gli Stranimali che vivono a Boscofuso. Tocca un personaggio nell’immagine di gruppo per raggiungere direttamente la sua scheda.",
+      overviewAlt: "I quindici Stranimali di Boscofuso",
+      overviewHint: "Scegli un personaggio per scoprire la sua scheda.",
+      backToTop: "Torna ai personaggi",
+    };
+---
+
+<section class="characters-page page-shell" id="personaggi">
+  <header class="characters-page__header">
+    <h1>{t.title}</h1>
+    <p>{t.intro}</p>
+  </header>
+
+  <section class="characters-overview" aria-labelledby="characters-overview-title">
+    <h2 id="characters-overview-title" class="characters-overview__title">
+      {lang === "en" ? "The Stranimali" : "Gli Stranimali"}
+    </h2>
+
+    <p class="characters-overview__hint">{t.overviewHint}</p>
+
+    <div class="characters-overview__visual">
+      <Image
+        src={overviewImg}
+        alt={t.overviewAlt}
+        class="characters-overview__image"
+        widths={[720, 1100, 1600, 2000]}
+        sizes="(max-width: 768px) 100vw, 1200px"
+        loading="eager"
+      />
+
+      {characters.map((character, index) => {
+        const col = index % 5;
+        const row = Math.floor(index / 5);
+        return (
+          <a
+            class="characters-overview__hotspot"
+            href={`#${character.id}`}
+            aria-label={character.name}
+            style={
+              `--hotspot-left: ${col * 20}%; --hotspot-top: ${row * (100 / 3)}%; --hotspot-width: 20%; --hotspot-height: ${100 / 3}%;`
+            }
+          >
+            <span>{character.name}</span>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+
+  <div class="character-list">
+    {characters.map((character) => (
+      <article class="character-profile" id={character.id}>
+        <header class="character-profile__header">
+          <h2>{character.name}</h2>
+          <p>({character.fusion})</p>
+        </header>
+
+        <div class="character-profile__body">
+          <div class="character-profile__visual">
+            <Image
+              src={character.image}
+              alt={character.name}
+              class="character-profile__image"
+              widths={[320, 480, 640, 800]}
+              sizes="(max-width: 768px) 88vw, 380px"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="character-profile__copy">
+            {character.fields.map((field) => (
+              <p class="character-profile__field">
+                <strong>{field.label}:</strong>
+                <span>{field.text}</span>
+              </p>
+            ))}
+          </div>
+        </div>
+
+        <a class="character-profile__back" href="#personaggi">{t.backToTop} ↑</a>
+      </article>
+    ))}
+  </div>
+</section>

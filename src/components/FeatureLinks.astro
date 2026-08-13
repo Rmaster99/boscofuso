@@ -1,0 +1,101 @@
+---
+import { Image } from "astro:assets";
+import coloringImage from "../assets/images/features/da-colorare.webp";
+import charactersImage from "../assets/images/features/personaggi.webp";
+import happyEdyLogo from "../assets/images/brand/happy-edy-logo.webp";
+
+const { lang = "it" } = Astro.props;
+const base = `/${lang}`;
+
+const items = lang === "en"
+  ? [
+     {
+  title: "Coloring Pages",
+  text: "Download and print drawings of the Boscofuso characters, ready for you to color.",
+  cta: "Download",
+  href: `${base}/da-colorare/`,
+  image: coloringImage,
+  alt: "Boscofuso characters from the coloring collection.",
+  className: "feature-link--coloring",
+  isLogo: false,
+},
+{
+  title: "The Characters",
+  text: "Meet Serpiglio and the unusual inhabitants of the world of Boscofuso.",
+  cta: "Meet them",
+  href: `${base}/personaggi/`,
+  image: charactersImage,
+  alt: "Serpiglio and some characters from the world of Boscofuso.",
+  className: "feature-link--characters",
+  isLogo: false,
+},
+{
+  title: "Happy Edy Books",
+  text: "Discover all Happy Edy publications: stories, journals and books created to inspire imagination, emotions and special moments.",
+  cta: "Browse the titles",
+  href: `${base}/happy-edy/`,
+  image: happyEdyLogo,
+  alt: "Happy Edy",
+  className: "feature-link--happy",
+  isLogo: true,
+},
+    ]
+  : [
+      {
+        title: "Da colorare",
+        text: "Scarica e stampa i disegni dei personaggi di Boscofuso, pronti per te da colorare.",
+        cta: "Download",
+        href: `${base}/da-colorare/`,
+        image: coloringImage,
+        alt: "I personaggi di Boscofuso dalla raccolta da colorare.",
+        className: "feature-link--coloring",
+        isLogo: false,
+      },
+      {
+        title: "I personaggi",
+        text: "Conosci Serpiglio e gli strani abitanti del mondo di Boscofuso.",
+        cta: "Incontrali",
+        href: `${base}/personaggi/`,
+        image: charactersImage,
+        alt: "Serpiglio e alcuni personaggi del mondo di Boscofuso.",
+        className: "feature-link--characters",
+        isLogo: false,
+      },
+      {
+        title: "I libri di Happy Edy",
+        text: "Scopri tutte le pubblicazioni di Happy Edy, libri pensati per accompagnare fantasia ed emozioni speciali.",
+        cta: "Sfoglia i titoli",
+        href: `${base}/happy-edy/`,
+        image: happyEdyLogo,
+        alt: "Happy Edy",
+        className: "feature-link--happy",
+        isLogo: true,
+      },
+    ];
+---
+
+<section
+  class="feature-links"
+  aria-label={lang === "en" ? "More to explore" : "Altri contenuti da esplorare"}
+>
+  {items.map((item) => (
+    <a class={`feature-link ${item.className}`} href={item.href}>
+      <div class="feature-link__visual">
+        <Image
+          src={item.image}
+          alt={item.alt}
+          class={`feature-link__image ${item.isLogo ? "feature-link__image--logo" : ""}`}
+          widths={item.isLogo ? [320, 480, 640] : [420, 620, 820]}
+          sizes="(max-width: 768px) calc(100vw - 32px), 31vw"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="feature-link__content">
+        <h2>{item.title}</h2>
+        <p>{item.text}</p>
+        <span class="feature-link__cta">{item.cta}</span>
+      </div>
+    </a>
+  ))}
+</section>

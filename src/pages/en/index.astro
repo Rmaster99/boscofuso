@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+import HomeWorld from "../../components/HomeWorld.astro";
+import BooksCarousel from "../../components/BooksCarousel.astro";
+import FeatureLinks from "../../components/FeatureLinks.astro";
+---
+
+<BaseLayout
+  title="Boscofuso | Serpiglio and the world of the Stranimali"
+  description="Enter Boscofuso, the illustrated world of Serpiglio and the Stranimali: discover books, characters, magical places and coloring pages."
+  lang="en"
+>
+  <Hero lang="en" />
+
+  <section class="home-main">
+    <HomeWorld lang="en" />
+    <BooksCarousel lang="en" />
+  </section>
+
+  <FeatureLinks lang="en" />
+</BaseLayout>

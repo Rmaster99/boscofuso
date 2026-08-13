@@ -1,0 +1,146 @@
+/* ==================================================
+   DA COLORARE
+   Griglia di tavole stampabili - download singolo.
+   ================================================== */
+
+.coloring-page {
+  padding-block: clamp(2rem, 5vw, 4.5rem) clamp(3rem, 7vw, 6rem);
+}
+
+.coloring-page__header {
+  max-width: 760px;
+  margin: 0 auto clamp(2rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.coloring-page__header h1,
+.coloring-card h2 {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  color: var(--bf-forest);
+}
+
+.coloring-page__header h1 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  line-height: 1.05;
+}
+
+.coloring-page__header p {
+  margin: 0;
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+  line-height: 1.6;
+}
+
+.coloring-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2.2vw, 1.6rem);
+  width: min(100%, 1160px);
+  margin-inline: auto;
+}
+
+.coloring-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(42, 36, 29, 0.10);
+  border-radius: 20px;
+  background: linear-gradient(180deg, #fffaf0 0%, #f7ecd6 100%);
+  box-shadow: 0 10px 26px rgba(42, 36, 29, 0.06);
+}
+
+.coloring-card__visual {
+  display: block;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #ffffff;
+  text-decoration: none;
+}
+
+.coloring-card__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 220ms ease;
+}
+
+.coloring-card__visual:hover .coloring-card__image,
+.coloring-card__visual:focus-visible .coloring-card__image {
+  transform: scale(1.015);
+}
+
+.coloring-card__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1rem 1.1rem;
+  text-align: center;
+}
+
+.coloring-card h2 {
+  margin: 0 0 0.9rem;
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  line-height: 1.15;
+}
+
+.coloring-card__download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  min-height: 44px;
+  margin-top: auto;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  background: var(--bf-forest);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.coloring-card__download:hover,
+.coloring-card__download:focus-visible {
+  background: var(--bf-forest-deep);
+}
+
+.coloring-card__download span {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+@media (max-width: 900px) {
+  .coloring-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .coloring-page {
+    padding-top: 1.5rem;
+  }
+
+  .coloring-grid {
+    grid-template-columns: 1fr;
+    width: min(100%, 440px);
+  }
+
+  .coloring-card {
+    border-radius: 16px;
+  }
+
+  .coloring-card__content {
+    padding: 0.9rem 0.9rem 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coloring-card__image {
+    transition: none;
+  }
+}
