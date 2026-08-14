@@ -1471,7 +1471,7 @@ a {
   margin: 0;
   color: var(--bf-forest);
   font-family: "Comic Neue", cursive;
-  font-size: clamp(1.15rem, 2vw, 1.9rem);
+  font-size: clamp(1.4rem, 2.5vw, 2.9rem);
   line-height: 1.08;
   white-space: nowrap;
 }
