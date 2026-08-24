@@ -1,0 +1,272 @@
+/* ==================================================
+   PAROLE DI SETA - PAGINA LIBRI
+   Stessa struttura della pagina Happy Edy.
+   ================================================== */
+
+.silk-books {
+  padding-block: clamp(2rem, 5vw, 4.5rem) clamp(3rem, 7vw, 6rem);
+}
+
+.silk-books__header {
+  max-width: 920px;
+  margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+  text-align: center;
+}
+
+.silk-books__header h1,
+.silk-book__copy h2 {
+  font-family: "Baloo 2", Arial, Helvetica, sans-serif;
+  color: #000000;
+}
+
+.silk-books__header h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  line-height: 1.05;
+}
+
+.silk-books__header p {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+  line-height: 1.65;
+}
+
+.silk-books__identity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.2rem, 2.4vw, 2rem);
+  margin-bottom: 0.9rem;
+}
+
+.silk-books__logo {
+  display: block;
+  width: clamp(120px, 11vw, 155px);
+  height: auto;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.silk-books__list {
+  width: min(100%, 1160px);
+  margin-inline: auto;
+}
+
+.silk-book {
+  scroll-margin-top: 120px;
+  padding-block: clamp(2.5rem, 6vw, 5rem);
+  border-top: 1px solid rgba(42, 36, 29, 0.15);
+}
+
+.silk-book:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.silk-book__main {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.34fr) minmax(0, 0.66fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.silk-book__cover-wrap {
+  min-width: 0;
+}
+
+.silk-book__cover {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+  box-shadow: 0 14px 34px rgba(42, 36, 29, 0.12);
+}
+
+.silk-book__actions {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.silk-book__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.72rem 1rem;
+  border-radius: 999px;
+  background: #00a79d;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.silk-book__button--secondary {
+  background: transparent;
+  color: #087f78;
+  border: 1px solid rgba(0, 167, 157, 0.38);
+}
+
+/* Pulsante Amazon predisposto: finché amazon: "" resta visibile ma non cliccabile. */
+.silk-book__button--disabled {
+  opacity: 0.48;
+  cursor: default;
+  pointer-events: none;
+}
+
+.silk-book__button:hover,
+.silk-book__button:focus-visible {
+  opacity: 0.88;
+}
+
+.silk-book__copy {
+  padding-top: 0.35rem;
+}
+
+.silk-book__title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+}
+
+.silk-book__copy h2 {
+  margin: 0;
+  font-size: clamp(1.15rem, 2vw, 1.9rem);
+  line-height: 1.08;
+}
+
+.silk-book__copy > p:last-child {
+  margin: 0;
+  font-size: clamp(1rem, 1.25vw, 1.08rem);
+  line-height: 1.7;
+  white-space: pre-line;
+}
+
+.silk-book__gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.8rem, 2vw, 1.2rem);
+  margin-top: clamp(1.6rem, 4vw, 2.8rem);
+}
+
+.silk-book__gallery-item {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(42, 36, 29, 0.07);
+}
+
+.silk-book__gallery-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Tema Parole di Seta: sfondo verde acqua molto tenue + header/footer verde acqua. */
+body:has(.silk-books) {
+  --ps-teal: #00a79d;
+  --ps-teal-deep: #087f78;
+  --ps-teal-dark: #066d67;
+  background: #f3fbf9;
+}
+
+body:has(.silk-books) .site-header,
+body:has(.silk-books) .site-footer {
+  background:
+    radial-gradient(circle at 18% 35%, rgba(255, 255, 255, 0.07), transparent 26%),
+    radial-gradient(circle at 82% 70%, rgba(255, 255, 255, 0.05), transparent 24%),
+    linear-gradient(180deg, var(--ps-teal-deep) 0%, var(--ps-teal-dark) 100%);
+}
+
+body:has(.silk-books) .site-header,
+body:has(.silk-books) .site-header a,
+body:has(.silk-books) .site-nav a,
+body:has(.silk-books) .site-footer,
+body:has(.silk-books) .site-footer a,
+body:has(.silk-books) .site-footer__payoff,
+body:has(.silk-books) .site-footer__project,
+body:has(.silk-books) .site-footer__project p {
+  color: #ffffff;
+}
+
+body:has(.silk-books) .site-nav a:hover,
+body:has(.silk-books) .site-nav a:focus-visible {
+  color: #ffffff;
+  opacity: 0.82;
+}
+
+body:has(.silk-books) .langx__menu {
+  background: var(--ps-teal-dark);
+}
+
+body:has(.silk-books) .site-footer::after {
+  background-image: url("/images/decor/footer-foliage-parole.svg");
+}
+
+@media (max-width: 860px) {
+  .silk-book__main {
+    grid-template-columns: minmax(210px, 0.4fr) minmax(0, 0.6fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 680px) {
+  .silk-books {
+    padding-top: 1.5rem;
+  }
+
+  .silk-books__identity {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .silk-books__logo {
+    width: 125px;
+  }
+
+  .silk-book {
+    scroll-margin-top: 96px;
+    padding-block: 2.6rem;
+  }
+
+  .silk-book__main {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+  }
+
+  .silk-book__cover-wrap {
+    width: min(76vw, 330px);
+    margin-inline: auto;
+  }
+
+  .silk-book__copy {
+    padding-top: 0;
+  }
+
+  .silk-book__title-row {
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 0.8rem;
+  }
+
+  .silk-book__copy h2,
+  .silk-book__copy > p:last-child {
+    text-align: center;
+  }
+
+  .silk-book__copy h2 {
+    font-size: clamp(0.92rem, 4.2vw, 1.35rem);
+  }
+
+  .silk-book__gallery {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+}

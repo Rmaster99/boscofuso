@@ -12,6 +12,7 @@ const t = lang === "en"
       coloring: "Coloring",
       characters: "Characters",
       otherBooks: "Happy Edy",
+      paroleDiSeta: "Parole di Seta",
       navLabel: "Main navigation",
       languageLabel: "Choose language",
       menuOpenLabel: "Open menu",
@@ -24,6 +25,7 @@ const t = lang === "en"
       coloring: "Da colorare",
       characters: "I personaggi",
       otherBooks: "Happy Edy",
+      paroleDiSeta: "Parole di Seta",
       navLabel: "Navigazione principale",
       languageLabel: "Scegli lingua",
       menuOpenLabel: "Apri menu",
@@ -56,8 +58,8 @@ function languageUrl(targetLang) {
       src={brandLogo}
       alt={brandAlt}
       class="site-brand__logo"
-      widths={[82, 94, 110, 160]}
-      sizes="(max-width: 560px) 82px, (max-width: 980px) 94px, 110px"
+      widths={[88, 96, 106, 130, 160, 260]}
+      sizes="(max-width: 420px) 88px, (max-width: 768px) 96px, (max-width: 980px) 106px, 130px"
       format="webp"
       quality={90}
       loading="eager"
@@ -71,6 +73,7 @@ function languageUrl(targetLang) {
     <a href={`${base}/da-colorare/`}>{t.coloring}</a>
     <a href={`${base}/personaggi/`}>{t.characters}</a>
     <a href={`${base}/happy-edy/`}>{t.otherBooks}</a>
+    <a href={`${base}/parole-di-seta/`}>{t.paroleDiSeta}</a>
   </nav>
 
   <div class="langx" data-langx>
@@ -402,7 +405,7 @@ function languageUrl(targetLang) {
     }
 
     .site-brand__logo {
-      width: 66px !important;
+      width: 96px !important;
     }
 
 
@@ -498,7 +501,7 @@ function languageUrl(targetLang) {
     }
 
     .site-brand__logo {
-      width: 60px !important;
+      width: 88px !important;
     }
 
 

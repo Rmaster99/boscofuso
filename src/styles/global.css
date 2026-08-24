@@ -131,7 +131,7 @@ a {
 
 .site-brand__logo {
   /* Header: logo aumentato di circa il 20% */
-  width: 110px;
+  width: 130px;
   height: auto;
 }
 
@@ -720,7 +720,7 @@ a {
   }
 
   .site-brand__logo {
-    width: 94px;
+    width: 106px;
   }
 
   .site-nav {
@@ -845,7 +845,7 @@ a {
   }
 
   .site-brand__logo {
-    width: 82px;
+    width: 96px;
   }
 
   .site-nav {
@@ -1614,5 +1614,228 @@ a {
     background-repeat: repeat-x;
     background-size: auto 50px;
     background-position: center bottom;
+  }
+}
+
+/* ==================================================
+   21. HOME - QUATTRO ACCESSI INFERIORI 2x2
+   Card orizzontali e più basse: 2 colonne su desktop/tablet,
+   1 colonna su smartphone mantenendo il formato landscape.
+   ================================================== */
+
+.feature-links {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 1.8vw, 1.35rem);
+  padding-block: 1rem 3rem;
+}
+
+.feature-link {
+  grid-template-columns: minmax(190px, 38%) minmax(0, 1fr);
+  grid-template-rows: 1fr;
+  min-height: 218px;
+}
+
+.feature-link__visual {
+  width: 100%;
+  height: 100%;
+  min-height: 218px;
+  aspect-ratio: auto;
+  padding: clamp(0.85rem, 1.6vw, 1.1rem);
+}
+
+.feature-link__image,
+.feature-link__image--logo {
+  width: 100%;
+  height: 100%;
+  max-height: 194px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 14px;
+}
+
+.feature-link--coloring .feature-link__image,
+.feature-link--characters .feature-link__image {
+  object-fit: cover;
+}
+
+.feature-link__content {
+  justify-content: center;
+  padding: clamp(1rem, 1.8vw, 1.4rem);
+}
+
+.feature-link__content h2 {
+  font-size: clamp(1.25rem, 1.55vw, 1.6rem);
+}
+
+.feature-link__content p {
+  margin-bottom: 0.85rem;
+}
+
+.feature-link--parole {
+  background: linear-gradient(180deg, #dff3f1 0%, #cce9e6 100%);
+}
+
+.feature-link--parole .feature-link__content h2 {
+  color: #087f78;
+}
+
+/* Parole di Seta: stesso principio tono-su-tono della card Happy Edy.
+   Il logo circolare turchese resta protagonista su un fondale acqua molto chiaro. */
+.feature-link--parole .feature-link__visual {
+  background:
+    radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.90), transparent 28%),
+    linear-gradient(135deg, #eaf8f6 0%, #cfeae7 100%);
+}
+
+.feature-link__image--parole {
+  width: min(78%, 178px);
+  height: auto;
+  max-height: 178px;
+  object-fit: contain;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: none;
+  filter: drop-shadow(0 8px 18px rgba(0, 92, 86, 0.12));
+}
+
+@media (min-width: 769px) and (max-width: 1100px) {
+  .feature-link {
+    grid-template-columns: minmax(160px, 36%) minmax(0, 1fr);
+    min-height: 205px;
+  }
+
+  .feature-link__visual {
+    min-height: 205px;
+    aspect-ratio: auto;
+    padding: 0.85rem;
+  }
+
+  .feature-link__image,
+  .feature-link__image--logo {
+    width: 100%;
+    height: 100%;
+    max-height: 180px;
+  }
+
+  .feature-link__image--parole {
+    width: min(76%, 162px);
+    height: auto;
+    max-height: 162px;
+  }
+}
+
+@media (max-width: 768px) {
+  .feature-links {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+
+  .feature-link {
+    grid-template-columns: minmax(118px, 36%) minmax(0, 1fr);
+    grid-template-rows: 1fr;
+    min-height: 168px;
+  }
+
+  .feature-link__visual {
+    width: 100%;
+    height: 100%;
+    min-height: 168px;
+    aspect-ratio: auto;
+    padding: 0.7rem;
+    border-radius: 0;
+  }
+
+  .feature-link__image,
+  .feature-link__image--logo {
+    width: 100%;
+    height: 100%;
+    max-height: 146px;
+    border-radius: 12px !important;
+    clip-path: inset(0 round 12px);
+    -webkit-clip-path: inset(0 round 12px);
+  }
+
+  .feature-link__content {
+    padding: 0.9rem 0.9rem 0.9rem 0.45rem;
+  }
+
+  .feature-link__content h2 {
+    margin-bottom: 0.35rem;
+    font-size: clamp(1.05rem, 4.8vw, 1.35rem);
+  }
+
+  .feature-link__content p {
+    margin-bottom: 0.55rem;
+    font-size: 0.86rem;
+    line-height: 1.4;
+  }
+
+  .feature-link__cta {
+    font-size: 0.78rem;
+  }
+
+  .feature-link__image--parole {
+    width: min(82%, 118px);
+    height: auto;
+    max-height: 118px;
+    border-radius: 50% !important;
+    clip-path: none;
+    -webkit-clip-path: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .feature-link {
+    grid-template-columns: 34% minmax(0, 1fr);
+    min-height: 158px;
+  }
+
+  .feature-link__visual {
+    min-height: 158px;
+    padding: 0.55rem;
+  }
+
+  .feature-link__content {
+    padding-right: 0.7rem;
+  }
+
+  .feature-link__content p {
+    font-size: 0.81rem;
+  }
+}
+
+/* ==================================================
+   28. HOME - SEPARATORE PROGETTI EDITORIALI
+   Divide i contenuti Boscofuso dalle card Happy Edy / Parole di Seta.
+   ================================================== */
+
+.feature-links__brand-intro {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 62px;
+  margin: -0.15rem 0 0.1rem;
+  padding: 0.65rem clamp(1rem, 3vw, 2rem);
+  border-radius: 18px;
+  background: linear-gradient(135deg, #ececfc 0%, #e3e5fa 100%);
+  color: #293c92;
+  font-family: "Comic Neue", cursive;
+  font-size: clamp(1.25rem, 2vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.035em;
+  text-align: center;
+  text-wrap: balance;
+}
+
+@media (max-width: 768px) {
+  .feature-links__brand-intro {
+    min-height: 54px;
+    margin: 0.05rem 0;
+    padding: 0.6rem 0.9rem;
+    border-radius: 15px;
+    font-size: clamp(1.05rem, 5vw, 1.35rem);
+    letter-spacing: 0.02em;
   }
 }

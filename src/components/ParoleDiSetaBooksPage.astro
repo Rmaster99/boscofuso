@@ -1,0 +1,373 @@
+---
+import { Image } from "astro:assets";
+import paroleDiSetaLogo from "../assets/images/brand/parole-di-seta-logo-circolare.svg";
+
+import cover01 from "../assets/images/parole-di-seta/books/libro-01/copertina.webp";
+import cover02 from "../assets/images/parole-di-seta/books/libro-02/copertina.webp";
+import cover03 from "../assets/images/parole-di-seta/books/libro-03/copertina.webp";
+import cover04 from "../assets/images/parole-di-seta/books/libro-04/copertina.webp";
+import cover05 from "../assets/images/parole-di-seta/books/libro-05/copertina.webp";
+import cover06 from "../assets/images/parole-di-seta/books/libro-06/copertina.webp";
+import cover07 from "../assets/images/parole-di-seta/books/libro-07/copertina.webp";
+import cover08 from "../assets/images/parole-di-seta/books/libro-08/copertina.webp";
+import photo011 from "../assets/images/parole-di-seta/books/libro-01/foto-01.webp";
+import photo012 from "../assets/images/parole-di-seta/books/libro-01/foto-02.webp";
+import photo013 from "../assets/images/parole-di-seta/books/libro-01/foto-03.webp";
+import photo021 from "../assets/images/parole-di-seta/books/libro-02/foto-01.webp";
+import photo022 from "../assets/images/parole-di-seta/books/libro-02/foto-02.webp";
+import photo023 from "../assets/images/parole-di-seta/books/libro-02/foto-03.webp";
+import photo031 from "../assets/images/parole-di-seta/books/libro-03/foto-01.webp";
+import photo032 from "../assets/images/parole-di-seta/books/libro-03/foto-02.webp";
+import photo033 from "../assets/images/parole-di-seta/books/libro-03/foto-03.webp";
+import photo041 from "../assets/images/parole-di-seta/books/libro-04/foto-01.webp";
+import photo042 from "../assets/images/parole-di-seta/books/libro-04/foto-02.webp";
+import photo043 from "../assets/images/parole-di-seta/books/libro-04/foto-03.webp";
+import photo051 from "../assets/images/parole-di-seta/books/libro-05/foto-01.webp";
+import photo052 from "../assets/images/parole-di-seta/books/libro-05/foto-02.webp";
+import photo053 from "../assets/images/parole-di-seta/books/libro-05/foto-03.webp";
+import photo061 from "../assets/images/parole-di-seta/books/libro-06/foto-01.webp";
+import photo062 from "../assets/images/parole-di-seta/books/libro-06/foto-02.webp";
+import photo063 from "../assets/images/parole-di-seta/books/libro-06/foto-03.webp";
+import photo071 from "../assets/images/parole-di-seta/books/libro-07/foto-01.webp";
+import photo072 from "../assets/images/parole-di-seta/books/libro-07/foto-02.webp";
+import photo073 from "../assets/images/parole-di-seta/books/libro-07/foto-03.webp";
+import photo081 from "../assets/images/parole-di-seta/books/libro-08/foto-01.webp";
+import photo082 from "../assets/images/parole-di-seta/books/libro-08/foto-02.webp";
+import photo083 from "../assets/images/parole-di-seta/books/libro-08/foto-03.webp";
+
+const { lang = "it" } = Astro.props;
+
+// Galleria Parole di Seta:
+// ogni libro usa tre immagini nominate foto-01.webp, foto-02.webp e foto-03.webp.
+// In questa versione le tre immagini sono placeholder basati sulla foto di esempio fornita dall’utente;
+// potranno essere sostituite in seguito mantenendo esattamente gli stessi nomi file.
+
+const booksIt = [
+  {
+    id: "libro-01",
+    title: "Un racconto per ogni mese con Gesù nel cuore",
+    description: `Dodici mesi, dodici storie, un intero anno da vivere con Gesù nel cuore. Attraverso situazioni vicine alla quotidianità dei bambini — la famiglia, la scuola, l’oratorio, le feste e i piccoli momenti di difficoltà — ogni racconto introduce con semplicità valori come la gratitudine, il perdono, la preghiera, la condivisione e l’attenzione verso gli altri.
+
+Pensato principalmente per bambini dai 6 ai 10 anni, il libro segue i momenti significativi dell’anno cristiano, dalla Quaresima alla Pasqua, dalla Prima Comunione fino alla speranza e al dono. Ogni storia si conclude con un pensiero da custodire, trasformando la lettura in un’occasione per parlare insieme di fede e vita quotidiana.
+
+Un libro da leggere mese dopo mese, da condividere in famiglia, al catechismo o in parrocchia, per aiutare i più piccoli a scoprire che anche un gesto semplice può diventare un piccolo seme d’amore.`,
+    cover: cover01,
+    amazon: "https://www.amazon.it/dp/B0FXPXHG4L",
+    kobo: "",
+    gallery: [photo011, photo012, photo013],
+  },
+  {
+    id: "libro-02",
+    title: "A piccoli passi verso la Luce",
+    description: `La Pasqua non arriva tutta insieme: è un cammino fatto di piccoli passi. In dodici storie legate da un unico filo narrativo, A piccoli passi verso la Luce accompagna i bambini attraverso la Quaresima fino alla Pasqua, trasformando concetti spesso difficili in esperienze semplici e vicine alla loro vita.
+
+Un litigio da ricomporre, qualcosa a cui imparare a rinunciare, un peso da lasciare andare, un gesto da condividere: ogni racconto affronta una piccola esperienza quotidiana e la collega con naturalezza ai valori del Vangelo. Le domande poste alla fine delle storie invitano bambini e adulti a fermarsi, parlare e riflettere insieme.
+
+Pensato per i 6-10 anni, può essere letto in famiglia, al catechismo o in parrocchia. Non vuole spiegare la Pasqua con parole complicate, ma farla vivere come un percorso verso una luce che cresce lentamente, dentro e intorno a noi.`,
+    cover: cover02,
+    amazon: "https://www.amazon.it/dp/B0GS8PSXXR",
+    kobo: "",
+    gallery: [photo021, photo022, photo023],
+  },
+  {
+    id: "libro-03",
+    title: "Mi si è rotto il multitasking",
+    description: `Lavorare, amare, organizzare, accudire, ricordare tutto e possibilmente continuare a sorridere. Ma cosa succede quando il sistema non regge più?
+
+Mi si è rotto il multitasking parte dalla pressione, spesso invisibile, che accompagna la vita di molte donne contemporanee e la racconta attraverso riflessioni e sei storie di donne diverse, alle prese con stanchezza, identità, relazioni, corpo, aspettative e bisogno di ritrovare spazio per sé.
+
+Con un linguaggio diretto, intimo e attraversato dall’ironia, il libro non propone formule per diventare più efficienti. Fa esattamente il contrario: mette in discussione l’idea che sia necessario riuscire sempre a fare tutto. Le crepe, i momenti di arresto e i “crash di sistema” diventano così occasioni per cambiare prospettiva.
+
+Un libro per chi almeno una volta ha pensato di non farcela più e ha bisogno di sentirsi meno sola, meno inadeguata e più libera di ricominciare a modo proprio.`,
+    cover: cover03,
+    amazon: "https://www.amazon.it/dp/B0G2QWMJ8L",
+    kobo: "",
+    gallery: [photo031, photo032, photo033],
+  },
+  {
+    id: "libro-04",
+    title: "Mi si è rotto il monotasking",
+    description: `Essere forti, efficienti, risolutivi. Avere sempre una risposta. E possibilmente non chiedere aiuto. Ma il vecchio modello dell’uomo che affronta una cosa alla volta e risolve tutto da solo sembra funzionare sempre meno nel mondo di oggi.
+
+Mi si è rotto il monotasking racconta questo cambiamento attraverso riflessioni e sei storie di uomini alle prese con lavoro, relazioni, paternità, corpo, identità, solitudine e difficoltà nel dare un nome alle proprie emozioni.
+
+Il libro non cerca colpe né modelli alternativi precostituiti. Con intimità e ironia osserva piuttosto cosa accade quando strumenti che sembravano sufficienti non bastano più e diventa necessario imparare ad abitare la complessità, accettare la vulnerabilità, chiedere, ascoltare e rallentare.
+
+Una lettura per uomini che si sono sentiti almeno una volta fuori tempo o fuori ruolo, ma anche per chi desidera comprenderli meglio. Perché non sempre un sistema che va in crisi deve essere riparato: a volte deve semplicemente essere aggiornato.`,
+    cover: cover04,
+    amazon: "https://www.amazon.it/dp/B0G2R7TCZD",
+    kobo: "",
+    gallery: [photo041, photo042, photo043],
+  },
+  {
+    id: "libro-05",
+    title: "Mi si è rotto il multitasking — Diario",
+    description: `Non un manuale per diventare più produttive, ma uno spazio in cui fermarsi e capire cosa sta succedendo davvero.
+
+Mi si è rotto il multitasking — Diario di sopravvivenza ai crash quotidiani trasforma l’ironia del “sistema operativo personale” in uno strumento pratico di scrittura e consapevolezza. Le pagine guidano a riconoscere i piccoli crash della giornata, raccontare come ci si è sentite, individuare i propri “bug” e immaginare un possibile aggiornamento per il giorno successivo.
+
+Domande, spazi da compilare e brevi pensieri accompagnano la scrittura senza giudizio e senza promettere soluzioni miracolose. L’obiettivo è imparare a osservare le proprie reazioni, ridimensionare gli errori con un po’ di autoironia e riconoscere ciò che aiuta davvero a ripartire.
+
+Un diario da usare con libertà, giorno dopo giorno, per trasformare anche una giornata storta in un’occasione per conoscersi meglio e prendersi cura del proprio sistema più importante: sé stessi.`,
+    cover: cover05,
+    amazon: "https://www.amazon.it/dp/B0FR7C86ZC",
+    kobo: "",
+    gallery: [photo051, photo052, photo053],
+  },
+  {
+    id: "libro-06",
+    title: "Una finestra sull’altrove",
+    description: `E se la vita che immaginiamo altrove fosse, in realtà, una domanda su quella che stiamo vivendo qui?
+
+Matteo e Giulia sono giovani, inquieti e sospesi tra ciò che conoscono e ciò che potrebbero diventare. Viaggi, partenze, Londra, nuove opportunità e incontri aprono davanti a loro possibilità diverse, ma presto entrambi scoprono che cambiare città non significa necessariamente riuscire a cambiare sé stessi.
+
+Una finestra sull’altrove racconta il desiderio di partire e quello, più difficile da riconoscere, di capire chi siamo davvero. È una storia di scelte, relazioni, aspettative, nostalgia e identità, dove l’altrove smette progressivamente di essere soltanto un luogo geografico e diventa uno spazio interiore.
+
+Un romanzo per chi ha guardato almeno una volta fuori da una finestra chiedendosi come sarebbe stata una vita diversa. Per chi è partito, per chi vorrebbe farlo e per chi ha scoperto che alcune delle distanze più importanti non si misurano in chilometri.`,
+    cover: cover06,
+    amazon: "https://www.amazon.it/dp/B0G1RNTWVF",
+    kobo: "",
+    gallery: [photo061, photo062, photo063],
+  },
+  {
+    id: "libro-07",
+    title: "Casablanca",
+    description: `Casablanca, 1942. In una città attraversata da soldati, contrabbandieri, diplomatici e spie, un misterioso plico scompare senza lasciare traccia. Non viene rubato: sembra semplicemente essere uscito dal tempo.
+
+Molti anni dopo, nella Londra contemporanea, Adrian Walner scopre che alcuni sogni non finiscono al risveglio. Un biglietto, strani incontri e figure che sembrano conoscere ciò che lui stesso ignora lo trascinano verso Casablanca e dentro una realtà in cui memoria, sogno e Storia cominciano a sovrapporsi.
+
+<strong>Primo volume</strong> delle Cronache del Sognatore Errante, Casablanca mescola avventura, ambientazione storica, mistero, ironia e dimensione fantastica. I Tessitori, la Tela e i segreti della Custode dei Tempi aprono progressivamente un universo in cui persino i ricordi possono essere modificati o cancellati.
+
+Una storia per chi ama i romanzi che iniziano nel mondo reale e, pagina dopo pagina, aprono porte verso qualcosa di molto più grande. E quando il tempo comincia a disfarsi, ricordare può diventare l’unico modo per sopravvivere.`,
+    cover: cover07,
+    amazon: "https://www.amazon.it/dp/B0G6CFD8YM",
+    kobo: "",
+    gallery: [photo071, photo072, photo073],
+  },
+  {
+    id: "libro-08",
+    title: "L’Arca del Tempo",
+    description: `I sogni non finiscono all’alba. E per Adrian Walner, dopo ciò che è accaduto a Casablanca, non sono più nemmeno un rifugio.
+
+Nel <strong>secondo volume</strong> delle Cronache del Sognatore Errante, Adrian sa ormai di essere un Nodo della Tela, qualcosa che i Tessitori non possono ignorare. Il misterioso biglietto che lo accompagna attraverso epoche e realtà diverse non è un semplice oggetto: sembra scegliere autonomamente dove e quando condurlo.
+
+Tra biblioteche cancellate, treni senza binari, memorie che possono essere sottratte e luoghi sospesi nel tempo, la storia riprende esattamente dove Casablanca si era interrotta e allarga progressivamente i confini dell’universo narrativo.
+
+L’Arca del Tempo approfondisce il rapporto tra memoria, identità e destino, spingendo Adrian e i suoi compagni verso una domanda sempre più inquietante: se il passato può essere riscritto, chi decide quale futuro merita di esistere?
+
+Un seguito più ampio e oscuro, pensato per chi ha attraversato la prima parte della Tela ed è pronto a scoprire quanto possa costare ricordare.`,
+    cover: cover08,
+    amazon: "https://www.amazon.it/dp/B0G6FV42NB",
+    kobo: "",
+    gallery: [photo081, photo082, photo083],
+  },
+];
+
+const booksEn = [
+  {
+    ...booksIt[0],
+    title: "One Story for Every Month with Jesus in Your Heart",
+    description: `Twelve months, twelve stories, a whole year to live with Jesus in your heart. Through situations close to children’s everyday lives — family, school, parish activities, celebrations and small moments of difficulty — each story gently introduces values such as gratitude, forgiveness, prayer, sharing and caring for others.
+
+Designed mainly for children aged 6 to 10, the book follows meaningful moments of the Christian year, from Lent to Easter and First Communion, through to hope and the joy of giving. Each story ends with a thought to keep, turning reading into an opportunity to talk together about faith and everyday life.
+
+A book to read month by month, to share at home, in catechism classes or in the parish, helping younger readers discover that even the simplest gesture can become a small seed of love.`,
+  },
+  {
+    ...booksIt[1],
+    title: "Small Steps Toward the Light",
+    description: `Easter does not arrive all at once: it is a journey made of small steps. Through twelve stories connected by a single narrative thread, Small Steps Toward the Light accompanies children through Lent toward Easter, turning ideas that can seem difficult into simple experiences close to their everyday lives.
+
+A quarrel to mend, something to learn to give up, a burden to let go of, a gesture to share: each story begins with a small everyday experience and naturally connects it with Gospel values. Questions at the end of the stories invite children and adults to stop, talk and reflect together.
+
+Designed for children aged 6 to 10, it can be read at home, in catechism classes or in the parish. Rather than explaining Easter with complicated words, it invites children to experience it as a path toward a light that slowly grows within and around us.`,
+  },
+  {
+    ...booksIt[2],
+    title: "My Multitasking Broke Down",
+    description: `Work, love, organise, care for others, remember everything and, if possible, keep smiling. But what happens when the system can no longer cope?
+
+My Multitasking Broke Down begins with the often invisible pressure that shapes the lives of many contemporary women and explores it through reflections and six stories about different women facing exhaustion, identity, relationships, the body, expectations and the need to reclaim space for themselves.
+
+Direct, intimate and threaded with irony, the book does not offer formulas for becoming more efficient. It does the opposite: it questions the idea that we must always be able to do everything. Cracks, pauses and “system crashes” become opportunities to change perspective.
+
+A book for anyone who has thought, at least once, that she could not keep going — and needs to feel less alone, less inadequate and freer to begin again in her own way.`,
+  },
+  {
+    ...booksIt[3],
+    title: "My Monotasking Broke Down",
+    description: `Be strong, efficient and decisive. Always have an answer. And, if possible, never ask for help. Yet the old model of the man who tackles one thing at a time and solves everything alone seems to work less and less in today’s world.
+
+My Monotasking Broke Down explores this change through reflections and six stories about men dealing with work, relationships, fatherhood, the body, identity, loneliness and the difficulty of putting emotions into words.
+
+The book looks neither for blame nor for ready-made alternative models. With intimacy and irony, it observes what happens when tools that once seemed sufficient no longer are, and when it becomes necessary to learn to live with complexity, accept vulnerability, ask, listen and slow down.
+
+A book for men who have felt, at least once, out of step or out of place — and also for those who would like to understand them better. Because a system in crisis does not always need to be repaired: sometimes it simply needs an update.`,
+  },
+  {
+    ...booksIt[4],
+    title: "My Multitasking Broke Down — Journal",
+    description: `Not a manual for becoming more productive, but a space in which to stop and understand what is really happening.
+
+My Multitasking Broke Down — A Journal for Surviving Everyday Crashes turns the irony of the “personal operating system” into a practical tool for writing and self-awareness. Its pages guide you to recognise the small crashes of the day, describe how you felt, identify your own “bugs” and imagine a possible update for the day ahead.
+
+Questions, writing spaces and short reflections accompany the process without judgement and without promising miraculous solutions. The aim is to observe your reactions, put mistakes into perspective with a little self-irony and recognise what genuinely helps you start again.
+
+A journal to use freely, day after day, turning even a difficult day into an opportunity to know yourself better and take care of your most important system: yourself.`,
+  },
+  {
+    ...booksIt[5],
+    title: "A Window to Elsewhere",
+    description: `What if the life we imagine elsewhere is really a question about the life we are living here?
+
+Matteo and Giulia are young, restless and suspended between what they know and what they might become. Travel, departures, London, new opportunities and encounters open different possibilities before them, but both soon discover that changing cities does not necessarily mean being able to change themselves.
+
+A Window to Elsewhere explores the desire to leave and the more difficult desire to understand who we really are. It is a story of choices, relationships, expectations, nostalgia and identity, in which “elsewhere” gradually stops being only a geographical place and becomes an inner space.
+
+A novel for anyone who has ever looked out of a window and wondered what a different life might have been like. For those who left, those who would like to leave, and those who discovered that some of the most important distances are not measured in kilometres.`,
+  },
+  {
+    ...booksIt[6],
+    title: "Casablanca",
+    description: `Casablanca, 1942. In a city crossed by soldiers, smugglers, diplomats and spies, a mysterious diplomatic package disappears without a trace. It is not stolen: it seems simply to have slipped out of time.
+
+Many years later, in present-day London, Adrian Walner discovers that some dreams do not end when we wake. A ticket, strange encounters and figures who seem to know what he himself does not draw him toward Casablanca and into a reality where memory, dreams and History begin to overlap.
+
+<strong>The first volume</strong> of The Chronicles of the Wandering Dreamer, Casablanca blends adventure, historical atmosphere, mystery, irony and fantasy. The Weavers, the Fabric and the secrets of the Keeper of Time gradually open an universe in which even memories can be altered or erased.
+
+A story for readers who love novels that begin in the real world and, page by page, open doors onto something much larger. And when time itself begins to unravel, remembering may become the only way to survive.`,
+  },
+  {
+    ...booksIt[7],
+    title: "The Ark of Time",
+    description: `Dreams do not end at dawn. And for Adrian Walner, after what happened in Casablanca, they are no longer even a refuge.
+
+In the <strong>second volume</strong> of The Chronicles of the Wandering Dreamer, Adrian now knows that he is a Node in the Fabric — something the Weavers cannot ignore. The mysterious ticket that carries him across different eras and realities is not simply an object: it seems to choose for itself where and when to take him.
+
+Among erased libraries, trains without tracks, memories that can be taken away and places suspended in time, the story resumes exactly where Casablanca ended and gradually expands the boundaries of its narrative universe.
+
+The Ark of Time delves deeper into memory, identity and destiny, driving Adrian and his companions toward an increasingly unsettling question: if the past can be rewritten, who decides which future deserves to exist?
+
+A broader, darker sequel for readers who have already crossed the first part of the Fabric and are ready to discover how much remembering can cost.`,
+  },
+];
+
+const books = lang === "en" ? booksEn : booksIt;
+
+const t = lang === "en"
+  ? {
+      title: "Parole di Seta books",
+      intro: "Novels, stories and journals from Parole di Seta Edizioni. The editions shown on this page are in Italian.",
+      amazon: "Buy on Amazon",
+      kobo: "Buy on Kobo",
+      galleryAlt: "Book preview",
+    }
+  : {
+      title: "I libri di Parole di Seta",
+      intro: "Romanzi, racconti e diari: storie diverse unite dal filo delle parole e delle emozioni.",
+      amazon: "Acquista su Amazon",
+      kobo: "Acquista su Kobo",
+      galleryAlt: "Anteprima del libro",
+    };
+---
+
+<section class="silk-books page-shell">
+  <header class="silk-books__header">
+    <div class="silk-books__identity">
+      <Image
+        src={paroleDiSetaLogo}
+        alt="Parole di Seta Edizioni"
+        class="silk-books__logo"
+        widths={[160, 240, 320]}
+        sizes="(max-width: 680px) 125px, 155px"
+        loading="eager"
+      />
+      <h1>{t.title}</h1>
+    </div>
+    <p>{t.intro}</p>
+  </header>
+
+  <div class="silk-books__list">
+    {books.map((book, index) => (
+      <article class="silk-book" id={book.id}>
+        <div class="silk-book__main">
+          <div class="silk-book__cover-wrap">
+            <Image
+              src={book.cover}
+              alt={book.title}
+              class="silk-book__cover"
+              widths={[320, 480, 640, 800]}
+              sizes="(max-width: 760px) 70vw, 320px"
+              loading={index === 0 ? "eager" : "lazy"}
+            />
+
+            <div class="silk-book__actions">
+              {book.amazon ? (
+                <a class="silk-book__button" href={book.amazon} target="_blank" rel="noopener noreferrer">{t.amazon}</a>
+              ) : (
+                <span class="silk-book__button silk-book__button--disabled" aria-disabled="true">{t.amazon}</span>
+              )}
+
+              {book.kobo && (
+                <a class="silk-book__button silk-book__button--secondary" href={book.kobo} target="_blank" rel="noopener noreferrer">{t.kobo}</a>
+              )}
+            </div>
+          </div>
+
+          <div class="silk-book__copy">
+            <div class="silk-book__title-row">
+              <h2>
+                {book.title}
+
+                {lang === "en" && (
+                  <svg
+                    viewBox="0 0 60 36"
+                    role="img"
+                    aria-label="Italian edition"
+                    style="display:inline-block;width:2.4em;height:1.55em;margin-left:0.45em;vertical-align:-0.25em;overflow:visible;filter:drop-shadow(0 1px 1px rgba(0,0,0,0.18));"
+                  >
+                    <title>Italian edition</title>
+                    <defs>
+                      <clipPath id={`it-wave-${book.id}`}>
+                        <path d="M1 3 C12 -1 22 5 34 2 C44 0 52 5 59 2 L58 33 C49 36 39 31 29 34 C18 37 9 31 1 34 Z" />
+                      </clipPath>
+                    </defs>
+
+                    <g clip-path={`url(#it-wave-${book.id})`}>
+                      <rect x="0" y="0" width="20" height="36" fill="#009246" />
+                      <rect x="20" y="0" width="20" height="36" fill="#FFFFFF" />
+                      <rect x="40" y="0" width="20" height="36" fill="#CE2B37" />
+                    </g>
+
+                    <path
+                      d="M1 3 C12 -1 22 5 34 2 C44 0 52 5 59 2 L58 33 C49 36 39 31 29 34 C18 37 9 31 1 34 Z"
+                      fill="none"
+                      stroke="rgba(0,0,0,0.14)"
+                      stroke-width="0.8"
+                    />
+                  </svg>
+                )}
+              </h2>
+            </div>
+            <p set:html={book.description} />
+          </div>
+        </div>
+
+        <div class="silk-book__gallery" aria-label={`${t.galleryAlt}: ${book.title}`}>
+          {book.gallery.map((image, imageIndex) => (
+            <div class="silk-book__gallery-item">
+              <Image
+                src={image}
+                alt={`${t.galleryAlt} ${imageIndex + 1}: ${book.title}`}
+                class="silk-book__gallery-image"
+                widths={[480, 720, 1000, 1400]}
+                sizes="(max-width: 760px) 100vw, 33vw"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

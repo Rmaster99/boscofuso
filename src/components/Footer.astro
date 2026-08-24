@@ -3,62 +3,43 @@ import boscofusoLogo from "../assets/images/brand/boscofuso-logo.png";
 
 const { lang = "it" } = Astro.props;
 const base = `/${lang}`;
-const pathname = Astro.url.pathname;
-const isHappyEdy = pathname.includes("/happy-edy");
-const footerLogo = boscofusoLogo;
-const footerLogoAlt = "Boscofuso";
-
-const contactEmail = "happyedizioni@gmail.com";
 
 const content = lang === "en"
   ? {
       payoff: "Illustrated stories for little explorers and big dreamers.",
-      project: "Happy Edy - independent publishing project.",
+      project: "An independent Happy Edy publishing project.",
       rights: "All rights reserved.",
       privacy: "Privacy",
-      contact: "Contact",
     }
   : {
       payoff: "Storie illustrate per piccoli esploratori e grandi sognatori.",
-      project: "Happy Edy - progetto editoriale indipendente.",
+      project: "Un progetto editoriale indipendente Happy Edy.",
       rights: "Tutti i diritti riservati.",
       privacy: "Privacy",
-      contact: "Contatti",
     };
 ---
 
-<footer class={`site-footer ${isHappyEdy ? "site-footer--happy" : ""}`}>
+<footer class="site-footer">
   <div class="site-footer__inner">
     <div class="site-footer__brand">
-      <img
-        class="site-footer__logo"
-        src={footerLogo.src}
-        alt={footerLogoAlt}
-        loading="lazy"
-      />
+      <a
+        href={`${base}/`}
+        aria-label={lang === "en" ? "Boscofuso home" : "Home Boscofuso"}
+      >
+        <img
+          class="site-footer__logo"
+          src={boscofusoLogo.src}
+          alt="Boscofuso"
+          loading="lazy"
+        />
+      </a>
       <p class="site-footer__payoff">{content.payoff}</p>
     </div>
 
     <div class="site-footer__project">
       <p>{content.project}</p>
       <p>© 2026 Happy Edy — {content.rights}</p>
-      <p>
-        {content.contact}: <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
-      </p>
       <a href={`${base}/privacy/`}>{content.privacy}</a>
     </div>
   </div>
 </footer>
-
-<style>
-  .site-footer--happy,
-  .site-footer--happy a,
-  .site-footer--happy .site-footer__payoff,
-  .site-footer--happy .site-footer__project,
-  .site-footer--happy .site-footer__project p {
-    color: #ffffff;
-  }
-
-  @media (max-width: 768px) {
-  }
-</style>

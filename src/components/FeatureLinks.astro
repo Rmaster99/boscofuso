@@ -3,42 +3,57 @@ import { Image } from "astro:assets";
 import coloringImage from "../assets/images/features/da-colorare.webp";
 import charactersImage from "../assets/images/features/personaggi.webp";
 import happyEdyLogo from "../assets/images/brand/happy-edy-logo.webp";
+import paroleDiSetaLogo from "../assets/images/brand/parole-di-seta-logo-circolare.svg";
 
 const { lang = "it" } = Astro.props;
 const base = `/${lang}`;
 
 const items = lang === "en"
   ? [
-     {
-  title: "Coloring Pages",
-  text: "Download and print drawings of the Boscofuso characters, ready for you to color.",
-  cta: "Download",
-  href: `${base}/da-colorare/`,
-  image: coloringImage,
-  alt: "Boscofuso characters from the coloring collection.",
-  className: "feature-link--coloring",
-  isLogo: false,
-},
-{
-  title: "The Characters",
-  text: "Meet Serpiglio and the unusual inhabitants of the world of Boscofuso.",
-  cta: "Meet them",
-  href: `${base}/personaggi/`,
-  image: charactersImage,
-  alt: "Serpiglio and some characters from the world of Boscofuso.",
-  className: "feature-link--characters",
-  isLogo: false,
-},
-{
-  title: "Happy Edy Books",
-  text: "Discover all Happy Edy publications: stories, journals and books created to inspire imagination, emotions and special moments.",
-  cta: "Browse the titles",
-  href: `${base}/happy-edy/`,
-  image: happyEdyLogo,
-  alt: "Happy Edy",
-  className: "feature-link--happy",
-  isLogo: true,
-},
+      {
+        title: "Coloring Pages",
+        text: "Download and print drawings of the Boscofuso characters, ready for you to color.",
+        cta: "Download",
+        href: `${base}/da-colorare/`,
+        image: coloringImage,
+        alt: "Boscofuso characters from the coloring collection.",
+        className: "feature-link--coloring",
+        isLogo: false,
+        isParoleLogo: false,
+      },
+      {
+        title: "The Characters",
+        text: "Meet Serpiglio and the unusual inhabitants of the world of Boscofuso.",
+        cta: "Meet them",
+        href: `${base}/personaggi/`,
+        image: charactersImage,
+        alt: "Serpiglio and some characters from the world of Boscofuso.",
+        className: "feature-link--characters",
+        isLogo: false,
+        isParoleLogo: false,
+      },
+      {
+        title: "Happy Edy Books",
+        text: "Discover all Happy Edy publications: stories, journals and books created to inspire imagination and emotions.",
+        cta: "Browse the titles",
+        href: `${base}/happy-edy/`,
+        image: happyEdyLogo,
+        alt: "Happy Edy",
+        className: "feature-link--happy",
+        isLogo: true,
+        isParoleLogo: false,
+      },
+      {
+        title: "Parole di Seta Books",
+        text: "Discover novels, stories and journals published by Parole di Seta Edizioni.",
+        cta: "Browse the titles",
+        href: `${base}/parole-di-seta/`,
+        image: paroleDiSetaLogo,
+        alt: "Parole di Seta Edizioni",
+        className: "feature-link--parole",
+        isLogo: true,
+        isParoleLogo: false,
+      },
     ]
   : [
       {
@@ -50,6 +65,7 @@ const items = lang === "en"
         alt: "I personaggi di Boscofuso dalla raccolta da colorare.",
         className: "feature-link--coloring",
         isLogo: false,
+        isParoleLogo: false,
       },
       {
         title: "I personaggi",
@@ -60,6 +76,7 @@ const items = lang === "en"
         alt: "Serpiglio e alcuni personaggi del mondo di Boscofuso.",
         className: "feature-link--characters",
         isLogo: false,
+        isParoleLogo: false,
       },
       {
         title: "I libri di Happy Edy",
@@ -70,6 +87,18 @@ const items = lang === "en"
         alt: "Happy Edy",
         className: "feature-link--happy",
         isLogo: true,
+        isParoleLogo: false,
+      },
+      {
+        title: "I libri di Parole di Seta",
+        text: "Scopri romanzi, racconti e diari pubblicati da Parole di Seta Edizioni.",
+        cta: "Sfoglia i titoli",
+        href: `${base}/parole-di-seta/`,
+        image: paroleDiSetaLogo,
+        alt: "Parole di Seta Edizioni",
+        className: "feature-link--parole",
+        isLogo: true,
+        isParoleLogo: false,
       },
     ];
 ---
@@ -78,24 +107,34 @@ const items = lang === "en"
   class="feature-links"
   aria-label={lang === "en" ? "More to explore" : "Altri contenuti da esplorare"}
 >
-  {items.map((item) => (
-    <a class={`feature-link ${item.className}`} href={item.href}>
-      <div class="feature-link__visual">
-        <Image
-          src={item.image}
-          alt={item.alt}
-          class={`feature-link__image ${item.isLogo ? "feature-link__image--logo" : ""}`}
-          widths={item.isLogo ? [320, 480, 640] : [420, 620, 820]}
-          sizes="(max-width: 768px) calc(100vw - 32px), 31vw"
-          loading="lazy"
-        />
-      </div>
+  {items.map((item, index) => (
+    <>
+      {index === 2 && (
+        <div class="feature-links__brand-intro" aria-hidden="true">
+          {lang === "en"
+            ? "Discover our other publishing projects"
+            : "Scopri anche gli altri progetti editoriali"}
+        </div>
+      )}
 
-      <div class="feature-link__content">
-        <h2>{item.title}</h2>
-        <p>{item.text}</p>
-        <span class="feature-link__cta">{item.cta}</span>
-      </div>
-    </a>
+      <a class={`feature-link ${item.className}`} href={item.href}>
+        <div class="feature-link__visual">
+          <Image
+            src={item.image}
+            alt={item.alt}
+            class={`feature-link__image ${item.isLogo ? "feature-link__image--logo" : ""} ${item.className === "feature-link--parole" ? "feature-link__image--parole" : ""}`}
+            widths={item.isLogo ? [240, 320, 480] : [420, 620, 820]}
+            sizes="(max-width: 768px) 34vw, 190px"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="feature-link__content">
+          <h2>{item.title}</h2>
+          <p>{item.text}</p>
+          <span class="feature-link__cta">{item.cta}</span>
+        </div>
+      </a>
+    </>
   ))}
 </section>
