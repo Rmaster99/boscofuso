@@ -1,0 +1,11 @@
+Inserire in questa cartella i sei PDF definitivi mantenendo esattamente questi nomi:
+
+crea-il-personaggio.pdf
+scopri-la-bugia.pdf
+scrivi-la-tua-storia.pdf
+labirinto-serpiglio.pdf
+labirinto-scimmiocero.pdf
+labirinto-pinguane.pdf
+labirinto-furettacchio.pdf
+
+Le pagine italiana e inglese utilizzano gli stessi PDF bilingui.

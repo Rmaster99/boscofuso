@@ -144,3 +144,129 @@
     transition: none;
   }
 }
+
+/* ==================================================
+   STAMPA E GIOCA
+   Sette schede stampabili disposte in due colonne.
+   ================================================== */
+
+.play-print-page {
+  padding-block: clamp(2rem, 5vw, 4.5rem) clamp(3rem, 7vw, 6rem);
+}
+
+.play-print-page .coloring-page__header h1,
+.print-play-card h2 {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  color: var(--bf-forest);
+}
+
+.print-play-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.8rem, 1.5vw, 1.1rem);
+  width: min(100%, 490px);
+  margin-inline: auto;
+}
+
+.print-play-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(42, 36, 29, 0.10);
+  border-radius: 20px;
+  background: linear-gradient(180deg, #fffaf0 0%, #f7ecd6 100%);
+  box-shadow: 0 10px 26px rgba(42, 36, 29, 0.06);
+}
+
+.print-play-card__visual {
+  display: block;
+  aspect-ratio: 210 / 297;
+  overflow: hidden;
+  background: #ffffff;
+  text-decoration: none;
+}
+
+.print-play-card__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 220ms ease;
+}
+
+.print-play-card__visual:hover .print-play-card__image,
+.print-play-card__visual:focus-visible .print-play-card__image {
+  transform: scale(1.015);
+}
+
+.print-play-card__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.15rem 1.25rem 1.25rem;
+  text-align: center;
+}
+
+.print-play-card h2 {
+  margin: 0 0 0.55rem;
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  line-height: 1.15;
+}
+
+.print-play-card p {
+  max-width: 38rem;
+  margin: 0 0 1rem;
+  font-size: 0.96rem;
+  line-height: 1.55;
+}
+
+.print-play-card__download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  min-height: 44px;
+  margin-top: auto;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  background: var(--bf-forest);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.print-play-card__download:hover,
+.print-play-card__download:focus-visible {
+  background: var(--bf-forest-deep);
+}
+
+.print-play-card__download span {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+@media (max-width: 680px) {
+  .print-play-grid {
+    grid-template-columns: 1fr;
+    width: min(100%, 245px);
+  }
+
+  .print-play-card {
+    border-radius: 16px;
+  }
+
+  .print-play-card__content {
+    padding: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .print-play-card__image {
+    transition: none;
+  }
+}

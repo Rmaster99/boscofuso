@@ -130,8 +130,8 @@ a {
 }
 
 .site-brand__logo {
-  /* Header: logo aumentato di circa il 20% */
-  width: 130px;
+  /* Header: logo aumentato del 30% mantenendo sorgenti responsive ad alta risoluzione */
+  width: 169px;
   height: auto;
 }
 
@@ -565,6 +565,42 @@ a {
   color: var(--bf-forest);
 }
 
+.feature-link--play-print {
+  background: linear-gradient(180deg, #fff0d6 0%, #f5cf91 100%);
+}
+
+.feature-link--play-print .feature-link__content h2 {
+  color: #96521b;
+}
+
+.feature-link--clever {
+  background: linear-gradient(180deg, #e8f3fb 0%, #bad9ed 100%);
+}
+
+.feature-link--clever .feature-link__content h2 {
+  color: #285f80;
+}
+
+.feature-link--play-print .feature-link__image,
+.feature-link--clever .feature-link__image {
+  object-fit: contain;
+}
+
+.feature-link--disabled {
+  cursor: default;
+}
+
+.feature-link--disabled:hover,
+.feature-link--disabled:focus-visible {
+  transform: none;
+  box-shadow: 0 10px 30px rgba(42, 36, 29, 0.06);
+}
+
+.feature-link--disabled .feature-link__cta::after {
+  content: "";
+  margin-left: 0;
+}
+
 .feature-link--happy {
   background: linear-gradient(180deg, #f1e9f3 0%, #dfd2e6 100%);
 }
@@ -720,7 +756,7 @@ a {
   }
 
   .site-brand__logo {
-    width: 106px;
+    width: 138px;
   }
 
   .site-nav {
@@ -845,7 +881,7 @@ a {
   }
 
   .site-brand__logo {
-    width: 96px;
+    width: 125px;
   }
 
   .site-nav {
@@ -1805,7 +1841,234 @@ a {
 }
 
 /* ==================================================
-   28. HOME - SEPARATORE PROGETTI EDITORIALI
+   28. HOME - GIOCA CON SERPIGLIO
+   Due ingressi: attività stampabili e misteri interattivi.
+   ================================================== */
+
+.home-play {
+  width: min(100% - 2rem, 1280px);
+  margin: clamp(2.5rem, 5vw, 4.5rem) auto;
+}
+
+.home-play__header {
+  max-width: 760px;
+  margin: 0 auto clamp(1.25rem, 3vw, 2rem);
+  text-align: center;
+}
+
+.home-play__eyebrow {
+  margin: 0 0 0.4rem;
+  color: var(--bf-terracotta);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.home-play__header h2 {
+  margin: 0 0 0.65rem;
+  color: var(--bf-forest);
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-size: clamp(1.85rem, 3.5vw, 3rem);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.home-play__header > p:last-child {
+  max-width: 660px;
+  margin: 0 auto;
+  font-size: clamp(0.95rem, 1.4vw, 1.08rem);
+  line-height: 1.55;
+}
+
+.home-play__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+}
+
+.play-card {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(110px, 0.38fr) minmax(0, 1fr);
+  align-items: center;
+  min-height: 300px;
+  overflow: hidden;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid rgba(42, 36, 29, 0.08);
+  border-radius: var(--radius-card);
+  box-shadow: 0 14px 36px rgba(42, 36, 29, 0.08);
+}
+
+.play-card::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 210px;
+  aspect-ratio: 1;
+  right: -86px;
+  bottom: -105px;
+  border: 32px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+}
+
+.play-card--print {
+  background: linear-gradient(135deg, #fff2cf 0%, #ffd990 100%);
+}
+
+.play-card--clever {
+  background: linear-gradient(135deg, #e5f4df 0%, #b9dda9 100%);
+}
+
+.play-card__icon,
+.play-card__serpy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.play-card__icon svg {
+  width: min(100%, 132px);
+  height: auto;
+  padding: 1rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.56);
+  fill: none;
+  stroke: #bd6d13;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3;
+}
+
+.play-card__serpy img {
+  width: min(100%, 155px);
+  height: auto;
+  filter: drop-shadow(0 10px 12px rgba(39, 82, 43, 0.18));
+  transition: transform 300ms ease;
+}
+
+.play-card--clever:hover .play-card__serpy img {
+  transform: rotate(-2deg) translateY(-4px);
+}
+
+.play-card__content {
+  min-width: 0;
+  padding-left: clamp(1rem, 2vw, 1.5rem);
+}
+
+.play-card__label {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: rgba(42, 36, 29, 0.7);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.play-card h3 {
+  margin: 0 0 0.65rem;
+  color: var(--bf-forest-deep);
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.play-card p {
+  margin: 0 0 1.1rem;
+  color: #3f3a32;
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+.play-card__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 43px;
+  padding: 0.68rem 1.05rem;
+  border-radius: 999px;
+  background: var(--bf-forest);
+  color: #fff;
+  font-size: 0.86rem;
+  font-weight: 800;
+  line-height: 1;
+  text-decoration: none;
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+a.play-card__cta:hover,
+a.play-card__cta:focus-visible {
+  background: var(--bf-forest-deep);
+  transform: translateY(-2px);
+}
+
+.play-card__cta--disabled {
+  background: rgba(43, 75, 47, 0.7);
+  cursor: default;
+}
+
+@media (max-width: 900px) {
+  .play-card {
+    grid-template-columns: 105px minmax(0, 1fr);
+    min-height: 280px;
+  }
+}
+
+@media (max-width: 700px) {
+  .home-play {
+    width: min(100% - 1.25rem, 1280px);
+    margin-block: 2.5rem;
+  }
+
+  .home-play__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .play-card {
+    grid-template-columns: 92px minmax(0, 1fr);
+    min-height: 235px;
+    padding: 1.15rem;
+  }
+
+  .play-card__content {
+    padding-left: 0.9rem;
+  }
+
+  .play-card__icon svg {
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .play-card {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+    text-align: center;
+  }
+
+  .play-card__icon svg,
+  .play-card__serpy img {
+    width: 90px;
+  }
+
+  .play-card__content {
+    padding-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .play-card__serpy img,
+  .play-card__cta {
+    transition: none;
+  }
+}
+
+/* ==================================================
+   29. HOME - SEPARATORE PROGETTI EDITORIALI
    Divide i contenuti Boscofuso dalle card Happy Edy / Parole di Seta.
    ================================================== */
 

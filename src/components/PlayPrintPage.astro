@@ -1,0 +1,171 @@
+---
+import { Image } from "astro:assets";
+import createCharacterImage from "../assets/images/print-play/crea-personaggio.webp";
+import spotTheLieImage from "../assets/images/print-play/scopri-la-bugia.webp";
+import writeYourStoryImage from "../assets/images/print-play/scrivi-la-tua-storia.webp";
+import serpiglioMazeImage from "../assets/images/print-play/labirinto-serpiglio.webp";
+import scimmioceroMazeImage from "../assets/images/print-play/labirinto-scimmiocero.webp";
+import pinguaneMazeImage from "../assets/images/print-play/labirinto-pinguane.webp";
+import furettacchioMazeImage from "../assets/images/print-play/labirinto-furettacchio.webp";
+
+const { lang = "it" } = Astro.props;
+
+const pdfBase = "/downloads/stampa-e-gioca";
+
+const activities = lang === "en"
+  ? [
+      {
+        id: "create-character",
+        title: "Create the character",
+        description: "Choose two animals, mix them with your imagination and create your own Stranimale.",
+        image: createCharacterImage,
+        pdf: `${pdfBase}/crea-il-personaggio.pdf`,
+      },
+      {
+        id: "spot-the-lie",
+        title: "Spot the lie",
+        description: "Look carefully at the scene and find the sentence that is not true.",
+        image: spotTheLieImage,
+        pdf: `${pdfBase}/scopri-la-bugia.pdf`,
+      },
+      {
+        id: "write-your-story",
+        title: "Write your story",
+        description: "Imagine the dialogue between Serpiglio and Scimmiocero and complete the four comic panels.",
+        image: writeYourStoryImage,
+        pdf: `${pdfBase}/scrivi-la-tua-storia.pdf`,
+      },
+      {
+        id: "serpiglio-maze",
+        title: "Serpiglio’s maze",
+        description: "Help Serpiglio find the key hidden at the end of the maze.",
+        image: serpiglioMazeImage,
+        pdf: `${pdfBase}/labirinto-serpiglio.pdf`,
+      },
+      {
+        id: "scimmiocero-maze",
+        title: "Scimmiocero’s maze",
+        description: "Help Scimmiocero reach the salciarancia.",
+        image: scimmioceroMazeImage,
+        pdf: `${pdfBase}/labirinto-scimmiocero.pdf`,
+      },
+      {
+        id: "pinguane-maze",
+        title: "Pinguane’s maze",
+        description: "Help Pinguane find the ball.",
+        image: pinguaneMazeImage,
+        pdf: `${pdfBase}/labirinto-pinguane.pdf`,
+      },
+      {
+        id: "furettacchio-maze",
+        title: "Furettacchio’s maze",
+        description: "Help Furettacchio reach the pomegranate.",
+        image: furettacchioMazeImage,
+        pdf: `${pdfBase}/labirinto-furettacchio.pdf`,
+      },
+    ]
+  : [
+      {
+        id: "create-character",
+        title: "Crea il personaggio",
+        description: "Scegli due animali, mescolali con la fantasia e crea il tuo Stranimale.",
+        image: createCharacterImage,
+        pdf: `${pdfBase}/crea-il-personaggio.pdf`,
+      },
+      {
+        id: "spot-the-lie",
+        title: "Scopri la bugia",
+        description: "Osserva attentamente la scena e trova la frase che non dice la verità.",
+        image: spotTheLieImage,
+        pdf: `${pdfBase}/scopri-la-bugia.pdf`,
+      },
+      {
+        id: "write-your-story",
+        title: "Scrivi la tua storia",
+        description: "Immagina il dialogo tra Serpiglio e Scimmiocero e completa le quattro vignette del fumetto.",
+        image: writeYourStoryImage,
+        pdf: `${pdfBase}/scrivi-la-tua-storia.pdf`,
+      },
+      {
+        id: "serpiglio-maze",
+        title: "Il labirinto di Serpiglio",
+        description: "Aiuta Serpiglio a trovare la chiave nascosta alla fine del labirinto.",
+        image: serpiglioMazeImage,
+        pdf: `${pdfBase}/labirinto-serpiglio.pdf`,
+      },
+      {
+        id: "scimmiocero-maze",
+        title: "Il labirinto di Scimmiocero",
+        description: "Aiuta Scimmiocero a raggiungere la salciarancia.",
+        image: scimmioceroMazeImage,
+        pdf: `${pdfBase}/labirinto-scimmiocero.pdf`,
+      },
+      {
+        id: "pinguane-maze",
+        title: "Il labirinto di Pinguane",
+        description: "Aiuta Pinguane a trovare la palla.",
+        image: pinguaneMazeImage,
+        pdf: `${pdfBase}/labirinto-pinguane.pdf`,
+      },
+      {
+        id: "furettacchio-maze",
+        title: "Il labirinto di Furettacchio",
+        description: "Aiuta Furettacchio a raggiungere il melograno.",
+        image: furettacchioMazeImage,
+        pdf: `${pdfBase}/labirinto-furettacchio.pdf`,
+      },
+    ];
+
+const t = lang === "en"
+  ? {
+      title: "Print and Play",
+      intro: "Download the Boscofuso activity sheets, print them and start playing with Serpiglio and the Stranimali.",
+      open: "Open printable PDF",
+      download: "Download PDF",
+    }
+  : {
+      title: "Stampa e gioca",
+      intro: "Scarica le schede di Boscofuso, stampale e inizia a giocare insieme a Serpiglio e agli Stranimali.",
+      open: "Apri il PDF da stampare",
+      download: "Scarica il PDF",
+    };
+---
+
+<section class="play-print-page page-shell">
+  <header class="coloring-page__header">
+    <h1>{t.title}</h1>
+    <p>{t.intro}</p>
+  </header>
+
+  <div class="print-play-grid">
+    {activities.map((activity, index) => (
+      <article class="print-play-card">
+        <a
+          class="print-play-card__visual"
+          href={activity.pdf}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${t.open}: ${activity.title}`}
+        >
+          <Image
+            src={activity.image}
+            alt={activity.title}
+            class="print-play-card__image"
+            widths={[240, 360, 480]}
+            sizes="(max-width: 680px) 245px, 235px"
+            loading={index < 2 ? "eager" : "lazy"}
+          />
+        </a>
+
+        <div class="print-play-card__content">
+          <h2>{activity.title}</h2>
+          <p>{activity.description}</p>
+          <a class="print-play-card__download" href={activity.pdf} download>
+            <span aria-hidden="true">↓</span>
+            {t.download}
+          </a>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

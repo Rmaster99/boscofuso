@@ -2,6 +2,8 @@
 import { Image } from "astro:assets";
 import coloringImage from "../assets/images/features/da-colorare.webp";
 import charactersImage from "../assets/images/features/personaggi.webp";
+import playPrintImage from "../assets/images/features/gioca-e-stampa.png";
+import cleverDenImage from "../assets/images/features/tana-delle-astuzie.png";
 import happyEdyLogo from "../assets/images/brand/happy-edy-logo.webp";
 import paroleDiSetaLogo from "../assets/images/brand/parole-di-seta-logo-circolare.svg";
 
@@ -29,6 +31,28 @@ const items = lang === "en"
         image: charactersImage,
         alt: "Serpiglio and some characters from the world of Boscofuso.",
         className: "feature-link--characters",
+        isLogo: false,
+        isParoleLogo: false,
+      },
+      {
+        title: "Print and Play",
+        text: "Download printable games, mazes, puzzles and creative missions set in Boscofuso.",
+        cta: "Discover the activities",
+        href: "/en/print-and-play/",
+        image: playPrintImage,
+        alt: "Printable games and activities from Boscofuso.",
+        className: "feature-link--play-print",
+        isLogo: false,
+        isParoleLogo: false,
+      },
+      {
+        title: "The den of clever tricks",
+        text: "Observe the clues and help Serpiglio solve questions, puzzles and small mysteries.",
+        cta: "Coming soon",
+        href: "",
+        image: cleverDenImage,
+        alt: "Serpiglio presents the den of clever tricks.",
+        className: "feature-link--clever feature-link--disabled",
         isLogo: false,
         isParoleLogo: false,
       },
@@ -79,6 +103,28 @@ const items = lang === "en"
         isParoleLogo: false,
       },
       {
+        title: "Stampa e gioca",
+        text: "Scarica giochi, labirinti, enigmi e missioni creative da stampare ambientate a Boscofuso.",
+        cta: "Scopri le attività",
+        href: "/it/stampa-e-gioca/",
+        image: playPrintImage,
+        alt: "Giochi e attività di Boscofuso da stampare.",
+        className: "feature-link--play-print",
+        isLogo: false,
+        isParoleLogo: false,
+      },
+      {
+        title: "La tana delle astuzie",
+        text: "Osserva gli indizi e aiuta Serpiglio a risolvere quesiti, enigmi e piccoli misteri.",
+        cta: "Prossimamente",
+        href: "",
+        image: cleverDenImage,
+        alt: "Serpiglio presenta la tana delle astuzie.",
+        className: "feature-link--clever feature-link--disabled",
+        isLogo: false,
+        isParoleLogo: false,
+      },
+      {
         title: "I libri di Happy Edy",
         text: "Scopri tutte le pubblicazioni di Happy Edy, libri pensati per accompagnare fantasia ed emozioni speciali.",
         cta: "Sfoglia i titoli",
@@ -109,7 +155,7 @@ const items = lang === "en"
 >
   {items.map((item, index) => (
     <>
-      {index === 2 && (
+      {index === 4 && (
         <div class="feature-links__brand-intro" aria-hidden="true">
           {lang === "en"
             ? "Discover our other publishing projects"
@@ -117,7 +163,12 @@ const items = lang === "en"
         </div>
       )}
 
-      <a class={`feature-link ${item.className}`} href={item.href}>
+      <a
+        class={`feature-link ${item.className}`}
+        href={item.href || undefined}
+        aria-disabled={!item.href ? "true" : undefined}
+        tabindex={!item.href ? "-1" : undefined}
+      >
         <div class="feature-link__visual">
           <Image
             src={item.image}

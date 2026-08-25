@@ -9,8 +9,13 @@ const t = lang === "en"
       home: "HOME",
       books: "Books",
       world: "Boscofuso world",
+      play: "Play",
       coloring: "Coloring",
+      printPlay: "Print and Play",
+      cleverDen: "The den of clever tricks",
+      comingSoon: "Coming soon",
       characters: "Characters",
+      projects: "Other projects",
       otherBooks: "Happy Edy",
       paroleDiSeta: "Parole di Seta",
       navLabel: "Main navigation",
@@ -22,8 +27,13 @@ const t = lang === "en"
       home: "HOME",
       books: "Libri",
       world: "Il mondo di Boscofuso",
+      play: "Gioca",
       coloring: "Da colorare",
+      printPlay: "Stampa e gioca",
+      cleverDen: "La tana delle astuzie",
+      comingSoon: "Prossimamente",
       characters: "I personaggi",
+      projects: "Altri progetti",
       otherBooks: "Happy Edy",
       paroleDiSeta: "Parole di Seta",
       navLabel: "Navigazione principale",
@@ -42,11 +52,13 @@ const brandHref = `${base}/`;
 function languageUrl(targetLang) {
   if (targetLang === "it") {
     if (pathname.startsWith("/en/books/")) return pathname.replace("/en/books/", "/it/libri/");
+    if (pathname.startsWith("/en/print-and-play/")) return "/it/stampa-e-gioca/";
     if (pathname.startsWith("/en/")) return pathname.replace("/en/", "/it/");
     return "/it/";
   }
 
   if (pathname.startsWith("/it/libri/")) return pathname.replace("/it/libri/", "/en/books/");
+  if (pathname.startsWith("/it/stampa-e-gioca/")) return "/en/print-and-play/";
   if (pathname.startsWith("/it/")) return pathname.replace("/it/", "/en/");
   return "/en/";
 }
@@ -58,8 +70,8 @@ function languageUrl(targetLang) {
       src={brandLogo}
       alt={brandAlt}
       class="site-brand__logo"
-      widths={[88, 96, 106, 130, 160, 260]}
-      sizes="(max-width: 420px) 88px, (max-width: 768px) 96px, (max-width: 980px) 106px, 130px"
+      widths={[114, 125, 138, 169, 228, 250, 276, 338, 507]}
+      sizes="(max-width: 420px) 114px, (max-width: 768px) 125px, (max-width: 980px) 138px, 169px"
       format="webp"
       quality={90}
       loading="eager"
@@ -70,10 +82,53 @@ function languageUrl(targetLang) {
     <a href={`${base}/`}>{t.home}</a>
     <a href={lang === "en" ? "/en/books/" : "/it/libri/"}>{t.books}</a>
     <a href={`${base}/mondo-di-boscofuso/`}>{t.world}</a>
-    <a href={`${base}/da-colorare/`}>{t.coloring}</a>
     <a href={`${base}/personaggi/`}>{t.characters}</a>
-    <a href={`${base}/happy-edy/`}>{t.otherBooks}</a>
-    <a href={`${base}/parole-di-seta/`}>{t.paroleDiSeta}</a>
+
+    <div class="site-nav__group" data-nav-group>
+      <button
+        class="site-nav__group-trigger"
+        type="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+        data-nav-group-trigger
+      >
+        <span>{t.play}</span>
+        <span class="site-nav__group-chevron" aria-hidden="true"></span>
+      </button>
+
+      <div class="site-nav__submenu" data-nav-group-menu>
+        <a href={`${base}/da-colorare/`}>{t.coloring}</a>
+        <a href={lang === "en" ? "/en/print-and-play/" : "/it/stampa-e-gioca/"}>
+          {t.printPlay}
+        </a>
+        <span class="site-nav__submenu-disabled" aria-disabled="true">
+          <span>{t.cleverDen}</span>
+          <small>{t.comingSoon}</small>
+        </span>
+      </div>
+    </div>
+
+    <div class="site-nav__group" data-nav-group>
+      <button
+        class="site-nav__group-trigger"
+        type="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+        data-nav-group-trigger
+      >
+        <span>{t.projects}</span>
+        <span class="site-nav__group-chevron" aria-hidden="true"></span>
+      </button>
+
+      <div class="site-nav__submenu site-nav__submenu--projects" data-nav-group-menu>
+        <a class="site-nav__project-link site-nav__project-link--happy" href={`${base}/happy-edy/`}>
+          {t.otherBooks}
+        </a>
+        <a class="site-nav__project-link site-nav__project-link--parole" href={`${base}/parole-di-seta/`}>
+          {t.paroleDiSeta}
+        </a>
+      </div>
+    </div>
   </nav>
 
   <div class="langx" data-langx>
@@ -129,6 +184,37 @@ function languageUrl(targetLang) {
 
 <script>
   function initHeaderControls() {
+    const closeNavGroups = (scope = document) => {
+      scope.querySelectorAll("[data-nav-group]").forEach((group) => {
+        group.classList.remove("is-open");
+        group.querySelector("[data-nav-group-trigger]")?.setAttribute("aria-expanded", "false");
+      });
+    };
+
+    /* PLAY SUBMENU */
+    document.querySelectorAll("[data-nav-group]").forEach((group) => {
+      if (group.dataset.ready === "1") return;
+      group.dataset.ready = "1";
+
+      const trigger = group.querySelector("[data-nav-group-trigger]");
+      if (!trigger) return;
+
+      trigger.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const wasOpen = group.classList.contains("is-open");
+        closeNavGroups(document);
+        group.classList.toggle("is-open", !wasOpen);
+        trigger.setAttribute("aria-expanded", wasOpen ? "false" : "true");
+      });
+
+      group.addEventListener("keydown", (event) => {
+        if (event.key !== "Escape") return;
+        group.classList.remove("is-open");
+        trigger.setAttribute("aria-expanded", "false");
+        trigger.focus();
+      });
+    });
+
     /* LANGUAGE */
     document.querySelectorAll("[data-langx]").forEach((root) => {
       if (root.dataset.ready === "1") return;
@@ -176,6 +262,7 @@ function languageUrl(targetLang) {
         siteHeader.classList.remove("mobile-menu-open");
         toggle.setAttribute("aria-expanded", "false");
         toggle.setAttribute("aria-label", openLabel);
+        closeNavGroups(siteHeader);
       };
 
       toggle.addEventListener("click", (event) => {
@@ -202,6 +289,12 @@ function languageUrl(targetLang) {
       window.addEventListener("resize", () => {
         if (window.innerWidth > 768) closeMenu();
       });
+    });
+
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof Node)) return;
+      if (!target.parentElement?.closest("[data-nav-group]")) closeNavGroups(document);
     });
   }
 
@@ -390,6 +483,159 @@ function languageUrl(targetLang) {
     display: none;
   }
 
+  /* GIOCA / PLAY - menu a discesa */
+
+  .site-nav__group {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .site-nav__group-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: inherit;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .site-nav__group-trigger:hover,
+  .site-nav__group-trigger:focus-visible {
+    color: var(--bf-gold);
+    outline: none;
+  }
+
+  .site-nav__group-chevron {
+    width: 7px;
+    height: 7px;
+    margin-top: -3px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 160ms ease;
+  }
+
+  .site-nav__group.is-open .site-nav__group-chevron {
+    margin-top: 3px;
+    transform: rotate(225deg);
+  }
+
+  .site-nav__submenu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    z-index: 220;
+    display: none;
+    width: max-content;
+    min-width: 250px;
+    padding: 0.5rem;
+    border: 1px solid rgba(251, 244, 228, 0.14);
+    border-radius: 14px;
+    background: #0a2f1e;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28);
+    transform: translateX(-50%);
+  }
+
+  .site-nav__submenu::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 100%;
+    left: 0;
+    height: 12px;
+  }
+
+  .site-nav__group.is-open .site-nav__submenu {
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .site-nav__submenu a,
+  .site-nav__submenu-disabled {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    padding: 0.7rem 0.8rem;
+    border-radius: 9px;
+    font-size: 0.83rem !important;
+    font-weight: 700;
+    line-height: 1.25;
+    text-transform: none !important;
+    white-space: nowrap;
+  }
+
+  .site-nav__submenu a:hover,
+  .site-nav__submenu a:focus-visible {
+    background: rgba(255, 255, 255, 0.08);
+    outline: none;
+  }
+
+  .site-nav__submenu-disabled {
+    color: rgba(251, 244, 228, 0.66);
+    cursor: default;
+  }
+
+  .site-nav__submenu-disabled small {
+    color: var(--bf-gold);
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .site-nav__project-link {
+    justify-content: flex-start !important;
+  }
+
+  .site-nav__project-link::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    flex: 0 0 8px;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.07);
+  }
+
+  .site-nav__project-link--happy {
+    color: #dfc9ea;
+  }
+
+  .site-nav__project-link--parole {
+    color: #8edbd3;
+  }
+
+  .site-nav__project-link--happy:hover,
+  .site-nav__project-link--happy:focus-visible {
+    color: #f0ddf7 !important;
+  }
+
+  .site-nav__project-link--parole:hover,
+  .site-nav__project-link--parole:focus-visible {
+    color: #b6eee8 !important;
+  }
+
+  .site-header--happy .site-nav__submenu {
+    background: #293E4F;
+  }
+
+  @media (hover: hover) and (min-width: 769px) {
+    .site-nav__group:hover .site-nav__submenu {
+      display: grid;
+      gap: 0.15rem;
+    }
+  }
+
   @media (max-width: 768px) {
     .site-header {
       position: relative;
@@ -405,7 +651,7 @@ function languageUrl(targetLang) {
     }
 
     .site-brand__logo {
-      width: 96px !important;
+      width: 125px !important;
     }
 
 
@@ -456,7 +702,9 @@ function languageUrl(targetLang) {
       justify-content: flex-start !important;
       gap: 0 !important;
 
-      overflow: visible !important;
+      max-height: calc(100dvh - 82px);
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
       background: #0a2f1e !important;
       border-top: 1px solid rgba(251, 244, 228, 0.10);
       box-shadow: 0 14px 30px rgba(0, 0, 0, 0.24);
@@ -482,6 +730,50 @@ function languageUrl(targetLang) {
       border-bottom: 0;
     }
 
+    .site-header .site-nav__group {
+      display: block;
+      width: 100%;
+    }
+
+    .site-header .site-nav__group-trigger {
+      justify-content: space-between;
+      width: 100%;
+      padding: 0.8rem 0.25rem;
+      border-bottom: 1px solid rgba(251, 244, 228, 0.09);
+      font-size: 0.82rem;
+      text-align: left;
+    }
+
+    .site-header .site-nav__submenu {
+      position: static;
+      width: 100%;
+      min-width: 0;
+      padding: 0.25rem 0 0.45rem 0.75rem;
+      border: 0;
+      border-bottom: 1px solid rgba(251, 244, 228, 0.09);
+      border-radius: 0;
+      background: rgba(255, 255, 255, 0.035);
+      box-shadow: none;
+      transform: none;
+    }
+
+    .site-header .site-nav__submenu::before {
+      display: none;
+    }
+
+    .site-header .site-nav__submenu a,
+    .site-header .site-nav__submenu-disabled {
+      padding: 0.7rem 0.65rem;
+      border-bottom: 1px solid rgba(251, 244, 228, 0.06);
+      border-radius: 0;
+      font-size: 0.78rem !important;
+      white-space: normal;
+    }
+
+    .site-header .site-nav__submenu > :last-child {
+      border-bottom: 0;
+    }
+
     .site-header.mobile-menu-open .mobile-menu-toggle span:nth-child(1) {
       transform: translateY(7px) rotate(45deg);
     }
@@ -501,7 +793,7 @@ function languageUrl(targetLang) {
     }
 
     .site-brand__logo {
-      width: 88px !important;
+      width: 114px !important;
     }
 
 

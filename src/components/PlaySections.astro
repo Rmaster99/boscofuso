@@ -1,0 +1,92 @@
+---
+import { Image } from "astro:assets";
+import serpyImage from "../assets/images/characters/serpy.webp";
+
+const { lang = "it" } = Astro.props;
+const base = `/${lang}`;
+
+const content = lang === "en"
+  ? {
+      eyebrow: "Play with Serpiglio",
+      title: "Two ways to enter the game",
+      intro: "Choose an activity to print or put your cleverness to the test directly online.",
+      print: {
+        title: "Print and Play",
+        text: "Download and print mazes, puzzles, creative activities and missions with the Boscofuso characters.",
+        cta: "Discover the activities",
+        href: "/en/print-and-play/",
+        label: "Printable activities",
+      },
+      clever: {
+        title: "The den of clever tricks",
+        text: "Observe the clues, choose your answers and help Serpiglio solve small mysteries.",
+        cta: "Coming soon",
+        label: "Interactive mysteries",
+      },
+      alt: "Serpiglio, the snake and rabbit character from Boscofuso.",
+    }
+  : {
+      eyebrow: "Gioca con Serpiglio",
+      title: "Due modi per entrare nel gioco",
+      intro: "Scegli un’attività da stampare oppure metti alla prova la tua astuzia direttamente online.",
+      print: {
+        title: "Stampa e gioca",
+        text: "Scarica e stampa labirinti, enigmi, attività creative e missioni con i personaggi di Boscofuso.",
+        cta: "Scopri le attività",
+        href: "/it/stampa-e-gioca/",
+        label: "Attività da stampare",
+      },
+      clever: {
+        title: "La tana delle astuzie",
+        text: "Osserva gli indizi, scegli le risposte e aiuta Serpiglio a risolvere piccoli misteri.",
+        cta: "Prossimamente",
+        label: "Misteri interattivi",
+      },
+      alt: "Serpiglio, il personaggio metà serpente e metà coniglio di Boscofuso.",
+    };
+---
+
+<section class="home-play" aria-labelledby={`home-play-title-${lang}`}>
+  <header class="home-play__header">
+    <p class="home-play__eyebrow">{content.eyebrow}</p>
+    <h2 id={`home-play-title-${lang}`}>{content.title}</h2>
+    <p>{content.intro}</p>
+  </header>
+
+  <div class="home-play__grid">
+    <article class="play-card play-card--print">
+      <div class="play-card__icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" role="img">
+          <path d="M18 24V8h28v16M18 46H10V25h44v21h-8M18 38h28v18H18z" />
+          <path d="M45 31h2M24 44h16M24 50h12" />
+        </svg>
+      </div>
+      <div class="play-card__content">
+        <span class="play-card__label">{content.print.label}</span>
+        <h3>{content.print.title}</h3>
+        <p>{content.print.text}</p>
+        <a class="play-card__cta" href={content.print.href}>{content.print.cta}</a>
+      </div>
+    </article>
+
+    <article class="play-card play-card--clever">
+      <div class="play-card__serpy" aria-hidden="true">
+        <Image
+          src={serpyImage}
+          alt=""
+          widths={[160, 240, 320]}
+          sizes="(max-width: 700px) 120px, 150px"
+          loading="lazy"
+        />
+      </div>
+      <div class="play-card__content">
+        <span class="play-card__label">{content.clever.label}</span>
+        <h3>{content.clever.title}</h3>
+        <p>{content.clever.text}</p>
+        <span class="play-card__cta play-card__cta--disabled" aria-disabled="true">
+          {content.clever.cta}
+        </span>
+      </div>
+    </article>
+  </div>
+</section>
