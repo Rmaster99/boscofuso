@@ -1,0 +1,37 @@
+.sca-books{padding-block:clamp(2rem,5vw,4.5rem) clamp(3rem,7vw,6rem)}.sca-books__header{max-width:920px;margin:0 auto clamp(2.5rem,5vw,4rem);text-align:center}.sca-books__identity{display:flex;align-items:center;justify-content:center;gap:clamp(1.2rem,2.4vw,2rem);margin-bottom:.9rem}.sca-books__logo{width:clamp(150px,15vw,220px);height:auto}.sca-books__header h1,.sca-book__copy h2{font-family:"Baloo 2",Arial,Helvetica,sans-serif;color:#242424}.sca-books__header h1{margin:0;font-size:clamp(2rem,4vw,3.6rem);line-height:1.05}.sca-books__header p{max-width:740px;margin:0 auto;font-size:clamp(1rem,1.5vw,1.12rem);line-height:1.65}.sca-books__list{width:min(100%,1160px);margin-inline:auto}.sca-book{padding-block:clamp(2.5rem,6vw,5rem);border-top:1px solid rgba(42,36,29,.15)}.sca-book:first-child{padding-top:0;border-top:0}.sca-book__main{display:grid;grid-template-columns:minmax(250px,.34fr) minmax(0,.66fr);gap:clamp(2rem,5vw,4.5rem);align-items:start}.sca-book__cover{display:block;width:100%;height:auto;border-radius:18px;box-shadow:0 14px 34px rgba(42,36,29,.12)}.sca-book__actions{display:grid;gap:.65rem;margin-top:1rem}.sca-book__button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:.72rem 1rem;border-radius:999px;background:#4a4b4e;color:#fff;text-decoration:none;font-size:.9rem;font-weight:700}.sca-book--study .sca-book__button{background:#0b8e82}.sca-book--workbook .sca-book__button{background:#7c193f}.sca-book__button--disabled{opacity:.42;pointer-events:none}.sca-book__copy{padding-top:.35rem}.sca-book__copy h2{margin:0 0 1rem;font-size:clamp(1.15rem,2vw,1.9rem);line-height:1.08}.sca-book--study .sca-book__copy h2{color:#087f78}.sca-book--workbook .sca-book__copy h2{color:#7c193f}.sca-book__copy p{margin:0;font-size:clamp(1rem,1.25vw,1.08rem);line-height:1.7;white-space:pre-line}.sca-book__gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(.8rem,2vw,1.2rem);margin-top:clamp(1.6rem,4vw,2.8rem)}.sca-book__gallery-item{aspect-ratio:16/10;overflow:hidden;border-radius:16px;background:#fff;box-shadow:0 10px 24px rgba(42,36,29,.07)}.sca-book__gallery-image{display:block;width:100%;height:100%;object-fit:cover;object-position:center}body:has(.sca-books){--sca-dark:#3d3e42;--sca-deep:#27282b;background:#fbfaf9}body:has(.sca-books) .site-header,body:has(.sca-books) .site-footer{background:linear-gradient(180deg,var(--sca-dark),var(--sca-deep));color:#fff}body:has(.sca-books) .site-header a,body:has(.sca-books) .site-nav a,body:has(.sca-books) .site-footer a,body:has(.sca-books) .site-footer__payoff,body:has(.sca-books) .site-footer__project,body:has(.sca-books) .site-footer__project p{color:#fff}@media(max-width:860px){.sca-book__main{grid-template-columns:minmax(210px,.4fr) minmax(0,.6fr);gap:2rem}}@media(max-width:680px){.sca-books{padding-top:1.5rem}.sca-books__identity{flex-direction:column;gap:.6rem}.sca-books__logo{width:180px}.sca-book__main{grid-template-columns:1fr;gap:1.4rem}.sca-book__cover-wrap{width:min(100%,350px);min-width:0;justify-self:center}.sca-book__copy{text-align:center}.sca-book__gallery{grid-template-columns:1fr}}
+
+/* ==================================================
+   FOOTER SCA PUBLICATIONS - FOLIAGE TONO SU TONO
+   Usa la sagoma esistente come maschera e la rende
+   grigio chiaro rispetto al fondo del footer.
+   ================================================== */
+body:has(.sca-books) .site-footer::after {
+  background-image: none;
+  background-color: rgba(255, 255, 255, 0.13);
+
+  -webkit-mask-image: url("/images/decor/footer-foliage-green.svg");
+  mask-image: url("/images/decor/footer-foliage-green.svg");
+
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+
+  -webkit-mask-position: center bottom;
+  mask-position: center bottom;
+
+  -webkit-mask-size: 100% auto;
+  mask-size: 100% auto;
+}
+
+@media (max-width: 600px) {
+  body:has(.sca-books) .site-footer::after {
+    -webkit-mask-repeat: repeat-x;
+    mask-repeat: repeat-x;
+
+    -webkit-mask-size: auto 50px;
+    mask-size: auto 50px;
+
+    -webkit-mask-position: center bottom;
+    mask-position: center bottom;
+  }
+}
+

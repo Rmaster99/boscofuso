@@ -1,0 +1,21 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/images/brand/photo-grafika-logo.svg";
+import cover01 from "../assets/images/photo-grafika/books/libro-01/copertina.webp";
+import photo011 from "../assets/images/photo-grafika/books/libro-01/foto-01.webp";
+import photo012 from "../assets/images/photo-grafika/books/libro-01/foto-02.webp";
+import photo013 from "../assets/images/photo-grafika/books/libro-01/foto-03.webp";
+const { lang = "it" } = Astro.props;
+const book = { id:"libro-01", title:"STREET ART – photobook 01", cover:cover01, amazon:"https://www.amazon.it/Street-Art-fotografie-attraverso-creativit%C3%A0/dp/B0HFS4NQX5", gallery:[photo011,photo012,photo013] };
+const t = lang === "en" ? {
+ title:"Photo Grafika books", intro:"Photography books and visual projects in which the image is the main language.", amazon:"Buy on Amazon", galleryAlt:"Book preview",
+ description:`A photographic journey through street art, murals and visual traces encountered in the urban landscape. STREET ART – photobook 01 brings together images in which colour, surfaces, signs and architecture become part of a constantly changing visual language.\n\nThe book is conceived as a sequence of observations rather than a catalogue: fragments discovered by chance, photographed in different places and brought together through a personal visual perspective.\n\nA photobook for those who see the city as an open-air gallery and photography as a way of preserving temporary forms of expression.`
+} : {
+ title:"I libri di Photo Grafika", intro:"Photobook e progetti visivi in cui l’immagine è il linguaggio principale.", amazon:"Acquista su Amazon", galleryAlt:"Anteprima del libro",
+ description:`Un viaggio fotografico attraverso street art, murales e tracce visive incontrate nel paesaggio urbano. STREET ART – photobook 01 raccoglie immagini in cui colore, superfici, segni e architettura diventano parte di un linguaggio visivo in continua trasformazione.\n\nIl libro è concepito come una sequenza di osservazioni più che come un catalogo: frammenti scoperti per caso, fotografati in luoghi diversi e riuniti attraverso uno sguardo personale.\n\nUn photobook per chi considera la città una galleria a cielo aperto e la fotografia uno strumento per conservare forme espressive destinate a cambiare o scomparire.`
+};
+---
+<section class="pg-books page-shell">
+<header class="pg-books__header"><div class="pg-books__identity"><Image src={logo} alt="Photo Grafika" class="pg-books__logo" loading="eager"/><h1>{t.title}</h1></div><p>{t.intro}</p></header>
+<div class="pg-books__list"><article class="pg-book" id={book.id}><div class="pg-book__main"><div class="pg-book__cover-wrap"><img src={book.cover.src} alt={book.title} class="pg-book__cover" width={book.cover.width} height={book.cover.height} loading="eager" decoding="async"/><div class="pg-book__actions">{book.amazon ? <a class="pg-book__button" href={book.amazon} target="_blank" rel="noopener noreferrer">{t.amazon}</a> : <span class="pg-book__button pg-book__button--disabled" aria-disabled="true">{t.amazon}</span>}</div></div><div class="pg-book__copy"><h2>{book.title}</h2><p>{t.description}</p></div></div><div class="pg-book__gallery" aria-label={`${t.galleryAlt}: ${book.title}`}>{book.gallery.map((image,i)=><div class="pg-book__gallery-item"><Image src={image} alt={`${t.galleryAlt} ${i+1}: ${book.title}`} class="pg-book__gallery-image" widths={[480,720,1000,1400]} sizes="(max-width:760px) 100vw, 33vw" loading="lazy"/></div>)}</div></article></div>
+</section>

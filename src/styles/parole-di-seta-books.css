@@ -72,7 +72,9 @@
 }
 
 .silk-book__cover-wrap {
+  width: min(100%, 350px);
   min-width: 0;
+  justify-self: center;
 }
 
 .silk-book__cover {
@@ -242,7 +244,7 @@ body:has(.silk-books) .site-footer::after {
   }
 
   .silk-book__cover-wrap {
-    width: min(76vw, 330px);
+    width: min(82vw, 330px);
     margin-inline: auto;
   }
 

@@ -224,13 +224,14 @@ const t = lang === "en"
       <article class="happy-book" id={book.id}>
         <div class="happy-book__main">
           <div class="happy-book__cover-wrap">
-            <Image
-              src={book.cover}
+            <img
+              src={book.cover.src}
               alt={book.title}
               class="happy-book__cover"
-              widths={[320, 480, 640, 800]}
-              sizes="(max-width: 760px) 70vw, 320px"
+              width={book.cover.width}
+              height={book.cover.height}
               loading={index === 0 ? "eager" : "lazy"}
+              decoding="async"
             />
 
             <div class="happy-book__actions">

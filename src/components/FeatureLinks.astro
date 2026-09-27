@@ -6,186 +6,53 @@ import playPrintImage from "../assets/images/features/gioca-e-stampa.png";
 import cleverDenImage from "../assets/images/features/tana-delle-astuzie.png";
 import happyEdyLogo from "../assets/images/brand/happy-edy-logo.webp";
 import paroleDiSetaLogo from "../assets/images/brand/parole-di-seta-logo-circolare.svg";
+import photoGrafikaLogo from "../assets/images/brand/photo-grafika-logo.svg";
+import scaPublicationsLogo from "../assets/images/brand/sca-publications-logo.svg";
 
 const { lang = "it" } = Astro.props;
 const base = `/${lang}`;
 
-const items = lang === "en"
-  ? [
-      {
-        title: "Coloring Pages",
-        text: "Download and print drawings of the Boscofuso characters, ready for you to color.",
-        cta: "Download",
-        href: `${base}/da-colorare/`,
-        image: coloringImage,
-        alt: "Boscofuso characters from the coloring collection.",
-        className: "feature-link--coloring",
-        isLogo: false,
-        isParoleLogo: false,
-      },
-      {
-        title: "The Characters",
-        text: "Meet Serpiglio and the unusual inhabitants of the world of Boscofuso.",
-        cta: "Meet them",
-        href: `${base}/personaggi/`,
-        image: charactersImage,
-        alt: "Serpiglio and some characters from the world of Boscofuso.",
-        className: "feature-link--characters",
-        isLogo: false,
-        isParoleLogo: false,
-      },
-      {
-        title: "Print and Play",
-        text: "Download printable games, mazes, puzzles and creative missions set in Boscofuso.",
-        cta: "Discover the activities",
-        href: "/en/print-and-play/",
-        image: playPrintImage,
-        alt: "Printable games and activities from Boscofuso.",
-        className: "feature-link--play-print",
-        isLogo: false,
-        isParoleLogo: false,
-      },
-      {
-        title: "The den of clever tricks",
-        text: "Observe the clues and help Serpiglio solve questions, puzzles and small mysteries.",
-        cta: "Coming soon",
-        href: "",
-        image: cleverDenImage,
-        alt: "Serpiglio presents the den of clever tricks.",
-        className: "feature-link--clever feature-link--disabled",
-        isLogo: false,
-        isParoleLogo: false,
-      },
-      {
-        title: "Happy Edy Books",
-        text: "Discover all Happy Edy publications: stories, journals and books created to inspire imagination and emotions.",
-        cta: "Browse the titles",
-        href: `${base}/happy-edy/`,
-        image: happyEdyLogo,
-        alt: "Happy Edy",
-        className: "feature-link--happy",
-        isLogo: true,
-        isParoleLogo: false,
-      },
-      {
-        title: "Parole di Seta Books",
-        text: "Discover novels, stories and journals published by Parole di Seta Edizioni.",
-        cta: "Browse the titles",
-        href: `${base}/parole-di-seta/`,
-        image: paroleDiSetaLogo,
-        alt: "Parole di Seta Edizioni",
-        className: "feature-link--parole",
-        isLogo: true,
-        isParoleLogo: false,
-      },
-    ]
-  : [
-      {
-        title: "Da colorare",
-        text: "Scarica e stampa i disegni dei personaggi di Boscofuso, pronti per te da colorare.",
-        cta: "Download",
-        href: `${base}/da-colorare/`,
-        image: coloringImage,
-        alt: "I personaggi di Boscofuso dalla raccolta da colorare.",
-        className: "feature-link--coloring",
-        isLogo: false,
-        isParoleLogo: false,
-      },
-      {
-        title: "I personaggi",
-        text: "Conosci Serpiglio e gli strani abitanti del mondo di Boscofuso.",
-        cta: "Incontrali",
-        href: `${base}/personaggi/`,
-        image: charactersImage,
-        alt: "Serpiglio e alcuni personaggi del mondo di Boscofuso.",
-        className: "feature-link--characters",
-        isLogo: false,
-        isParoleLogo: false,
-      },
-      {
-        title: "Stampa e gioca",
-        text: "Scarica giochi, labirinti, enigmi e missioni creative da stampare ambientate a Boscofuso.",
-        cta: "Scopri le attività",
-        href: "/it/stampa-e-gioca/",
-        image: playPrintImage,
-        alt: "Giochi e attività di Boscofuso da stampare.",
-        className: "feature-link--play-print",
-        isLogo: false,
-        isParoleLogo: false,
-      },
-      {
-        title: "La tana delle astuzie",
-        text: "Osserva gli indizi e aiuta Serpiglio a risolvere quesiti, enigmi e piccoli misteri.",
-        cta: "Prossimamente",
-        href: "",
-        image: cleverDenImage,
-        alt: "Serpiglio presenta la tana delle astuzie.",
-        className: "feature-link--clever feature-link--disabled",
-        isLogo: false,
-        isParoleLogo: false,
-      },
-      {
-        title: "I libri di Happy Edy",
-        text: "Scopri tutte le pubblicazioni di Happy Edy, libri pensati per accompagnare fantasia ed emozioni speciali.",
-        cta: "Sfoglia i titoli",
-        href: `${base}/happy-edy/`,
-        image: happyEdyLogo,
-        alt: "Happy Edy",
-        className: "feature-link--happy",
-        isLogo: true,
-        isParoleLogo: false,
-      },
-      {
-        title: "I libri di Parole di Seta",
-        text: "Scopri romanzi, racconti e diari pubblicati da Parole di Seta Edizioni.",
-        cta: "Sfoglia i titoli",
-        href: `${base}/parole-di-seta/`,
-        image: paroleDiSetaLogo,
-        alt: "Parole di Seta Edizioni",
-        className: "feature-link--parole",
-        isLogo: true,
-        isParoleLogo: false,
-      },
-    ];
+const features = lang === "en" ? [
+  { title:"Coloring Pages", text:"Download and print drawings of the Boscofuso characters, ready for you to color.", cta:"Download", href:`${base}/da-colorare/`, image:coloringImage, alt:"Boscofuso characters from the coloring collection.", className:"feature-link--coloring" },
+  { title:"The Characters", text:"Meet Serpiglio and the unusual inhabitants of the world of Boscofuso.", cta:"Meet them", href:`${base}/personaggi/`, image:charactersImage, alt:"Serpiglio and some characters from the world of Boscofuso.", className:"feature-link--characters" },
+  { title:"Print and Play", text:"Download printable games, mazes, puzzles and creative missions set in Boscofuso.", cta:"Discover the activities", href:"/en/print-and-play/", image:playPrintImage, alt:"Printable games and activities from Boscofuso.", className:"feature-link--play-print" },
+  { title:"The den of clever tricks", text:"Observe the clues and help Serpiglio solve questions, puzzles and small mysteries.", cta:"Coming soon", href:"", image:cleverDenImage, alt:"Serpiglio presents the den of clever tricks.", className:"feature-link--clever feature-link--disabled" },
+] : [
+  { title:"Da colorare", text:"Scarica e stampa i disegni dei personaggi di Boscofuso, pronti per te da colorare.", cta:"Download", href:`${base}/da-colorare/`, image:coloringImage, alt:"I personaggi di Boscofuso dalla raccolta da colorare.", className:"feature-link--coloring" },
+  { title:"I personaggi", text:"Conosci Serpiglio e gli strani abitanti del mondo di Boscofuso.", cta:"Incontrali", href:`${base}/personaggi/`, image:charactersImage, alt:"Serpiglio e alcuni personaggi del mondo di Boscofuso.", className:"feature-link--characters" },
+  { title:"Stampa e gioca", text:"Scarica giochi, labirinti, enigmi e missioni creative da stampare ambientate a Boscofuso.", cta:"Scopri le attività", href:"/it/stampa-e-gioca/", image:playPrintImage, alt:"Giochi e attività di Boscofuso da stampare.", className:"feature-link--play-print" },
+  { title:"La tana delle astuzie", text:"Osserva gli indizi e aiuta Serpiglio a risolvere quesiti, enigmi e piccoli misteri.", cta:"Prossimamente", href:"", image:cleverDenImage, alt:"Serpiglio presenta la tana delle astuzie.", className:"feature-link--clever feature-link--disabled" },
+];
+
+const brands = lang === "en" ? [
+  { title:"Happy Edy", text:"Stories, journals and books for imagination and emotions.", cta:"Discover", href:`${base}/happy-edy/`, image:happyEdyLogo, alt:"Happy Edy", className:"brand-card--happy" },
+  { title:"Parole di Seta", text:"Novels, stories and journals published by Parole di Seta Edizioni.", cta:"Discover", href:`${base}/parole-di-seta/`, image:paroleDiSetaLogo, alt:"Parole di Seta Edizioni", className:"brand-card--parole" },
+  { title:"Photo Grafika", text:"Photography books and visual projects devoted to images and urban culture.", cta:"Discover", href:`${base}/photo-grafika/`, image:photoGrafikaLogo, alt:"Photo Grafika", className:"brand-card--photo" },
+  { title:"SCA Publications", text:"Technical publications, study books and professional workbooks.", cta:"Discover", href:`${base}/sca-publications/`, image:scaPublicationsLogo, alt:"SCA Publications", className:"brand-card--sca" },
+] : [
+  { title:"Happy Edy", text:"Storie, diari e libri pensati per accompagnare fantasia ed emozioni.", cta:"Scopri", href:`${base}/happy-edy/`, image:happyEdyLogo, alt:"Happy Edy", className:"brand-card--happy" },
+  { title:"Parole di Seta", text:"Romanzi, racconti e diari pubblicati da Parole di Seta Edizioni.", cta:"Scopri", href:`${base}/parole-di-seta/`, image:paroleDiSetaLogo, alt:"Parole di Seta Edizioni", className:"brand-card--parole" },
+  { title:"Photo Grafika", text:"Photobook e progetti visivi dedicati alla fotografia e alla cultura urbana.", cta:"Scopri", href:`${base}/photo-grafika/`, image:photoGrafikaLogo, alt:"Photo Grafika", className:"brand-card--photo" },
+  { title:"SCA Publications", text:"Pubblicazioni tecniche, manuali di studio e workbook professionali.", cta:"Scopri", href:`${base}/sca-publications/`, image:scaPublicationsLogo, alt:"SCA Publications", className:"brand-card--sca" },
+];
 ---
 
-<section
-  class="feature-links"
-  aria-label={lang === "en" ? "More to explore" : "Altri contenuti da esplorare"}
->
-  {items.map((item, index) => (
-    <>
-      {index === 4 && (
-        <div class="feature-links__brand-intro" aria-hidden="true">
-          {lang === "en"
-            ? "Discover our other publishing projects"
-            : "Scopri anche gli altri progetti editoriali"}
-        </div>
-      )}
-
-      <a
-        class={`feature-link ${item.className}`}
-        href={item.href || undefined}
-        aria-disabled={!item.href ? "true" : undefined}
-        tabindex={!item.href ? "-1" : undefined}
-      >
-        <div class="feature-link__visual">
-          <Image
-            src={item.image}
-            alt={item.alt}
-            class={`feature-link__image ${item.isLogo ? "feature-link__image--logo" : ""} ${item.className === "feature-link--parole" ? "feature-link__image--parole" : ""}`}
-            widths={item.isLogo ? [240, 320, 480] : [420, 620, 820]}
-            sizes="(max-width: 768px) 34vw, 190px"
-            loading="lazy"
-          />
-        </div>
-
-        <div class="feature-link__content">
-          <h2>{item.title}</h2>
-          <p>{item.text}</p>
-          <span class="feature-link__cta">{item.cta}</span>
-        </div>
-      </a>
-    </>
+<section class="feature-links" aria-label={lang === "en" ? "More to explore" : "Altri contenuti da esplorare"}>
+  {features.map((item) => (
+    <a class={`feature-link ${item.className}`} href={item.href || undefined} aria-disabled={!item.href ? "true" : undefined} tabindex={!item.href ? "-1" : undefined}>
+      <div class="feature-link__visual"><Image src={item.image} alt={item.alt} class="feature-link__image" widths={[420,620,820]} sizes="(max-width: 768px) 34vw, 190px" loading="lazy" /></div>
+      <div class="feature-link__content"><h2>{item.title}</h2><p>{item.text}</p><span class="feature-link__cta">{item.cta}</span></div>
+    </a>
   ))}
+
+  <div class="feature-links__brand-intro" aria-hidden="true">{lang === "en" ? "Discover our other publishing projects" : "Scopri anche gli altri progetti editoriali"}</div>
+
+  <div class="brand-links">
+    {brands.map((brand) => (
+      <a class={`brand-card ${brand.className}`} href={brand.href}>
+        <div class="brand-card__logo-wrap"><Image src={brand.image} alt={brand.alt} class="brand-card__logo" widths={[220,320,480]} sizes="(max-width: 768px) 42vw, 240px" loading="lazy" /></div>
+        <div class="brand-card__content"><h2>{brand.title}</h2><p>{brand.text}</p><span>{brand.cta} →</span></div>
+      </a>
+    ))}
+  </div>
 </section>

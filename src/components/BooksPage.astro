@@ -141,13 +141,14 @@ const t = lang === "en"
         <div class="book-detail__top">
           <div class="book-detail__product">
             <div class="book-detail__cover-wrap">
-              <Image
-                src={book.cover}
+              <img
+                src={book.cover.src}
                 alt={book.title}
                 class="book-detail__cover"
-                widths={[320, 440, 620]}
-                sizes="(max-width: 768px) 72vw, 340px"
+                width={book.cover.width}
+                height={book.cover.height}
                 loading="lazy"
+                decoding="async"
               />
             </div>
 

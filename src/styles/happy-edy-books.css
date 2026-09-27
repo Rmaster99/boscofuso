@@ -57,7 +57,9 @@
 }
 
 .happy-book__cover-wrap {
+  width: min(100%, 350px);
   min-width: 0;
+  justify-self: center;
 }
 
 .happy-book__cover {
@@ -179,7 +181,7 @@
   }
 
   .happy-book__cover-wrap {
-    width: min(76vw, 330px);
+    width: min(82vw, 330px);
     margin-inline: auto;
   }
 
