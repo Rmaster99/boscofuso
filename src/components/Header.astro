@@ -18,6 +18,8 @@ const t = lang === "en"
       projects: "Other projects",
       otherBooks: "Happy Edy",
       paroleDiSeta: "Parole di Seta",
+      photoGrafika: "Photo Grafika",
+      scaPublications: "SCA Publications",
       navLabel: "Main navigation",
       languageLabel: "Choose language",
       menuOpenLabel: "Open menu",
@@ -36,6 +38,8 @@ const t = lang === "en"
       projects: "Altri progetti",
       otherBooks: "Happy Edy",
       paroleDiSeta: "Parole di Seta",
+      photoGrafika: "Photo Grafika",
+      scaPublications: "SCA Publications",
       navLabel: "Navigazione principale",
       languageLabel: "Scegli lingua",
       menuOpenLabel: "Apri menu",
@@ -53,12 +57,14 @@ function languageUrl(targetLang) {
   if (targetLang === "it") {
     if (pathname.startsWith("/en/books/")) return pathname.replace("/en/books/", "/it/libri/");
     if (pathname.startsWith("/en/print-and-play/")) return "/it/stampa-e-gioca/";
+    if (pathname.startsWith("/en/clever-den/")) return "/it/tana-delle-astuzie/";
     if (pathname.startsWith("/en/")) return pathname.replace("/en/", "/it/");
     return "/it/";
   }
 
   if (pathname.startsWith("/it/libri/")) return pathname.replace("/it/libri/", "/en/books/");
   if (pathname.startsWith("/it/stampa-e-gioca/")) return "/en/print-and-play/";
+  if (pathname.startsWith("/it/tana-delle-astuzie/")) return "/en/clever-den/";
   if (pathname.startsWith("/it/")) return pathname.replace("/it/", "/en/");
   return "/en/";
 }
@@ -101,10 +107,7 @@ function languageUrl(targetLang) {
         <a href={lang === "en" ? "/en/print-and-play/" : "/it/stampa-e-gioca/"}>
           {t.printPlay}
         </a>
-        <span class="site-nav__submenu-disabled" aria-disabled="true">
-          <span>{t.cleverDen}</span>
-          <small>{t.comingSoon}</small>
-        </span>
+        <a href={lang === "en" ? "/en/clever-den/" : "/it/tana-delle-astuzie/"}>{t.cleverDen}</a>
       </div>
     </div>
 
@@ -126,6 +129,12 @@ function languageUrl(targetLang) {
         </a>
         <a class="site-nav__project-link site-nav__project-link--parole" href={`${base}/parole-di-seta/`}>
           {t.paroleDiSeta}
+        </a>
+        <a class="site-nav__project-link site-nav__project-link--photo" href={`${base}/photo-grafika/`}>
+          {t.photoGrafika}
+        </a>
+        <a class="site-nav__project-link site-nav__project-link--sca" href={`${base}/sca-publications/`}>
+          {t.scaPublications}
         </a>
       </div>
     </div>
@@ -615,6 +624,14 @@ function languageUrl(targetLang) {
     color: #8edbd3;
   }
 
+  .site-nav__project-link--photo {
+    color: #d5d5d5;
+  }
+
+  .site-nav__project-link--sca {
+    color: #ff6d73;
+  }
+
   .site-nav__project-link--happy:hover,
   .site-nav__project-link--happy:focus-visible {
     color: #f0ddf7 !important;
@@ -623,6 +640,16 @@ function languageUrl(targetLang) {
   .site-nav__project-link--parole:hover,
   .site-nav__project-link--parole:focus-visible {
     color: #b6eee8 !important;
+  }
+
+  .site-nav__project-link--photo:hover,
+  .site-nav__project-link--photo:focus-visible {
+    color: #ffffff !important;
+  }
+
+  .site-nav__project-link--sca:hover,
+  .site-nav__project-link--sca:focus-visible {
+    color: #ff9aa0 !important;
   }
 
   .site-header--happy .site-nav__submenu {

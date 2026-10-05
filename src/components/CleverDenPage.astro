@@ -1,0 +1,712 @@
+---
+import { Image } from "astro:assets";
+import "../styles/clever-den.css";
+import cleverDenImage from "../assets/images/features/tana-delle-astuzie.png";
+import serpyImage from "../assets/images/characters/serpy.webp";
+import nellaImage from "../assets/images/characters/nella.webp";
+import facoImage from "../assets/images/characters/faco.webp";
+import guffyImage from "../assets/images/characters/guffy.webp";
+import pingyImage from "../assets/images/characters/pingy.webp";
+import lillyImage from "../assets/images/characters/lilly.webp";
+import serpyAvatar from "../assets/images/avatars/serpy-avatar.webp";
+import nellaAvatar from "../assets/images/avatars/nella-avatar.webp";
+import facoAvatar from "../assets/images/avatars/faco-avatar.webp";
+import guffyAvatar from "../assets/images/avatars/guffy-avatar.webp";
+import pingyAvatar from "../assets/images/avatars/pingy-avatar.webp";
+import lillyAvatar from "../assets/images/avatars/lilly-avatar.webp";
+import vol1Cover from "../assets/images/books/Il magico mondo degli Stranimali.webp";
+import vol2Cover from "../assets/images/books/Una zebraffa a Ramofondo.webp";
+
+const { lang = "it" } = Astro.props;
+
+const isEn = lang === "en";
+const bookUrl1 = isEn ? "/en/books/#vol-1" : "/it/libri/#vol-1";
+const bookUrl2 = isEn ? "/en/books/#vol-2" : "/it/libri/#vol-2";
+const amazonUrl1 = isEn
+  ? "https://www.amazon.com/dp/B0FNJJZ24B"
+  : "https://www.amazon.it/dp/B0FNJJZ24B";
+const amazonUrl2 = isEn
+  ? "https://www.amazon.com/dp/B0GKVDBPXS"
+  : "https://www.amazon.it/dp/B0GKVDBPXS";
+
+const avatars = [
+  { id: "serpy", name: "Serpiglio", src: serpyAvatar },
+  { id: "nella", name: "Nella", src: nellaAvatar },
+  { id: "faco", name: "Scimmiocero", src: facoAvatar },
+  { id: "guffy", name: "Gufatto", src: guffyAvatar },
+  { id: "pingy", name: "Pinguane", src: pingyAvatar },
+  { id: "lilly", name: "Tartallina", src: lillyAvatar },
+];
+
+const copy = isEn
+  ? {
+      eyebrow: "PLAY WITH SERPIGLIO",
+      title: "The Den of Clever Tricks",
+      intro: "Enter Serpiglio's den, follow the clues and test yourself with challenges inspired by the stories of Boscofuso.",
+      start: "",
+      heroVolumes: "VOLUMES 1 & 2 · BOSCOFUSO",
+      volume: "VOLUME 1 · THE ORIGINS OF BOSCOFUSO",
+      volume2: "VOLUME 2 · ZEBRAFFA COMES TO RAMOFONDO",
+      choose: "Choose a challenge - Vol. 1",
+      choose2: "Choose a challenge - Vol. 2",
+      chooseIntro: "Each challenge comes from a real moment in the book. Solve it, earn Clever Points and discover more of Boscofuso.",
+      points: "Clever Points",
+      solved: "Solved",
+      challenge: "Challenge",
+      difficulty: "Difficulty",
+      play: "Play",
+      replay: "Play again",
+      close: "Close",
+      confirm: "Confirm answer",
+      retry: "",
+      next: "Next challenge",
+      nextChallenge: "Next challenge",
+      correct: "CLEVER TRICK SOLVED!",
+      wrong: "Not quite...",
+      earned: "points earned",
+      alreadyEarned: "",
+      finalTitle: "Round complete!",
+      finalText: "You have completed all six challenges in this round of the Den.",
+      finalLevelLabel: "Level reached",
+      newChallenge: "RETURN TO THE DEN OF CLEVER TRICKS",
+      finalResultLabel: "Result",
+      discoverBook: "Discover Volume 1",
+      discoverBook2: "Discover Volume 2",
+      buyAmazon: "Buy on Amazon",
+      bookCardTitle: "Want to experience the stories from the beginning?",
+      bookCardText: "The six challenges are inspired by episodes from The Origins of Boscofuso. Read the full adventures and discover everything that happens before and after each clue.",
+      bookCardTitle2: "Want to discover Raffa and her special way of seeing Boscofuso?",
+      bookCardText2: "The six Volume 2 challenges are inspired by Zebraffa comes to Ramofondo. Read Raffa's full adventure and discover how a different pace can become a strength for everyone.",
+      levelLabel: "Your cleverness level",
+      levels: ["Boscofuso Explorer", "Clue Seeker", "Cleverness Expert", "Master of Clever Tricks"],
+      done: "Done",
+      welcomeTitle: "Welcome to the Den!",
+      welcomeText: "Choose a name and a Boscofuso companion. Your progress will be saved on this device.",
+      nameLabel: "Your name or nickname",
+      avatarLabel: "Choose your companion",
+      enter: "Enter the Den",
+      welcomeBack: "Welcome back",
+      continueGame: "Continue your adventure",
+      restart: "Start over",
+      player: "Player",
+      nameError: "Enter a name to begin.",
+    }
+  : {
+      eyebrow: "GIOCA CON SERPIGLIO",
+      title: "La Tana delle Astuzie",
+      intro: "Entra nella tana di Serpiglio, segui gli indizi e mettiti alla prova con le sfide ispirate alle storie di Boscofuso.",
+      start: "",
+      heroVolumes: "VOLUMI 1 E 2 · BOSCOFUSO",
+      volume: "VOLUME 1 · LE ORIGINI DI BOSCOFUSO",
+      volume2: "VOLUME 2 · UNA ZEBRAFFA A RAMOFONDO",
+      choose: "Scegli una sfida - Vol. 1",
+      choose2: "Scegli una sfida - Vol. 2",
+      chooseIntro: "Ogni sfida nasce da un momento reale del libro. Risolvila, conquista Punti Astuzia e scopri qualcosa in più su Boscofuso.",
+      points: "Punti Astuzia",
+      solved: "Risolte",
+      challenge: "Sfida",
+      difficulty: "Difficoltà",
+      play: "Gioca",
+      replay: "Rigioca",
+      close: "Chiudi",
+      confirm: "Conferma risposta",
+      retry: "",
+      next: "Prossima sfida",
+      nextChallenge: "Prossima sfida",
+      correct: "ASTUZIA RISOLTA!",
+      wrong: "Mmm... non ancora.",
+      earned: "punti conquistati",
+      alreadyEarned: "",
+      finalTitle: "Giro completato!",
+      finalText: "Hai completato tutte e sei le sfide di questo giro della Tana.",
+      finalLevelLabel: "Livello raggiunto",
+      newChallenge: "RITORNA ALLA TANA DELLE ASTUZIE",
+      finalResultLabel: "Risultato",
+      discoverBook: "Scopri il Volume 1",
+      discoverBook2: "Scopri il Volume 2",
+      buyAmazon: "Acquista su Amazon",
+      bookCardTitle: "Vuoi vivere le storie dall'inizio?",
+      bookCardText: "Le sei sfide sono ispirate agli episodi di Le origini di Boscofuso. Leggi le avventure complete e scopri tutto quello che accade prima e dopo ogni indizio.",
+      bookCardTitle2: "Vuoi conoscere Raffa e il suo modo speciale di vedere Boscofuso?",
+      bookCardText2: "Le sei sfide del Volume 2 sono ispirate a Una Zebraffa a Ramofondo. Leggi l'avventura completa di Raffa e scopri come un ritmo diverso può diventare una risorsa per tutti.",
+      levelLabel: "Il tuo livello di astuzia",
+      levels: ["Esploratore di Boscofuso", "Cercatore di indizi", "Esperto di Astuzie", "Maestro dell'Astuzia"],
+      done: "Fatta",
+      welcomeTitle: "Benvenuto nella Tana!",
+      welcomeText: "Scegli un nome e uno Stranimale che ti accompagnerà. I progressi resteranno salvati su questo dispositivo.",
+      nameLabel: "Il tuo nome o nickname",
+      avatarLabel: "Scegli il tuo compagno",
+      enter: "Entra nella Tana",
+      welcomeBack: "Bentornato",
+      continueGame: "Continua l'avventura",
+      restart: "Ricomincia da capo",
+      player: "Giocatore",
+      nameError: "Inserisci un nome per iniziare.",
+    };
+
+const challenges = isEn
+  ? [
+      { volume: 1, id: "v1-grotta", number: 1, title: "The light of the Emerald Cave", chapter: "When it all began", difficulty: 1, points: 10, intro: "A strange blue light glows inside the Emerald Cave. From that moment on, Boscofuso will never be the same.", steps: [{ question: "What happens after the blue light spreads through the forest?", answers: ["The trees begin to walk", "The Stranimali are born", "The Mirror Lake disappears"], correct: 1, hint: "Look at what happens immediately after the light reaches the forest.", success: "The light of the Emerald Cave marks the birth of the Stranimali." }], after: "Want to discover which Stranimale comes out of the cave first? The full story is in Volume 1." },
+      { volume: 1, id: "v1-ramofondo", number: 2, title: "The name of the village", chapter: "The Great Circle", difficulty: 1, points: 10, intro: "The Stranimali have created their village. Now they need a name for the place where friendship and roots intertwine.", steps: [{ question: "What name do they choose for the village?", answers: ["Ramofondo", "Monte Misto", "Rosolivo"], correct: 0, hint: "The other two names belong to places in Boscofuso, but not to the village.", success: "Ramofondo is born: a place where the branches of friendship intertwine with the roots." }], after: "Who proposed the Great Circle? The answer is waiting inside the story." },
+      { volume: 1, id: "v1-festa", number: 3, title: "Serpiglio's party", chapter: "The first trouble", difficulty: 2, points: 10, intro: "Ramofondo is preparing the first Stranimali Festival, but Serpiglio does not want to do everything the usual way.", steps: [{ question: "What does Serpiglio want to add to the party?", answers: ["Flying and running races", "Surprises, mysteries and riddles", "A completely silent dinner"], correct: 1, hint: "Serpiglio wants something less ordinary and much more... clever.", success: "Exactly. Serpiglio thinks differently, and his unusual idea eventually makes the celebration more special." }], after: "What happens when Serpiglio's surprise goes wrong? Read the complete adventure in Volume 1." },
+      { volume: 1, id: "v1-fiume", number: 4, title: "The mystery of the river", chapter: "The River that Changes Course", difficulty: 2, points: 10, intro: "After a rainy night, the river has changed course and the glow-fish eggs are trapped among branches.", steps: [{ question: "Who built the small dam that changed the water flow?", answers: ["Snarky and Stinky", "Pingy and Gabby", "Nella and Gufatto"], correct: 0, hint: "Someone had a playful idea involving wood, leaves and a water slide.", success: "Mystery solved. Snarky and Stinky built it for fun without realising the consequences." }], after: "How can they save the river without giving up the slide completely? The solution is in the book." },
+      { volume: 1, id: "v1-ruggito", number: 5, title: "Where is the roar hiding?", chapter: "Nella's Missing Roar", difficulty: 2, points: 10, intro: "Nella opens her mouth, but her special roar is gone. Everyone tries to help, but no remedy seems to work.", steps: [{ question: "What does Nella really need to find to make her roar return?", answers: ["A special potion", "The courage inside herself", "A brand-new voice"], correct: 1, hint: "Perhaps she is looking outside for something that is actually inside her.", success: "Exactly. Her roar was not truly lost: Nella needed to believe in herself again." }], after: "And what happens when the roar finally returns? Discover the whole scene in Volume 1." },
+      { volume: 1, id: "v1-panduro", number: 6, title: "The mystery of Panduro", chapter: "The Mystery in the Forest", difficulty: 3, points: 10, intro: "Panduro has disappeared, but the clues suggest that his disappearance may actually be part of a plan.", steps: [{ question: "Panduro says he is not really missing. What is he actually doing?", answers: ["Hiding from his friends", "Preparing a surprise", "Lost somewhere in the forest"], correct: 1, hint: "He deliberately left a trail of clues for his friends to follow.", success: "Case closed! Panduro is preparing a surprise: the first boat of Boscofuso, made from hollow pumpkins." }], after: "You followed Panduro's entire trail. In the book, the mystery becomes a complete adventure about ideas that others do not immediately understand." },
+
+      { volume: 2, id: "v2-arrivo", number: 1, title: "The right moment", chapter: "Raffa the Zebraffa arrives in Ramofondo", difficulty: 1, points: 10, intro: "Raffa prefers to observe before acting. At the pond, that attention helps Pingy do something he has never managed before.", steps: [{ question: "Why does Raffa help Pingy make his highest splash ever?", answers: ["She pushes him with her long neck", "She watches the water and wind and tells him the right moment to jump", "She throws a stone into the pond first"], correct: 1, hint: "Raffa does not rush: she watches the water, waits and chooses the moment.", success: "Exactly. Raffa observes the water and wind and tells Pingy when to jump." }], after: "Raffa is not outside the game: she simply plays in a different way." },
+      { volume: 2, id: "v2-parola", number: 2, title: "Count to ten", chapter: "Catch the word", difficulty: 1, points: 10, intro: "The game becomes faster and noisier until Pingy trips over a root hidden under the leaves.", steps: [{ question: "What does Raffa suggest doing before starting the game again?", answers: ["Count to ten", "Change the ball", "Run even faster"], correct: 0, hint: "She asks everyone for just a few seconds to look around before starting.", success: "Correct. Counting to ten gives everyone time to notice obstacles and play more safely." }], after: "Sometimes a short pause does not slow the game down: it makes it work better." },
+      { volume: 2, id: "v2-piano", number: 3, title: "First I watch", chapter: "Being together, little by little", difficulty: 1, points: 10, intro: "Raffa often stays a few steps behind the others, even though she likes being in Ramofondo.", steps: [{ question: "Why does Raffa stay a little apart from the group?", answers: ["She does not like the Stranimali", "She is still getting to know them and prefers to watch first", "She wants to leave Ramofondo"], correct: 1, hint: "Raffa explains that this is how she gets to know a new place and new friends.", success: "Exactly. Raffa needs time: first she watches, then she joins in." }], after: "Friendship does not happen all at once. Sometimes it simply needs time." },
+      { volume: 2, id: "v2-colori", number: 4, title: "The hidden colours", chapter: "Wait a moment!", difficulty: 2, points: 10, intro: "Leaves, flowers and water suddenly seem dull, as if Boscofuso has lost its colours.", steps: [{ question: "Why do the Stranimali stop seeing Boscofuso's colours clearly?", answers: ["The colours have really disappeared", "A fog has covered the whole forest", "They are too busy running and doing things to notice them"], correct: 2, hint: "The colours were still there. The problem was the speed at which everyone was living.", success: "Correct. By stopping and looking, they realise the colours had never gone away." }], after: "When they slow down, the same Boscofuso suddenly looks alive again." },
+      { volume: 2, id: "v2-cerchio", number: 5, title: "What is missing?", chapter: "The circle grows bigger", difficulty: 2, points: 10, intro: "Snarky and Stinky bring a strange construction made of crooked branches and badly tied ropes.", steps: [{ question: "According to Raffa, what is missing from the construction?", answers: ["A roof", "Everyone's contribution", "More ropes"], correct: 1, hint: "Raffa points toward the Circle before answering.", success: "Exactly. What is missing is all of them: each Stranimale adds something and the construction becomes everyone's." }], after: "The Circle becomes bigger when there is room for everyone's different contribution." },
+      { volume: 2, id: "v2-salciarance", number: 6, title: "The highest salciarance", chapter: "Raffa and the day of the salciarance", difficulty: 1, points: 10, intro: "The best salciarance grow on branches so high that the others cannot reach them.", steps: [{ question: "How does Raffa manage to collect the highest salciarance?", answers: ["She shakes the tree", "She uses her long giraffe neck", "She climbs onto Pingy's shoulders"], correct: 1, hint: "Her very unusual body becomes exactly the resource the group needs.", success: "Correct. Raffa reaches the highest branches with her long neck and passes the fruit down one by one." }], after: "That day Raffa does more than help: she finds her place in the group." },
+    ]
+  : [
+      { volume: 1, id: "v1-grotta", number: 1, title: "La luce della Grotta Smeraldina", chapter: "Quando tutto cominciò", difficulty: 1, points: 10, intro: "Una strana luce azzurra si accende nella Grotta Smeraldina. Da quel momento Boscofuso non sarà più lo stesso.", steps: [{ question: "Che cosa accade dopo che la luce azzurra si diffonde nel bosco?", answers: ["Gli alberi iniziano a camminare", "Nascono gli Stranimali", "Il Lago Specchiato scompare"], correct: 1, hint: "Osserva bene cosa succede subito dopo che la luce raggiunge il bosco.", success: "La luce della Grotta Smeraldina segna la nascita degli Stranimali." }], after: "Vuoi scoprire quale Stranimale esce per primo dalla grotta? La storia completa è nel Volume 1." },
+      { volume: 1, id: "v1-ramofondo", number: 2, title: "Il nome del villaggio", chapter: "Il Grande Cerchio", difficulty: 1, points: 10, intro: "Gli Stranimali hanno creato il loro villaggio. Ora serve un nome per il luogo dove amicizia e radici si intrecciano.", steps: [{ question: "Come viene chiamato il villaggio?", answers: ["Ramofondo", "Monte Misto", "Rosolivo"], correct: 0, hint: "Gli altri due sono luoghi di Boscofuso, ma non sono il villaggio.", success: "Nasce Ramofondo: il luogo dove i rami dell'amicizia si intrecciano alle radici." }], after: "Ma chi propose il Grande Cerchio? La risposta ti aspetta nella storia." },
+      { volume: 1, id: "v1-festa", number: 3, title: "La festa di Serpiglio", chapter: "Il primo guaio", difficulty: 2, points: 10, intro: "A Ramofondo stanno preparando la prima Festa degli Stranimali, ma Serpiglio non vuole fare tutto come si è sempre fatto.", steps: [{ question: "Che cosa vorrebbe aggiungere Serpiglio alla festa?", answers: ["Gare di corsa e di volo", "Sorprese, misteri e indovinelli", "Una grande cena silenziosa"], correct: 1, hint: "Serpiglio pensa a qualcosa di meno normale e molto più... astuto.", success: "Esatto. Serpiglio pensa in modo diverso e la sua idea, anche se parte male, renderà la festa più speciale." }], after: "Vuoi sapere cosa succede quando la sorpresa di Serpiglio va storta? Leggi l'avventura completa nel Volume 1." },
+      { volume: 1, id: "v1-fiume", number: 4, title: "Il mistero del fiume", chapter: "Il Fiume che Cambia Strada", difficulty: 2, points: 10, intro: "Dopo una notte di pioggia il fiume ha cambiato percorso e le uova dei pesci-lucetta sono rimaste intrappolate tra i rami.", steps: [{ question: "Chi ha costruito la mini-diga che ha modificato il passaggio dell'acqua?", answers: ["Snarky e Stinky", "Pingy e Gabby", "Nella e Gufatto"], correct: 0, hint: "Qualcuno aveva avuto un'idea per giocare con legni, foglie e uno scivolo d'acqua.", success: "Mistero risolto. Snarky e Stinky l'avevano costruita per divertirsi, senza accorgersi delle conseguenze." }], after: "Come riusciranno a salvare il fiume senza rinunciare del tutto allo scivolo? La soluzione è nel libro." },
+      { volume: 1, id: "v1-ruggito", number: 5, title: "Dove si nasconde il ruggito?", chapter: "Il ruggito scomparso di Nella", difficulty: 2, points: 10, intro: "Nella apre la bocca, ma il suo ruggito speciale è sparito. Tutti cercano di aiutarla, ma nessun rimedio sembra funzionare.", steps: [{ question: "Che cosa deve ritrovare davvero Nella per far tornare il suo ruggito?", answers: ["Una pozione speciale", "Il coraggio dentro di sé", "Una nuova voce"], correct: 1, hint: "Forse sta cercando fuori qualcosa che in realtà deve trovare dentro di sé.", success: "Esatto. Il ruggito non era davvero perduto: Nella doveva tornare a credere in sé stessa." }], after: "E cosa succede quando il ruggito finalmente ritorna? Scoprilo nella storia completa del Volume 1." },
+      { volume: 1, id: "v1-panduro", number: 6, title: "Il mistero di Panduro", chapter: "Il Mistero nel Bosco", difficulty: 3, points: 10, intro: "Panduro è scomparso, ma gli indizi fanno pensare che la sua sparizione faccia parte di un piano.", steps: [{ question: "Panduro scrive che non è davvero sparito. Che cosa sta facendo in realtà?", answers: ["Si sta nascondendo dagli amici", "Sta preparando una sorpresa", "Si è perso nel bosco"], correct: 1, hint: "Ha lasciato volontariamente una pista di indizi perché gli amici lo seguissero.", success: "Caso risolto! Panduro sta preparando una sorpresa: la prima barca di Boscofuso, costruita con zucche cave." }], after: "Hai seguito tutta la pista di Panduro. Nel libro il mistero diventa un'avventura completa sulle idee che gli altri non capiscono subito." },
+
+      { volume: 2, id: "v2-arrivo", number: 1, title: "Il momento giusto", chapter: "Raffa la Zebraffa arriva a Ramofondo", difficulty: 1, points: 10, intro: "Raffa preferisce osservare prima di agire. Al laghetto, questa attenzione aiuta Pingy a fare qualcosa che non gli era mai riuscito.", steps: [{ question: "Perché Raffa riesce ad aiutare Pingy a fare lo spruzzo più alto di sempre?", answers: ["Lo spinge con il suo lungo collo", "Osserva l'acqua e il vento e gli indica il momento giusto per saltare", "Lancia prima una pietra nel laghetto"], correct: 1, hint: "Raffa non ha fretta: osserva l'acqua, aspetta e sceglie il momento.", success: "Esatto. Raffa osserva l'acqua e il vento e dice a Pingy quando saltare." }], after: "Raffa non è fuori dal gioco: sta semplicemente giocando in un modo diverso." },
+      { volume: 2, id: "v2-parola", number: 2, title: "Contare fino a dieci", chapter: "Acchiappa la parola", difficulty: 1, points: 10, intro: "Il gioco diventa sempre più veloce e rumoroso, finché Pingy inciampa in una radice nascosta dalle foglie.", steps: [{ question: "Che cosa propone Raffa prima di ricominciare il gioco?", answers: ["Contare fino a dieci", "Cambiare la palla", "Correre ancora più forte"], correct: 0, hint: "Chiede a tutti solo qualche secondo per guardarsi intorno prima di partire.", success: "Giusto. Contare fino a dieci dà a tutti il tempo di notare gli ostacoli e giocare meglio." }], after: "A volte una breve pausa non rallenta il gioco: lo fa funzionare meglio." },
+      { volume: 2, id: "v2-piano", number: 3, title: "Prima guardo", chapter: "Stare insieme piano piano", difficulty: 1, points: 10, intro: "Raffa rimane spesso qualche passo indietro rispetto agli altri, anche se a Ramofondo si trova bene.", steps: [{ question: "Perché Raffa resta un po' distante dal gruppo?", answers: ["Non le piacciono gli Stranimali", "Li sta ancora conoscendo e preferisce prima osservare", "Vuole lasciare Ramofondo"], correct: 1, hint: "Raffa spiega che questo è il suo modo di conoscere un posto nuovo e nuovi amici.", success: "Esatto. Raffa ha bisogno di tempo: prima guarda, poi si avvicina." }], after: "L'amicizia non nasce tutta insieme. A volte ha semplicemente bisogno di tempo." },
+      { volume: 2, id: "v2-colori", number: 4, title: "I colori nascosti", chapter: "Aspetta un attimo!", difficulty: 2, points: 10, intro: "Foglie, fiori e acqua sembrano improvvisamente spenti, come se Boscofuso avesse perso i suoi colori.", steps: [{ question: "Perché gli Stranimali non riescono più a vedere bene i colori di Boscofuso?", answers: ["I colori sono davvero scomparsi", "Una nebbia ha coperto tutto il bosco", "Sono troppo concentrati a correre e fare tante cose per notarli"], correct: 2, hint: "I colori erano ancora lì. Il problema era la velocità con cui tutti stavano vivendo.", success: "Giusto. Fermandosi e guardando, scoprono che i colori non erano mai spariti." }], after: "Quando rallentano, lo stesso Boscofuso torna improvvisamente a sembrare vivo." },
+      { volume: 2, id: "v2-cerchio", number: 5, title: "Cosa manca?", chapter: "Il cerchio si fa più grande", difficulty: 2, points: 10, intro: "Snarky e Stinky portano una strana costruzione fatta di rami storti e corde annodate male.", steps: [{ question: "Secondo Raffa, che cosa manca alla costruzione?", answers: ["Un tetto", "Il contributo di tutti", "Altre corde"], correct: 1, hint: "Prima di rispondere, Raffa indica il Cerchio.", success: "Esatto. Mancano tutti loro: ogni Stranimale aggiunge qualcosa e la costruzione diventa di tutti." }], after: "Il Cerchio diventa più grande quando c'è spazio per il contributo diverso di ognuno." },
+      { volume: 2, id: "v2-salciarance", number: 6, title: "Le salciarance più in alto", chapter: "Raffa e il giorno delle salciarance", difficulty: 1, points: 10, intro: "Le salciarance migliori crescono su rami così alti che gli altri Stranimali non riescono a raggiungerle.", steps: [{ question: "Come riesce Raffa a raccogliere le salciarance più in alto?", answers: ["Scuote l'albero", "Usa il suo lungo collo da giraffa", "Sale sulle spalle di Pingy"], correct: 1, hint: "Il suo corpo così particolare diventa esattamente la risorsa che serve al gruppo.", success: "Giusto. Raffa raggiunge i rami più alti con il lungo collo e passa i frutti agli altri uno alla volta." }], after: "Quel giorno Raffa non ha solo aiutato: ha trovato il suo posto nel gruppo." },
+    ];
+---
+<section class="clever-den" data-clever-den data-lang={lang} data-total-points="60">
+  <div class="clever-den__hero">
+    <div class="clever-den__hero-copy">
+      <span class="clever-den__eyebrow">{copy.eyebrow}</span>
+      <h1>{copy.title}</h1>
+      <p>{copy.intro}</p>
+      <div class="clever-den__hero-actions">
+        <span class="clever-den__volume">{copy.heroVolumes}</span>
+      </div>
+    </div>
+
+    <div class="clever-den__hero-visual" aria-hidden="true">
+      <Image src={cleverDenImage} alt="" class="clever-den__hero-image" widths={[520, 760, 1000]} sizes="(max-width: 760px) 80vw, 44vw" loading="eager" />
+    </div>
+  </div>
+
+  <section class="clever-profile" data-profile>
+    <div class="clever-profile__intro">
+      <h2>{copy.welcomeTitle}</h2>
+      <p>{copy.welcomeText}</p>
+    </div>
+
+    <form class="clever-start__form" data-player-form>
+      <label class="clever-start__name">
+        <span>{copy.nameLabel}{"\u00A0\u00A0"}</span>
+        <input type="text" maxlength="20" autocomplete="off" data-player-name-input />
+      </label>
+
+      <fieldset class="clever-avatar-picker">
+        <legend>{copy.avatarLabel}</legend>
+        <div class="clever-avatar-picker__grid">
+          {avatars.map((avatar, index) => (
+            <label class="clever-avatar-option">
+              <input type="radio" name="clever-avatar" value={avatar.id} checked={index === 0} />
+              <span class="clever-avatar-option__image">
+                <Image src={avatar.src} alt={avatar.name} loading="eager" />
+              </span>
+              <span class="clever-avatar-option__name">{avatar.name}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <p class="clever-start__error" data-name-error hidden>{copy.nameError}</p>
+      <div class="clever-start__actions clever-start__actions--enter">
+        <button class="clever-btn clever-btn--primary" type="submit" data-enter-profile>{copy.enter}</button>
+      </div>
+    </form>
+  </section>
+
+  <div class="clever-play-area" data-play-area hidden>
+    <div class="clever-den__status" aria-live="polite">
+      <div class="clever-status-row">
+        <div class="clever-status-item clever-status-item--player" data-player-chip>
+          <span class="clever-status-label">{copy.player}{"\u00A0\u00A0"}</span>
+          <strong class="clever-status-value clever-status-name" data-player-name></strong>
+        </div>
+        <div class="clever-status-item">
+          <span class="clever-status-label">{copy.solved}{"\u00A0\u00A0"}</span>
+          <span class="clever-status-value"><strong data-solved-count>0</strong>/6</span>
+        </div>
+        <div class="clever-status-item">
+          <span class="clever-status-label">{copy.points}{"\u00A0\u00A0"}</span>
+          <span class="clever-status-value"><strong data-score>0</strong>/60</span>
+        </div>
+      </div>
+      <div class="clever-progress" aria-hidden="true"><span data-progress-bar></span></div>
+      <div class="clever-level"><span>{copy.levelLabel}:</span> <strong data-level>{copy.levels[0]}</strong></div>
+    </div>
+
+    <section class="clever-volume-section" data-volume-section="1">
+      <header class="clever-den__section-head" data-challenge-start>
+        <h2>{copy.choose}</h2>
+        <p>{copy.chooseIntro}</p>
+      </header>
+      <div class="clever-grid" data-volume-grid="1">
+        {challenges.filter((challenge) => challenge.volume === 1).map((challenge) => (
+          <article class="clever-card" data-challenge-card={challenge.id} data-card-volume="1">
+            <div class="clever-card__top">
+              <span class="clever-card__number">{copy.challenge} {challenge.number}</span>
+              <span class="clever-card__stars" aria-label={`${copy.difficulty}: ${challenge.difficulty}/3`}>{"★".repeat(challenge.difficulty)}{"☆".repeat(3 - challenge.difficulty)}</span>
+            </div>
+            <h3>{challenge.title}</h3>
+            <p class="clever-card__chapter">{challenge.chapter}</p>
+            <p>{challenge.intro}</p>
+            <div class="clever-card__bottom">
+              <span class="clever-card__points">+{challenge.points} {copy.points}</span>
+              <button class="clever-card__play" type="button" data-open-challenge={challenge.id}>{copy.play}</button>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <section class="clever-book clever-book--volume">
+        <div class="clever-book__cover">
+          <Image src={vol1Cover} alt={isEn ? "The Origins of Boscofuso – Volume 1" : "Le origini di Boscofuso – Volume 1"} widths={[260, 420, 620]} sizes="(max-width: 680px) 42vw, 260px" loading="lazy" />
+        </div>
+        <div class="clever-book__copy">
+          <span>{copy.volume}</span>
+          <h2>{copy.bookCardTitle}</h2>
+          <p>{copy.bookCardText}</p>
+          <div class="clever-book__actions">
+            <a class="clever-btn clever-btn--book" href={bookUrl1}>{copy.discoverBook}</a>
+            <a class="clever-btn clever-btn--amazon" href={amazonUrl1} target="_blank" rel="noopener noreferrer">{copy.buyAmazon}</a>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="clever-volume-section" data-volume-section="2">
+      <header class="clever-den__section-head">
+        <h2>{copy.choose2}</h2>
+        <p>{copy.chooseIntro}</p>
+      </header>
+      <div class="clever-grid" data-volume-grid="2">
+        {challenges.filter((challenge) => challenge.volume === 2).map((challenge) => (
+          <article class="clever-card" data-challenge-card={challenge.id} data-card-volume="2">
+            <div class="clever-card__top">
+              <span class="clever-card__number">{copy.challenge} {challenge.number}</span>
+              <span class="clever-card__stars" aria-label={`${copy.difficulty}: ${challenge.difficulty}/3`}>{"★".repeat(challenge.difficulty)}{"☆".repeat(3 - challenge.difficulty)}</span>
+            </div>
+            <h3>{challenge.title}</h3>
+            <p class="clever-card__chapter">{challenge.chapter}</p>
+            <p>{challenge.intro}</p>
+            <div class="clever-card__bottom">
+              <span class="clever-card__points">+{challenge.points} {copy.points}</span>
+              <button class="clever-card__play" type="button" data-open-challenge={challenge.id}>{copy.play}</button>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <section class="clever-book clever-book--volume clever-book--volume-2">
+        <div class="clever-book__cover">
+          <Image src={vol2Cover} alt={isEn ? "Zebraffa comes to Ramofondo – Volume 2" : "Una Zebraffa a Ramofondo – Volume 2"} widths={[260, 420, 620]} sizes="(max-width: 680px) 42vw, 260px" loading="lazy" />
+        </div>
+        <div class="clever-book__copy">
+          <span>{copy.volume2}</span>
+          <h2>{copy.bookCardTitle2}</h2>
+          <p>{copy.bookCardText2}</p>
+          <div class="clever-book__actions">
+            <a class="clever-btn clever-btn--book" href={bookUrl2}>{copy.discoverBook2}</a>
+            <a class="clever-btn clever-btn--amazon" href={amazonUrl2} target="_blank" rel="noopener noreferrer">{copy.buyAmazon}</a>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="clever-game" data-game hidden aria-live="polite">
+      <button class="clever-game__close" type="button" data-close-game aria-label={copy.close}>×</button>
+      <div class="clever-game__mascot"><Image src={serpyImage} alt="Serpiglio" widths={[120, 180, 240]} sizes="110px" loading="lazy" /></div>
+      <div class="clever-game__content">
+        <div class="clever-game__meta"><span data-game-number></span></div>
+        <h2 data-game-title></h2>
+        <p class="clever-game__intro" data-game-intro></p>
+        <form data-game-form>
+          <fieldset>
+            <legend data-game-question></legend>
+            <div class="clever-game__answers" data-game-answers></div>
+          </fieldset>
+          <button class="clever-btn clever-btn--primary" type="submit" data-confirm>{copy.confirm}</button>
+        </form>
+        <div class="clever-game__feedback" data-feedback hidden>
+          <h3 data-feedback-title></h3>
+          <p data-feedback-text></p>
+          <div class="clever-game__feedback-actions">
+            <button class="clever-btn clever-btn--primary" type="button" data-next-challenge>{copy.nextChallenge}</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="clever-finish-modal" data-final hidden role="dialog" aria-modal="true" aria-labelledby="clever-finish-title">
+    <div class="clever-finish-modal__card">
+      <span class="clever-den__eyebrow">{copy.eyebrow}</span>
+      <h2 id="clever-finish-title">{copy.finalTitle}</h2>
+      <p class="clever-finish-modal__player"><span>{copy.player}</span><strong data-final-player-name></strong></p>
+      <div class="clever-finish-modal__score-block">
+        <span>{copy.finalResultLabel}</span>
+        <strong><span data-final-score>0</span>/60</strong>
+      </div>
+      <div class="clever-finish-modal__level">
+        <span>{copy.finalLevelLabel}</span>
+        <strong data-final-level>{copy.levels[0]}</strong>
+      </div>
+      <p>{copy.finalText}</p>
+      <button class="clever-btn clever-btn--primary clever-finish-modal__button" type="button" data-new-run>{copy.newChallenge}</button>
+    </div>
+  </section>
+
+</section>
+
+<script define:vars={{ challenges, copy }}>
+  (() => {
+    const root = document.querySelector("[data-clever-den]");
+    if (!(root instanceof HTMLElement) || root.dataset.ready === "3") return;
+    root.dataset.ready = "3";
+
+    const lang = root.dataset.lang || "it";
+    const storageKey = `boscofuso-clever-den-v3-${lang}`;
+    const totalQuestions = 6;
+    const pointsPerCorrect = 10;
+
+    const profile = root.querySelector("[data-profile]");
+    const playArea = root.querySelector("[data-play-area]");
+    const playerForm = root.querySelector("[data-player-form]");
+    const nameInput = root.querySelector("[data-player-name-input]");
+    const nameError = root.querySelector("[data-name-error]");
+    const game = root.querySelector("[data-game]");
+    const form = root.querySelector("[data-game-form]");
+    const answersRoot = root.querySelector("[data-game-answers]");
+    const feedback = root.querySelector("[data-feedback]");
+    const nextBtn = root.querySelector("[data-next-challenge]");
+    const finalPanel = root.querySelector("[data-final]");
+    const newRunBtn = root.querySelector("[data-new-run]");
+    const challengeStart = root.querySelector("[data-challenge-start]");
+
+    let activeId = "";
+    let state = {
+      name: "",
+      avatar: "serpy",
+      attempted: [],
+      correct: [],
+      order: [],
+      started: false,
+      currentVolume: 0,
+    };
+
+    try {
+      const raw = localStorage.getItem(storageKey);
+      if (raw) {
+        const stored = JSON.parse(raw);
+        const currentVolume = Number(stored.currentVolume) === 2 ? 2 : Number(stored.currentVolume) === 1 ? 1 : 0;
+        state = {
+          name: typeof stored.name === "string" ? stored.name : "",
+          avatar: typeof stored.avatar === "string" ? stored.avatar : "serpy",
+          attempted: Array.isArray(stored.attempted) ? [...new Set(stored.attempted.filter((id) => challenges.some((c) => c.id === id)))] : [],
+          correct: Array.isArray(stored.correct) ? [...new Set(stored.correct.filter((id) => challenges.some((c) => c.id === id)))] : [],
+          order: Array.isArray(stored.order) ? stored.order.filter((id) => challenges.some((c) => c.id === id)) : [],
+          started: Boolean(stored.started),
+          currentVolume,
+        };
+      }
+    } catch (_) {}
+
+    function save() {
+      try { localStorage.setItem(storageKey, JSON.stringify(state)); } catch (_) {}
+    }
+
+    function shuffle(ids) {
+      const arr = [...ids];
+      for (let i = arr.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function challengesForVolume(volume) {
+      return challenges.filter((challenge) => Number(challenge.volume) === Number(volume));
+    }
+
+    function byId(id) {
+      return challenges.find((challenge) => challenge.id === id) || null;
+    }
+
+    function startRound(volume, firstId = "") {
+      const volumeChallenges = challengesForVolume(volume);
+      const ids = volumeChallenges.map((challenge) => challenge.id);
+      const rest = ids.filter((id) => id !== firstId);
+      state.currentVolume = Number(volume);
+      state.attempted = [];
+      state.correct = [];
+      state.order = firstId && ids.includes(firstId) ? [firstId, ...shuffle(rest)] : shuffle(ids);
+      state.started = true;
+      save();
+      updateStatus();
+    }
+
+    function ensureOrder() {
+      if (!state.currentVolume) return;
+      const ids = challengesForVolume(state.currentVolume).map((challenge) => challenge.id);
+      const valid = state.order.length === ids.length && ids.every((id) => state.order.includes(id));
+      if (!valid) state.order = shuffle(ids);
+    }
+
+    function score() {
+      return state.correct.length * pointsPerCorrect;
+    }
+
+    function levelForScore(value) {
+      if (value >= 60) return copy.levels[3];
+      if (value >= 40) return copy.levels[2];
+      if (value >= 20) return copy.levels[1];
+      return copy.levels[0];
+    }
+
+    function nextUnattempted() {
+      ensureOrder();
+      const id = state.order.find((candidate) => !state.attempted.includes(candidate));
+      return id ? byId(id) : null;
+    }
+
+    function renderProfile() {
+      if (nameInput instanceof HTMLInputElement) nameInput.value = state.name || "";
+      const avatarInput = root.querySelector(`input[name="clever-avatar"][value="${state.avatar || "serpy"}"]`);
+      if (avatarInput instanceof HTMLInputElement) avatarInput.checked = true;
+    }
+
+    function renderPlayer() {
+      const name = root.querySelector("[data-player-name]");
+      const finalName = root.querySelector("[data-final-player-name]");
+      if (name) name.textContent = state.name;
+      if (finalName) finalName.textContent = state.name;
+    }
+
+    function updateStatus() {
+      const currentScore = score();
+      const attemptedCount = state.attempted.length;
+      const scoreEl = root.querySelector("[data-score]");
+      const solvedEl = root.querySelector("[data-solved-count]");
+      const progress = root.querySelector("[data-progress-bar]");
+      const levelEl = root.querySelector("[data-level]");
+
+      if (scoreEl) scoreEl.textContent = String(currentScore);
+      if (solvedEl) solvedEl.textContent = String(attemptedCount);
+      if (progress instanceof HTMLElement) progress.style.width = `${Math.min(100, (attemptedCount / totalQuestions) * 100)}%`;
+      if (levelEl) levelEl.textContent = levelForScore(currentScore);
+
+      const roundInProgress = Boolean(state.currentVolume) && attemptedCount < totalQuestions;
+      root.querySelectorAll("[data-challenge-card]").forEach((card) => {
+        if (!(card instanceof HTMLElement)) return;
+        const id = card.dataset.challengeCard || "";
+        const challenge = byId(id);
+        const attempted = state.attempted.includes(id);
+        const correct = state.correct.includes(id);
+        const otherVolumeLocked = roundInProgress && challenge && Number(challenge.volume) !== Number(state.currentVolume);
+        card.classList.toggle("is-solved", attempted && correct);
+        card.classList.toggle("is-failed", attempted && !correct);
+        card.classList.toggle("is-attempted", attempted);
+        card.classList.toggle("is-locked", Boolean(otherVolumeLocked));
+        const button = card.querySelector("[data-open-challenge]");
+        if (button instanceof HTMLButtonElement) {
+          button.disabled = attempted || Boolean(otherVolumeLocked);
+          button.textContent = attempted ? copy.done : copy.play;
+        }
+      });
+      renderPlayer();
+    }
+
+    function showProfile() {
+      if (profile instanceof HTMLElement) profile.hidden = false;
+      if (playArea instanceof HTMLElement) playArea.hidden = true;
+      renderProfile();
+    }
+
+    function showPlayArea() {
+      if (profile instanceof HTMLElement) profile.hidden = true;
+      if (playArea instanceof HTMLElement) playArea.hidden = false;
+      updateStatus();
+    }
+
+    function moveGameToVolume(volume) {
+      if (!(game instanceof HTMLElement)) return;
+      const grid = root.querySelector(`[data-volume-grid="${volume}"]`);
+      if (grid instanceof HTMLElement) grid.insertAdjacentElement("afterend", game);
+    }
+
+    function renderQuestion(id) {
+      const challenge = byId(id);
+      if (!challenge || state.attempted.includes(id)) return;
+
+      if (!state.currentVolume) startRound(challenge.volume, id);
+      if (Number(state.currentVolume) !== Number(challenge.volume)) return;
+
+      ensureOrder();
+      const step = challenge.steps[0];
+      activeId = id;
+      moveGameToVolume(challenge.volume);
+
+      if (!(game instanceof HTMLElement) || !(answersRoot instanceof HTMLElement)) return;
+      game.hidden = false;
+      if (feedback instanceof HTMLElement) feedback.hidden = true;
+      if (form instanceof HTMLFormElement) form.hidden = false;
+
+      const numberEl = root.querySelector("[data-game-number]");
+      const titleEl = root.querySelector("[data-game-title]");
+      const introEl = root.querySelector("[data-game-intro]");
+      const questionEl = root.querySelector("[data-game-question]");
+      if (numberEl) numberEl.textContent = `${copy.challenge} ${state.attempted.length + 1} / ${totalQuestions}`;
+      if (titleEl) titleEl.textContent = challenge.title;
+      if (introEl) introEl.textContent = challenge.intro;
+      if (questionEl) questionEl.textContent = step.question;
+
+      answersRoot.innerHTML = "";
+      step.answers.forEach((answer, index) => {
+        const label = document.createElement("label");
+        label.className = "clever-answer";
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = "clever-answer";
+        input.value = String(index);
+        const marker = document.createElement("span");
+        marker.className = "clever-answer__marker";
+        marker.textContent = String.fromCharCode(65 + index);
+        const answerText = document.createElement("span");
+        answerText.textContent = answer;
+        label.append(input, marker, answerText);
+        answersRoot.append(label);
+      });
+
+      updateStatus();
+      requestAnimationFrame(() => game.scrollIntoView({ behavior: "smooth", block: "center" }));
+    }
+
+    function showFinalPopup() {
+      if (!(finalPanel instanceof HTMLElement)) return;
+      const finalScore = root.querySelector("[data-final-score]");
+      const finalLevel = root.querySelector("[data-final-level]");
+      if (finalScore) finalScore.textContent = String(score());
+      if (finalLevel) finalLevel.textContent = levelForScore(score());
+      renderPlayer();
+      if (game instanceof HTMLElement) game.hidden = true;
+      finalPanel.hidden = false;
+      document.body.classList.add("clever-modal-open");
+    }
+
+    function hideFinalPopup() {
+      if (finalPanel instanceof HTMLElement) finalPanel.hidden = true;
+      document.body.classList.remove("clever-modal-open");
+    }
+
+    playerForm?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const name = nameInput instanceof HTMLInputElement ? nameInput.value.trim() : "";
+      if (!name) {
+        if (nameError instanceof HTMLElement) nameError.hidden = false;
+        nameInput?.focus();
+        return;
+      }
+      const selectedAvatar = root.querySelector('input[name="clever-avatar"]:checked');
+      state.name = name.slice(0, 20);
+      state.avatar = selectedAvatar instanceof HTMLInputElement ? selectedAvatar.value : "serpy";
+      state.attempted = [];
+      state.correct = [];
+      state.order = [];
+      state.currentVolume = 0;
+      state.started = true;
+      save();
+      if (nameError instanceof HTMLElement) nameError.hidden = true;
+      showPlayArea();
+      requestAnimationFrame(() => challengeStart?.scrollIntoView({ behavior: "smooth", block: "start" }));
+    });
+
+    root.querySelectorAll("[data-open-challenge]").forEach((button) => {
+      button.addEventListener("click", () => {
+        if (!(button instanceof HTMLElement)) return;
+        const id = button.dataset.openChallenge || "";
+        const challenge = byId(id);
+        if (!challenge) return;
+        if (!state.currentVolume) startRound(challenge.volume, id);
+        if (Number(state.currentVolume) !== Number(challenge.volume)) return;
+        if (!state.attempted.includes(id)) renderQuestion(id);
+      });
+    });
+
+    root.querySelector("[data-close-game]")?.addEventListener("click", () => {
+      if (game instanceof HTMLElement) game.hidden = true;
+    });
+
+    form?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!activeId || state.attempted.includes(activeId)) return;
+      const checked = root.querySelector('input[name="clever-answer"]:checked');
+      if (!(checked instanceof HTMLInputElement)) return;
+
+      const challenge = byId(activeId);
+      if (!challenge) return;
+      const step = challenge.steps[0];
+      const isCorrect = Number(checked.value) === step.correct;
+
+      state.attempted.push(activeId);
+      state.attempted = [...new Set(state.attempted)];
+      if (isCorrect) {
+        state.correct.push(activeId);
+        state.correct = [...new Set(state.correct)];
+      }
+      save();
+      updateStatus();
+
+      const feedbackTitle = root.querySelector("[data-feedback-title]");
+      const feedbackText = root.querySelector("[data-feedback-text]");
+      if (feedbackTitle) feedbackTitle.textContent = isCorrect ? `${copy.correct} +10 ${copy.points}` : `${copy.wrong} 0 ${copy.points}`;
+      if (feedbackText) feedbackText.textContent = isCorrect ? step.success : step.hint;
+      if (form instanceof HTMLFormElement) form.hidden = true;
+      if (feedback instanceof HTMLElement) feedback.hidden = false;
+
+      if (state.attempted.length >= totalQuestions) window.setTimeout(showFinalPopup, 450);
+    });
+
+    nextBtn?.addEventListener("click", () => {
+      if (state.attempted.length >= totalQuestions) {
+        showFinalPopup();
+        return;
+      }
+      const next = nextUnattempted();
+      if (next) renderQuestion(next.id);
+    });
+
+    newRunBtn?.addEventListener("click", () => {
+      state.attempted = [];
+      state.correct = [];
+      state.order = [];
+      state.currentVolume = 0;
+      state.started = true;
+      save();
+      hideFinalPopup();
+      if (game instanceof HTMLElement) game.hidden = true;
+      showPlayArea();
+      requestAnimationFrame(() => challengeStart?.scrollIntoView({ behavior: "smooth", block: "start" }));
+    });
+
+    renderProfile();
+    renderPlayer();
+    if (state.name && state.started) {
+      showPlayArea();
+      if (state.currentVolume) ensureOrder();
+      if (state.attempted.length >= totalQuestions) showFinalPopup();
+    } else {
+      showProfile();
+    }
+  })();
+</script>

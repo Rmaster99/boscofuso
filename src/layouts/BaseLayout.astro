@@ -15,10 +15,26 @@ const site = Astro.site ?? new URL("https://www.boscofuso.com");
 const pathname = Astro.url.pathname;
 const canonicalURL = new URL(pathname, site);
 
+const sectionTheme = pathname.includes("/happy-edy/")
+  ? "happy"
+  : pathname.includes("/parole-di-seta/")
+    ? "parole"
+    : pathname.includes("/photo-grafika/")
+      ? "photo"
+      : pathname.includes("/sca-publications/")
+        ? "sca"
+        : "boscofuso";
+
+const backToTopLabel = lang === "en" ? "Back to top" : "Torna in cima";
+
 function localePath(targetLang) {
   if (targetLang === "it") {
     if (pathname.startsWith("/en/books/")) {
       return pathname.replace("/en/books/", "/it/libri/");
+    }
+
+    if (pathname.startsWith("/en/clever-den/")) {
+      return "/it/tana-delle-astuzie/";
     }
 
     if (pathname.startsWith("/en/")) {
@@ -30,6 +46,10 @@ function localePath(targetLang) {
 
   if (pathname.startsWith("/it/libri/")) {
     return pathname.replace("/it/libri/", "/en/books/");
+  }
+
+  if (pathname.startsWith("/it/tana-delle-astuzie/")) {
+    return "/en/clever-den/";
   }
 
   if (pathname.startsWith("/it/")) {
@@ -85,7 +105,7 @@ const socialImageAlt = lang === "en"
     <meta name="twitter:image:alt" content={socialImageAlt} />
   </head>
 
-  <body>
+  <body class={`section-theme section-theme--${sectionTheme}`}>
     <Header lang={lang} />
 
     <main>
@@ -93,5 +113,33 @@ const socialImageAlt = lang === "en"
     </main>
 
     <Footer lang={lang} />
+
+    <button
+      class="back-to-top"
+      type="button"
+      aria-label={backToTopLabel}
+      title={backToTopLabel}
+      data-back-to-top
+    >
+      <span aria-hidden="true">↑</span>
+    </button>
+
+    <script>
+      (() => {
+        const button = document.querySelector("[data-back-to-top]");
+        if (!(button instanceof HTMLButtonElement)) return;
+
+        const updateVisibility = () => {
+          button.classList.toggle("is-visible", window.scrollY > 500);
+        };
+
+        updateVisibility();
+        window.addEventListener("scroll", updateVisibility, { passive: true });
+
+        button.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      })();
+    </script>
   </body>
 </html>
