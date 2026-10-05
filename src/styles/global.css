@@ -2142,6 +2142,9 @@ a.play-card__cta:focus-visible {
   }
 
   .brand-card--sca .brand-card__logo {
-    transform: scale(1.45);
+    width: 100%;
+    max-width: 100%;
+    max-height: 118px;
+    transform: scale(1);
   }
 }
