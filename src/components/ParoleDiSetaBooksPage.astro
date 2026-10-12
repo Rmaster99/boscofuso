@@ -8,8 +8,6 @@ import cover03 from "../assets/images/parole-di-seta/books/libro-03/copertina.we
 import cover04 from "../assets/images/parole-di-seta/books/libro-04/copertina.webp";
 import cover05 from "../assets/images/parole-di-seta/books/libro-05/copertina.webp";
 import cover06 from "../assets/images/parole-di-seta/books/libro-06/copertina.webp";
-import cover07 from "../assets/images/parole-di-seta/books/libro-07/copertina.webp";
-import cover08 from "../assets/images/parole-di-seta/books/libro-08/copertina.webp";
 import photo011 from "../assets/images/parole-di-seta/books/libro-01/foto-01.webp";
 import photo012 from "../assets/images/parole-di-seta/books/libro-01/foto-02.webp";
 import photo013 from "../assets/images/parole-di-seta/books/libro-01/foto-03.webp";
@@ -28,12 +26,6 @@ import photo053 from "../assets/images/parole-di-seta/books/libro-05/foto-03.web
 import photo061 from "../assets/images/parole-di-seta/books/libro-06/foto-01.webp";
 import photo062 from "../assets/images/parole-di-seta/books/libro-06/foto-02.webp";
 import photo063 from "../assets/images/parole-di-seta/books/libro-06/foto-03.webp";
-import photo071 from "../assets/images/parole-di-seta/books/libro-07/foto-01.webp";
-import photo072 from "../assets/images/parole-di-seta/books/libro-07/foto-02.webp";
-import photo073 from "../assets/images/parole-di-seta/books/libro-07/foto-03.webp";
-import photo081 from "../assets/images/parole-di-seta/books/libro-08/foto-01.webp";
-import photo082 from "../assets/images/parole-di-seta/books/libro-08/foto-02.webp";
-import photo083 from "../assets/images/parole-di-seta/books/libro-08/foto-03.webp";
 
 const { lang = "it" } = Astro.props;
 
@@ -129,38 +121,7 @@ Un romanzo per chi ha guardato almeno una volta fuori da una finestra chiedendos
     kobo: "",
     gallery: [photo061, photo062, photo063],
   },
-  {
-    id: "libro-07",
-    title: "Casablanca",
-    description: `Casablanca, 1942. In una città attraversata da soldati, contrabbandieri, diplomatici e spie, un misterioso plico scompare senza lasciare traccia. Non viene rubato: sembra semplicemente essere uscito dal tempo.
 
-Molti anni dopo, nella Londra contemporanea, Adrian Walner scopre che alcuni sogni non finiscono al risveglio. Un biglietto, strani incontri e figure che sembrano conoscere ciò che lui stesso ignora lo trascinano verso Casablanca e dentro una realtà in cui memoria, sogno e Storia cominciano a sovrapporsi.
-
-<strong>Primo volume</strong> delle Cronache del Sognatore Errante, Casablanca mescola avventura, ambientazione storica, mistero, ironia e dimensione fantastica. I Tessitori, la Tela e i segreti della Custode dei Tempi aprono progressivamente un universo in cui persino i ricordi possono essere modificati o cancellati.
-
-Una storia per chi ama i romanzi che iniziano nel mondo reale e, pagina dopo pagina, aprono porte verso qualcosa di molto più grande. E quando il tempo comincia a disfarsi, ricordare può diventare l’unico modo per sopravvivere.`,
-    cover: cover07,
-    amazon: "https://www.amazon.it/dp/B0G6CFD8YM",
-    kobo: "",
-    gallery: [photo071, photo072, photo073],
-  },
-  {
-    id: "libro-08",
-    title: "L’Arca del Tempo",
-    description: `I sogni non finiscono all’alba. E per Adrian Walner, dopo ciò che è accaduto a Casablanca, non sono più nemmeno un rifugio.
-
-Nel <strong>secondo volume</strong> delle Cronache del Sognatore Errante, Adrian sa ormai di essere un Nodo della Tela, qualcosa che i Tessitori non possono ignorare. Il misterioso biglietto che lo accompagna attraverso epoche e realtà diverse non è un semplice oggetto: sembra scegliere autonomamente dove e quando condurlo.
-
-Tra biblioteche cancellate, treni senza binari, memorie che possono essere sottratte e luoghi sospesi nel tempo, la storia riprende esattamente dove Casablanca si era interrotta e allarga progressivamente i confini dell’universo narrativo.
-
-L’Arca del Tempo approfondisce il rapporto tra memoria, identità e destino, spingendo Adrian e i suoi compagni verso una domanda sempre più inquietante: se il passato può essere riscritto, chi decide quale futuro merita di esistere?
-
-Un seguito più ampio e oscuro, pensato per chi ha attraversato la prima parte della Tela ed è pronto a scoprire quanto possa costare ricordare.`,
-    cover: cover08,
-    amazon: "https://www.amazon.it/dp/B0G6FV42NB",
-    kobo: "",
-    gallery: [photo081, photo082, photo083],
-  },
 ];
 
 const booksEn = [
@@ -226,30 +187,7 @@ A Window to Elsewhere explores the desire to leave and the more difficult desire
 
 A novel for anyone who has ever looked out of a window and wondered what a different life might have been like. For those who left, those who would like to leave, and those who discovered that some of the most important distances are not measured in kilometres.`,
   },
-  {
-    ...booksIt[6],
-    title: "Casablanca",
-    description: `Casablanca, 1942. In a city crossed by soldiers, smugglers, diplomats and spies, a mysterious diplomatic package disappears without a trace. It is not stolen: it seems simply to have slipped out of time.
 
-Many years later, in present-day London, Adrian Walner discovers that some dreams do not end when we wake. A ticket, strange encounters and figures who seem to know what he himself does not draw him toward Casablanca and into a reality where memory, dreams and History begin to overlap.
-
-<strong>The first volume</strong> of The Chronicles of the Wandering Dreamer, Casablanca blends adventure, historical atmosphere, mystery, irony and fantasy. The Weavers, the Fabric and the secrets of the Keeper of Time gradually open an universe in which even memories can be altered or erased.
-
-A story for readers who love novels that begin in the real world and, page by page, open doors onto something much larger. And when time itself begins to unravel, remembering may become the only way to survive.`,
-  },
-  {
-    ...booksIt[7],
-    title: "The Ark of Time",
-    description: `Dreams do not end at dawn. And for Adrian Walner, after what happened in Casablanca, they are no longer even a refuge.
-
-In the <strong>second volume</strong> of The Chronicles of the Wandering Dreamer, Adrian now knows that he is a Node in the Fabric — something the Weavers cannot ignore. The mysterious ticket that carries him across different eras and realities is not simply an object: it seems to choose for itself where and when to take him.
-
-Among erased libraries, trains without tracks, memories that can be taken away and places suspended in time, the story resumes exactly where Casablanca ended and gradually expands the boundaries of its narrative universe.
-
-The Ark of Time delves deeper into memory, identity and destiny, driving Adrian and his companions toward an increasingly unsettling question: if the past can be rewritten, who decides which future deserves to exist?
-
-A broader, darker sequel for readers who have already crossed the first part of the Fabric and are ready to discover how much remembering can cost.`,
-  },
 ];
 
 const books = lang === "en" ? booksEn : booksIt;
