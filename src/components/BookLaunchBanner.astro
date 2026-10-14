@@ -1,0 +1,196 @@
+---
+// Fascia temporanea per il lancio del settimo libro di Parole di Seta.
+// Rimozione: togliere <BookLaunchBanner ... /> dalle due homepage IT/EN
+// e il relativo import dopo il periodo promozionale (circa un mese).
+const { lang = "it" } = Astro.props;
+
+const isEnglish = lang === "en";
+const content = isEnglish
+  ? {
+      announcement: "NEW RELEASE ✦ DORIAN WARDEN ✦ L’ARCA DEL TEMPO — CASABLANCA 1942 ✦ When history is rewritten, even memories can disappear… ✦",
+      mobile: "NEW RELEASE · L’ARCA DEL TEMPO — CASABLANCA 1942",
+      button: "DISCOVER THE NOVEL",
+      buttonShort: "DISCOVER",
+      buttonLabel: "Discover The Ark of Time — Casablanca 1942 in Parole di Seta books",
+      destination: "/en/parole-di-seta/#libro-07",
+      label: "New book release",
+    }
+  : {
+      announcement: "NOVITÀ EDITORIALE ✦ DORIAN WARDEN ✦ L’ARCA DEL TEMPO — CASABLANCA 1942 ✦ Quando la Storia cambia, anche i ricordi possono scomparire… ✦",
+      mobile: "NOVITÀ EDITORIALE · L’ARCA DEL TEMPO — CASABLANCA 1942",
+      button: "SCOPRI IL ROMANZO",
+      buttonShort: "SCOPRI",
+      buttonLabel: "Scopri L’Arca del Tempo — Casablanca 1942 nella sezione Parole di Seta",
+      destination: "/it/parole-di-seta/#libro-07",
+      label: "Novità editoriale",
+    };
+---
+
+<aside class="book-launch" aria-label={content.label}>
+  <div class="book-launch__inner">
+    <span class="book-launch__sparkle" aria-hidden="true">✦</span>
+
+    <div class="book-launch__message">
+      <span class="book-launch__accessible">{content.announcement}</span>
+      <div class="book-launch__ticker" aria-hidden="true">
+        <div class="book-launch__track">
+          <span class="book-launch__repeat">{content.announcement}</span>
+          <span class="book-launch__repeat">{content.announcement}</span>
+        </div>
+      </div>
+      <span class="book-launch__mobile" aria-hidden="true">{content.mobile}</span>
+    </div>
+
+    <a class="book-launch__button" href={content.destination} aria-label={content.buttonLabel}>
+      <span class="book-launch__button-long">{content.button}</span>
+      <span class="book-launch__button-short">{content.buttonShort}</span>
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</aside>
+
+<style>
+  .book-launch {
+    width: 100%;
+    background: linear-gradient(90deg, #12364a 0%, #173e55 48%, #12364a 100%);
+    border-top: 1px solid rgba(234, 180, 90, 0.42);
+    border-bottom: 1px solid rgba(234, 180, 90, 0.42);
+    color: #fff;
+  }
+
+  .book-launch__inner {
+    width: min(calc(100% - 2 * var(--page-padding, 24px)), var(--container-width, 1280px));
+    min-height: 66px;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    gap: clamp(0.7rem, 1.6vw, 1.5rem);
+    padding-block: 9px;
+  }
+
+  .book-launch__sparkle {
+    flex: 0 0 auto;
+    color: #eab45a;
+    font-size: 1.3rem;
+    line-height: 1;
+  }
+
+  .book-launch__message {
+    flex: 1 1 0;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .book-launch__accessible {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+  }
+
+  .book-launch__ticker {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .book-launch__track {
+    display: flex;
+    width: max-content;
+    animation: launch-marquee 32s linear infinite;
+    will-change: transform;
+  }
+
+  .book-launch__repeat {
+    display: block;
+    flex: 0 0 auto;
+    padding-right: 3.5rem;
+    font-size: clamp(0.94rem, 1.35vw, 1.08rem);
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 0.015em;
+  }
+
+  .book-launch:hover .book-launch__track,
+  .book-launch:focus-within .book-launch__track {
+    animation-play-state: paused;
+  }
+
+  .book-launch__mobile {
+    display: none;
+  }
+
+  .book-launch__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    gap: 0.45rem;
+    min-height: 42px;
+    padding: 0.57rem 1.15rem;
+    border-radius: 8px;
+    background: #eab45a;
+    color: #172b34;
+    text-decoration: none;
+    white-space: nowrap;
+    font-size: 0.88rem;
+    font-weight: 800;
+    line-height: 1.2;
+    transition: background-color 180ms ease;
+  }
+
+  .book-launch__button:hover,
+  .book-launch__button:focus-visible {
+    background: #f3c878;
+  }
+
+  .book-launch__button:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+  }
+
+  .book-launch__button-short {
+    display: none;
+  }
+
+  @keyframes launch-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @media (max-width: 760px) {
+    .book-launch__inner {
+      min-height: 74px;
+      gap: 0.6rem;
+      padding-block: 0.7rem;
+    }
+
+    .book-launch__sparkle { display: none; }
+    .book-launch__ticker { display: none; }
+
+    .book-launch__mobile {
+      display: block;
+      font-size: clamp(0.77rem, 3vw, 0.93rem);
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 0.01em;
+    }
+
+    .book-launch__button {
+      min-height: 40px;
+      padding: 0.6rem 0.78rem;
+      font-size: 0.77rem;
+    }
+
+    .book-launch__button-long { display: none; }
+    .book-launch__button-short { display: inline; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .book-launch__ticker { display: none; }
+    .book-launch__mobile { display: block; font-weight: 700; }
+    .book-launch__button { transition: none; }
+  }
+</style>
