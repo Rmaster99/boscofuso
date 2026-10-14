@@ -8,6 +8,7 @@ import cover03 from "../assets/images/parole-di-seta/books/libro-03/copertina.we
 import cover04 from "../assets/images/parole-di-seta/books/libro-04/copertina.webp";
 import cover05 from "../assets/images/parole-di-seta/books/libro-05/copertina.webp";
 import cover06 from "../assets/images/parole-di-seta/books/libro-06/copertina.webp";
+import cover07 from "../assets/images/parole-di-seta/books/libro-07/copertina.webp";
 import photo011 from "../assets/images/parole-di-seta/books/libro-01/foto-01.webp";
 import photo012 from "../assets/images/parole-di-seta/books/libro-01/foto-02.webp";
 import photo013 from "../assets/images/parole-di-seta/books/libro-01/foto-03.webp";
@@ -26,13 +27,16 @@ import photo053 from "../assets/images/parole-di-seta/books/libro-05/foto-03.web
 import photo061 from "../assets/images/parole-di-seta/books/libro-06/foto-01.webp";
 import photo062 from "../assets/images/parole-di-seta/books/libro-06/foto-02.webp";
 import photo063 from "../assets/images/parole-di-seta/books/libro-06/foto-03.webp";
+import photo071 from "../assets/images/parole-di-seta/books/libro-07/foto-01.webp";
+import photo072 from "../assets/images/parole-di-seta/books/libro-07/foto-02.webp";
+import photo073 from "../assets/images/parole-di-seta/books/libro-07/foto-03.webp";
 
 const { lang = "it" } = Astro.props;
 
 // Galleria Parole di Seta:
-// ogni libro usa tre immagini nominate foto-01.webp, foto-02.webp e foto-03.webp.
-// In questa versione le tre immagini sono placeholder basati sulla foto di esempio fornita dall’utente;
-// potranno essere sostituite in seguito mantenendo esattamente gli stessi nomi file.
+// ogni libro usa una copertina.webp e tre immagini foto-01.webp, foto-02.webp, foto-03.webp.
+// Per il nuovo romanzo (libro-07) si riutilizzano le immagini dell'ex scheda Casablanca,
+// ancora presenti nella cartella assets. Saranno aggiornate quando disponibili le grafiche definitive.
 
 const booksIt = [
   {
@@ -121,6 +125,23 @@ Un romanzo per chi ha guardato almeno una volta fuori da una finestra chiedendos
     kobo: "",
     gallery: [photo061, photo062, photo063],
   },
+  {
+    id: "libro-07",
+    title: "L’Arca del Tempo — Casablanca 1942",
+    description: `Londra, oggi.
+Dopo la scomparsa di Eleanor Mercer, sua amica e collega d’inchiesta, il giornalista Adrian Walner si imbatte in prove impossibili: documenti che cambiano, nomi che spariscono e ricordi che nessun altro conserva.
+
+Casablanca, novembre 1942.
+Un misterioso biglietto ferroviario conduce Adrian oltre una Frattura del tempo, in una città di spie e segreti, dove qualcuno sta riscrivendo la Storia, cancellando persone e ricordi.
+
+Per scoprire che cosa sia accaduto a Eleanor, dovrà affrontare un'organizzazione capace di manipolare la realtà stessa.
+
+Ma quanto è disposto a sacrificare per ritrovarla?`,
+    cover: cover07,
+    amazon: "", // Inserire qui il link Amazon quando la nuova edizione sarà disponibile.
+    kobo: "",
+    gallery: [photo071, photo072, photo073],
+  },
 
 ];
 
@@ -186,6 +207,19 @@ Matteo and Giulia are young, restless and suspended between what they know and w
 A Window to Elsewhere explores the desire to leave and the more difficult desire to understand who we really are. It is a story of choices, relationships, expectations, nostalgia and identity, in which “elsewhere” gradually stops being only a geographical place and becomes an inner space.
 
 A novel for anyone who has ever looked out of a window and wondered what a different life might have been like. For those who left, those who would like to leave, and those who discovered that some of the most important distances are not measured in kilometres.`,
+  },
+  {
+    ...booksIt[6],
+    title: "The Ark of Time — Casablanca 1942",
+    description: `London, present day.
+After the disappearance of Eleanor Mercer, his friend and investigative partner, journalist Adrian Walner comes across impossible evidence: documents that change, names that vanish, and memories no one else retains.
+
+Casablanca, November 1942.
+A mysterious train ticket leads Adrian through a Fracture in time, into a city of spies and secrets, where someone is rewriting History, erasing people and memories.
+
+To find out what happened to Eleanor, he must confront an organization capable of manipulating reality itself.
+
+But how much is he willing to sacrifice to find her?`,
   },
 
 ];
