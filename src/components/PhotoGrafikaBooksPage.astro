@@ -5,17 +5,126 @@ import cover01 from "../assets/images/photo-grafika/books/libro-01/copertina.web
 import photo011 from "../assets/images/photo-grafika/books/libro-01/foto-01.webp";
 import photo012 from "../assets/images/photo-grafika/books/libro-01/foto-02.webp";
 import photo013 from "../assets/images/photo-grafika/books/libro-01/foto-03.webp";
+// Immagini provvisorie duplicate dal volume 01: sostituire nella cartella libro-02.
+import cover02 from "../assets/images/photo-grafika/books/libro-02/copertina.webp";
+import photo021 from "../assets/images/photo-grafika/books/libro-02/foto-01.webp";
+import photo022 from "../assets/images/photo-grafika/books/libro-02/foto-02.webp";
+import photo023 from "../assets/images/photo-grafika/books/libro-02/foto-03.webp";
+
 const { lang = "it" } = Astro.props;
-const book = { id:"libro-01", title:"STREET ART – photobook 01", cover:cover01, amazon:"https://www.amazon.it/Street-Art-fotografie-attraverso-creativit%C3%A0/dp/B0HFS4NQX5", gallery:[photo011,photo012,photo013] };
+
+const books = [
+  {
+    id: "libro-01",
+    title: "STREET ART – photobook 01",
+    cover: cover01,
+    amazon: "https://www.amazon.it/Street-Art-fotografie-attraverso-creativit%C3%A0/dp/B0HFS4NQX5",
+    gallery: [photo011, photo012, photo013],
+  },
+  {
+    id: "libro-02",
+    title: "STREET ART – photobook 02",
+    cover: cover02,
+    amazon: "https://www.amazon.it/dp/B0HSW214R3",
+    gallery: [photo021, photo022, photo023],
+  },
+];
+
 const t = lang === "en" ? {
- title:"Photo Grafika books", intro:"Photography books and visual projects in which the image is the main language.", amazon:"Buy on Amazon", galleryAlt:"Book preview",
- description:`A photographic journey through street art, murals and visual traces encountered in the urban landscape. STREET ART – photobook 01 brings together images in which colour, surfaces, signs and architecture become part of a constantly changing visual language.\n\nThe book is conceived as a sequence of observations rather than a catalogue: fragments discovered by chance, photographed in different places and brought together through a personal visual perspective.\n\nA photobook for those who see the city as an open-air gallery and photography as a way of preserving temporary forms of expression.`
+  title: "Photo Grafika books",
+  intro: "Photography books and visual projects in which the image is the main language.",
+  amazon: "Buy on Amazon",
+  galleryAlt: "Book preview",
+  description01: `A photographic journey through street art, murals and visual traces encountered in the urban landscape. STREET ART – photobook 01 brings together images in which colour, surfaces, signs and architecture become part of a constantly changing visual language.
+
+The book is conceived as a sequence of observations rather than a catalogue: fragments discovered by chance, photographed in different places and brought together through a personal visual perspective.
+
+A photobook for those who see the city as an open-air gallery and photography as a way of preserving temporary forms of expression.`,
+  description02Lead: "STREET ART 02 | BILBAO & SANTANDER",
+  description02Paragraphs: [
+    "A photographic journey through northern Spain, between Bilbao and Santander, where street art meets architecture and everyday life. Original photographs capture monumental murals, graffiti, painted shop shutters and small spontaneous interventions: signs and colours that turn façades, streets and overlooked corners into visual stories of the two cities.",
+    "Rather than a comprehensive catalogue of artists and works, this book offers a route through encounters, details and perspectives, inviting readers to look at urban spaces differently.",
+    "Alongside the images, short texts explore the history and evolution of Spanish urban art, its relationship with place and the often temporary nature of works in public space.",
+  ],
+  description02End: "A visual journey across two cities and their walls, discovering an art form that changes with the urban landscape.",
 } : {
- title:"I libri di Photo Grafika", intro:"Photobook e progetti visivi in cui l’immagine è il linguaggio principale.", amazon:"Acquista su Amazon", galleryAlt:"Anteprima del libro",
- description:`Un viaggio fotografico attraverso street art, murales e tracce visive incontrate nel paesaggio urbano. STREET ART – photobook 01 raccoglie immagini in cui colore, superfici, segni e architettura diventano parte di un linguaggio visivo in continua trasformazione.\n\nIl libro è concepito come una sequenza di osservazioni più che come un catalogo: frammenti scoperti per caso, fotografati in luoghi diversi e riuniti attraverso uno sguardo personale.\n\nUn photobook per chi considera la città una galleria a cielo aperto e la fotografia uno strumento per conservare forme espressive destinate a cambiare o scomparire.`
+  title: "I libri di Photo Grafika",
+  intro: "Photobook e progetti visivi in cui l’immagine è il linguaggio principale.",
+  amazon: "Acquista su Amazon",
+  galleryAlt: "Anteprima del libro",
+  description01: `Un viaggio fotografico attraverso street art, murales e tracce visive incontrate nel paesaggio urbano. STREET ART – photobook 01 raccoglie immagini in cui colore, superfici, segni e architettura diventano parte di un linguaggio visivo in continua trasformazione.
+
+Il libro è concepito come una sequenza di osservazioni più che come un catalogo: frammenti scoperti per caso, fotografati in luoghi diversi e riuniti attraverso uno sguardo personale.
+
+Un photobook per chi considera la città una galleria a cielo aperto e la fotografia uno strumento per conservare forme espressive destinate a cambiare o scomparire.`,
+  description02Lead: "STREET ART 02 | BILBAO & SANTANDER",
+  description02Paragraphs: [
+    "Un viaggio fotografico nel nord della Spagna, tra Bilbao e Santander, dove la street art dialoga con l’architettura e la vita quotidiana. Le fotografie originali raccolgono murales monumentali, graffiti, serrande decorate e piccoli interventi spontanei: segni e colori che trasformano facciate, strade e angoli meno osservati in racconti visivi delle città.",
+    "Non un catalogo esaustivo di artisti e opere, ma un percorso fatto di incontri, dettagli e prospettive, che invita a guardare lo spazio urbano con occhi diversi.",
+    "Alle immagini si affiancano testi di approfondimento sulla storia e sull’evoluzione dell’arte urbana spagnola, sul suo rapporto con i luoghi e sulla natura spesso temporanea di molte opere.",
+  ],
+  description02End: "Un itinerario visivo tra due città e i loro muri, alla scoperta di un’arte che cambia insieme al paesaggio urbano.",
 };
 ---
 <section class="pg-books page-shell">
-<header class="pg-books__header"><div class="pg-books__identity"><Image src={logo} alt="Photo Grafika" class="pg-books__logo" loading="eager"/><h1>{t.title}</h1></div><p>{t.intro}</p></header>
-<div class="pg-books__list"><article class="pg-book" id={book.id}><div class="pg-book__main"><div class="pg-book__cover-wrap"><img src={book.cover.src} alt={book.title} class="pg-book__cover" width={book.cover.width} height={book.cover.height} loading="eager" decoding="async"/><div class="pg-book__actions">{book.amazon ? <a class="pg-book__button" href={book.amazon} target="_blank" rel="noopener noreferrer">{t.amazon}</a> : <span class="pg-book__button pg-book__button--disabled" aria-disabled="true">{t.amazon}</span>}</div></div><div class="pg-book__copy"><h2>{book.title}</h2><p>{t.description}</p></div></div><div class="pg-book__gallery" aria-label={`${t.galleryAlt}: ${book.title}`}>{book.gallery.map((image,i)=><div class="pg-book__gallery-item"><Image src={image} alt={`${t.galleryAlt} ${i+1}: ${book.title}`} class="pg-book__gallery-image" widths={[480,720,1000,1400]} sizes="(max-width:760px) 100vw, 33vw" loading="lazy"/></div>)}</div></article></div>
+  <header class="pg-books__header">
+    <div class="pg-books__identity">
+      <Image src={logo} alt="Photo Grafika" class="pg-books__logo" loading="eager" />
+      <h1>{t.title}</h1>
+    </div>
+    <p>{t.intro}</p>
+  </header>
+
+  <div class="pg-books__list">
+    {books.map((book, index) => (
+      <article class="pg-book" id={book.id}>
+        <div class="pg-book__main">
+          <div class="pg-book__cover-wrap">
+            <img
+              src={book.cover.src}
+              alt={book.title}
+              class="pg-book__cover"
+              width={book.cover.width}
+              height={book.cover.height}
+              loading={index === 0 ? "eager" : "lazy"}
+              decoding="async"
+            />
+            <div class="pg-book__actions">
+              {book.amazon ? (
+                <a class="pg-book__button" href={book.amazon} target="_blank" rel="noopener noreferrer">{t.amazon}</a>
+              ) : (
+                <span class="pg-book__button pg-book__button--disabled" aria-disabled="true">{t.amazon}</span>
+              )}
+            </div>
+          </div>
+          <div class="pg-book__copy">
+            <h2>{book.title}</h2>
+            {index === 0 ? (
+              <p>{t.description01}</p>
+            ) : (
+              <div class="pg-book__description">
+                <p><strong>{t.description02Lead}</strong></p>
+                {t.description02Paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+                <p><strong>{t.description02End}</strong></p>
+              </div>
+            )}
+          </div>
+        </div>
+        <div class="pg-book__gallery" aria-label={`${t.galleryAlt}: ${book.title}`}>
+          {book.gallery.map((image, i) => (
+            <div class="pg-book__gallery-item">
+              <Image
+                src={image}
+                alt={`${t.galleryAlt} ${i + 1}: ${book.title}`}
+                class="pg-book__gallery-image"
+                widths={[480, 720, 1000, 1400]}
+                sizes="(max-width:760px) 100vw, 33vw"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      </article>
+    ))}
+  </div>
 </section>

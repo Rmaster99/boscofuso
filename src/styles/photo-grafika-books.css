@@ -35,3 +35,9 @@ body:has(.pg-books) .site-footer::after {
   }
 }
 
+
+/* Volumi della collana Photo Grafika: separazione discreta e descrizione articolata. */
+.pg-book + .pg-book { border-top: 1px solid rgba(32, 33, 36, .14); }
+.pg-book__description p { margin: 0 0 .85rem; white-space: normal; }
+.pg-book__description p:last-child { margin-bottom: 0; }
+.pg-book__description strong { font-weight: 700; }
