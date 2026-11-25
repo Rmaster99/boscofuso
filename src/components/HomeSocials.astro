@@ -1,0 +1,159 @@
+---
+import instagramIcon from "../assets/images/social/instagram.webp";
+import tiktokIcon from "../assets/images/social/tiktok.webp";
+import facebookIcon from "../assets/images/social/facebook.webp";
+import pinterestIcon from "../assets/images/social/pinterest.webp";
+
+const { lang = "it" } = Astro.props;
+
+/**
+ * INSERISCI QUI I LINK REALI AI PROFILI BOSCOFUSO / HAPPY EDY.
+ * Non usare link generici alle homepage dei social: punta al profilo specifico.
+ * I link valgono sia per la homepage IT che per quella EN.
+ * Finche un campo resta vuoto, l'icona viene mostrata ma NON e cliccabile.
+ * Esempio: instagram: "https://www.instagram.com/nomeprofilo/",
+ */
+const socialURLs = {
+  instagram: "https://www.instagram.com/happy_edy?lqvp=MWNhdHBxY2xzY3AzMw==",
+  tiktok: "https://www.tiktok.com/@mondodiboscofuso?_r=1&_t=ZS-9BhqvMvh3MS",
+  facebook: "https://www.facebook.com/share/196PnSiFFo/",
+  pinterest: "https://pin.it/6NfJciUGe",
+};
+
+const socialProfiles = [
+  { label: "Instagram", icon: instagramIcon, href: socialURLs.instagram.trim() },
+  { label: "TikTok", icon: tiktokIcon, href: socialURLs.tiktok.trim() },
+  { label: "Facebook", icon: facebookIcon, href: socialURLs.facebook.trim() },
+  { label: "Pinterest", icon: pinterestIcon, href: socialURLs.pinterest.trim() },
+];
+
+const content = lang === "en"
+  ? {
+      title: "Follow us on social media",
+      subtitle: "News, previews and stories from the world of Boscofuso.",
+      visit: "Visit Boscofuso on",
+      newTab: "opens in a new tab",
+      pending: "Profile link not set:",
+    }
+  : {
+      title: "Seguici sui social",
+      subtitle: "Novità, anteprime e storie dal mondo di Boscofuso.",
+      visit: "Visita il profilo Boscofuso su",
+      newTab: "si apre in una nuova scheda",
+      pending: "Collegamento al profilo da inserire:",
+    };
+---
+
+<section class="home-socials" aria-labelledby="home-socials-title">
+  <div class="home-socials__copy">
+    <h2 id="home-socials-title">{content.title}</h2>
+    <p>{content.subtitle}</p>
+  </div>
+
+  <div class="home-socials__links" aria-label={content.title}>
+    {socialProfiles.map(({ label, icon, href }) => href ? (
+      <a
+        class="home-socials__item"
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`${content.visit} ${label} (${content.newTab})`}
+      >
+        <img src={icon.src} width="102" height="102" alt="" loading="lazy" decoding="async" />
+        <span aria-hidden="true">{label}</span>
+      </a>
+    ) : (
+      <span class="home-socials__item home-socials__item--pending" title={`${content.pending} ${label}`}>
+        <img src={icon.src} width="102" height="102" alt="" loading="lazy" decoding="async" />
+        <span>{label}</span>
+      </span>
+    ))}
+  </div>
+</section>
+
+<style>
+  .home-socials {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(1.3rem, 3vw, 3.2rem);
+    width: min(100% - (var(--page-padding, 24px) * 2), var(--container-width, 1280px));
+    margin: 0 auto clamp(2rem, 4vw, 3.5rem);
+    padding: clamp(1.2rem, 2.6vw, 2rem) clamp(1.35rem, 3vw, 2.7rem);
+    border: 1px solid rgba(18, 63, 39, 0.10);
+    border-radius: 22px;
+    background: linear-gradient(120deg, #fff9ee 0%, #f5ecd9 100%);
+    box-shadow: 0 8px 26px rgba(42, 36, 29, 0.04);
+  }
+
+  .home-socials__copy { min-width: 0; }
+
+  .home-socials__copy h2 {
+    margin: 0 0 0.15rem;
+    color: var(--bf-forest, #123f27);
+    font-family: "Comic Neue", cursive;
+    font-size: clamp(1.45rem, 2vw, 1.85rem);
+    line-height: 1.17;
+  }
+
+  .home-socials__copy p {
+    margin: 0;
+    color: #514b40;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .home-socials__links {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+    flex: 0 0 auto;
+    align-items: start;
+  }
+
+  .home-socials__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    min-width: 70px;
+    color: #304334;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 180ms ease;
+  }
+
+  .home-socials__item img {
+    display: block;
+    width: clamp(58px, 5.6vw, 70px);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
+  }
+
+  a.home-socials__item:hover,
+  a.home-socials__item:focus-visible { transform: translateY(-4px); }
+  a.home-socials__item:focus-visible { outline: 2px solid #123f27; outline-offset: 5px; border-radius: 4px; }
+
+  .home-socials__item--pending { cursor: default; }
+
+  @media (max-width: 850px) {
+    .home-socials { flex-direction: column; text-align: center; gap: 1.25rem; }
+  }
+
+  @media (max-width: 430px) {
+    .home-socials { padding: 1.4rem 0.8rem; }
+    .home-socials__links { gap: 0.45rem; width: 100%; }
+    .home-socials__item { min-width: 0; font-size: 0.72rem; }
+    .home-socials__item img { width: clamp(50px, 14vw, 62px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-socials__item { transition: none; }
+  }
+</style>
