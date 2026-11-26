@@ -10,12 +10,14 @@ const content = lang === "en"
       project: "An independent Happy Edy publishing project.",
       rights: "All rights reserved.",
       privacy: "Privacy",
+      cookiePreferences: "Cookie preferences",
     }
   : {
       payoff: "Storie illustrate per piccoli esploratori e grandi sognatori.",
       project: "Un progetto editoriale indipendente Happy Edy.",
       rights: "Tutti i diritti riservati.",
       privacy: "Privacy",
+      cookiePreferences: "Preferenze cookie",
     };
 ---
 
@@ -40,6 +42,23 @@ const content = lang === "en"
       <p>{content.project}</p>
       <p>© 2026 Happy Edy — {content.rights}</p>
       <a href={`${base}/privacy/`}>{content.privacy}</a>
+      <button type="button" class="site-footer__cookie-preferences" data-open-analytics-preferences>{content.cookiePreferences}</button>
     </div>
   </div>
 </footer>
+
+<style>
+  .site-footer__cookie-preferences {
+    display: inline-block;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    color: inherit;
+    font: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+    margin-top: .55rem;
+  }
+  .site-footer__cookie-preferences:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+</style>

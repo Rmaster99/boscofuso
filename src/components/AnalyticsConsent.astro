@@ -1,0 +1,178 @@
+---
+const { lang = "it" } = Astro.props;
+const isEN = lang === "en";
+const copy = isEN
+  ? {
+      heading: "Analytics preferences",
+      notice: "Boscofuso uses Google Analytics only with your consent to understand visits and clicks on links to external shops, including Amazon. You can reject it without affecting access to the website.",
+      privacy: "Privacy & Cookie Policy",
+      reject: "Reject",
+      accept: "Accept analytics",
+      region: "Analytics cookie preferences",
+    }
+  : {
+      heading: "Preferenze statistiche",
+      notice: "Boscofuso utilizza Google Analytics solo con il tuo consenso per capire le visite e i clic sui collegamenti a negozi esterni, tra cui Amazon. Puoi rifiutare senza limitazioni alla navigazione.",
+      privacy: "Privacy e Cookie Policy",
+      reject: "Rifiuta",
+      accept: "Accetta statistiche",
+      region: "Preferenze cookie per le statistiche",
+    };
+---
+
+<section
+  class="bf-analytics-consent"
+  data-bf-analytics-consent
+  data-ga4-id="G-SP2E2ZR3VX"
+  role="region"
+  aria-label={copy.region}
+  hidden
+>
+  <div class="bf-analytics-consent__text">
+    <strong>{copy.heading}</strong>
+    <p>{copy.notice} <a href={`/${lang}/privacy/`}>{copy.privacy}</a>.</p>
+  </div>
+  <div class="bf-analytics-consent__actions">
+    <button type="button" class="bf-analytics-consent__reject" data-bf-ga-reject>{copy.reject}</button>
+    <button type="button" class="bf-analytics-consent__accept" data-bf-ga-accept>{copy.accept}</button>
+  </div>
+</section>
+
+<style>
+  .bf-analytics-consent[hidden] { display: none !important; }
+  .bf-analytics-consent {
+    position: fixed;
+    z-index: 9000;
+    bottom: max(14px, env(safe-area-inset-bottom));
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(calc(100% - 28px), 1000px);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 1.35rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid rgba(23, 59, 42, .18);
+    border-radius: 15px;
+    background: #fffdf8;
+    color: #203a30;
+    box-shadow: 0 8px 40px rgba(15, 39, 30, .22);
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+  .bf-analytics-consent__text { flex: 1; min-width: 0; }
+  .bf-analytics-consent__text strong { font-size: .98rem; line-height: 1.2; }
+  .bf-analytics-consent__text p { margin: .3rem 0 0; font-size: .87rem; line-height: 1.5; }
+  .bf-analytics-consent__text a { color: #205e4b; text-decoration: underline; }
+  .bf-analytics-consent__actions { display: flex; align-items: stretch; gap: .5rem; flex-shrink: 0; }
+  .bf-analytics-consent__actions button {
+    appearance: none;
+    border-radius: 9px;
+    border: 1px solid #1d6147;
+    padding: .68rem .9rem;
+    font: inherit;
+    font-size: .88rem;
+    font-weight: 700;
+    line-height: 1.2;
+    cursor: pointer;
+    min-height: 42px;
+  }
+  .bf-analytics-consent__accept { color: #fff; background: #1d6147; }
+  .bf-analytics-consent__reject { color: #1d6147; background: transparent; }
+  .bf-analytics-consent__actions button:hover { filter: brightness(.95); }
+  .bf-analytics-consent__actions button:focus-visible { outline: 3px solid #e7bb60; outline-offset: 2px; }
+  @media (max-width: 700px) {
+    .bf-analytics-consent { flex-direction: column; align-items: stretch; padding: 1rem; gap: .8rem; }
+    .bf-analytics-consent__actions { width: 100%; }
+    .bf-analytics-consent__actions button { flex: 1; }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const panel = document.querySelector('[data-bf-analytics-consent]');
+    if (!panel) return;
+    const gaId = panel.dataset.ga4Id;
+    if (!/^G-[A-Z0-9]+$/.test(gaId || '')) return;
+    const key = 'boscofuso_analytics_consent_v1';
+    let initialized = false;
+
+    const readChoice = () => {
+      try { return localStorage.getItem(key); } catch (_) { return null; }
+    };
+    const storeChoice = (value) => {
+      try { localStorage.setItem(key, value); } catch (_) { /* Storage non disponibile. */ }
+    };
+    const show = () => { panel.hidden = false; };
+    const hide = () => { panel.hidden = true; };
+
+    // Google Analytics non viene scaricato, contattato o eseguito prima di un consenso positivo.
+    const startAnalytics = () => {
+      if (initialized) return;
+      initialized = true;
+      window['ga-disable-' + gaId] = false;
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+      });
+      window.gtag('consent', 'update', {
+        analytics_storage: 'granted',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+      });
+      window.gtag('js', new Date());
+      window.gtag('config', gaId, {
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false,
+      });
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(gaId);
+      document.head.appendChild(script);
+    };
+
+    // Cancellazione best effort dei cookie GA4 di questo dominio al ritiro del consenso.
+    const eraseAnalyticsCookies = () => {
+      const parts = location.hostname.split('.');
+      const domains = ['', location.hostname];
+      if (parts.length >= 2) domains.push(parts.slice(-2).join('.'));
+      const names = document.cookie.split(';').map((c) => c.trim().split('=')[0]);
+      for (const name of names) {
+        if (!/^_ga(?:_|$)/.test(name) && name !== '_gid' && name !== '_gat') continue;
+        for (const domain of domains) {
+          document.cookie = name + '=; Max-Age=0; path=/; SameSite=Lax' + (domain ? '; domain=' + domain : '');
+          if (domain) document.cookie = name + '=; Max-Age=0; path=/; domain=.' + domain;
+        }
+      }
+    };
+
+    panel.querySelector('[data-bf-ga-accept]')?.addEventListener('click', () => {
+      storeChoice('granted');
+      hide();
+      startAnalytics();
+    });
+    panel.querySelector('[data-bf-ga-reject]')?.addEventListener('click', () => {
+      storeChoice('denied');
+      hide();
+      if (initialized) {
+        window['ga-disable-' + gaId] = true;
+        if (typeof window.gtag === 'function') {
+          window.gtag('consent', 'update', { analytics_storage: 'denied' });
+        }
+        eraseAnalyticsCookies();
+        // Ripristina lo stato senza il tag già caricato.
+        window.location.reload();
+      }
+    });
+    document.querySelectorAll('[data-open-analytics-preferences]').forEach((button) => {
+      button.addEventListener('click', show);
+    });
+
+    if (readChoice() === 'granted') startAnalytics();
+    else if (readChoice() !== 'denied') show();
+  })();
+</script>
