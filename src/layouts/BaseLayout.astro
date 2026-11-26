@@ -37,6 +37,10 @@ function localePath(targetLang) {
       return "/it/tana-delle-astuzie/";
     }
 
+    if (pathname === "/en/print-and-play/" || pathname === "/en/print-and-play") {
+      return "/it/stampa-e-gioca/";
+    }
+
     if (pathname.startsWith("/en/")) {
       return pathname.replace("/en/", "/it/");
     }
@@ -50,6 +54,10 @@ function localePath(targetLang) {
 
   if (pathname.startsWith("/it/tana-delle-astuzie/")) {
     return "/en/clever-den/";
+  }
+
+  if (pathname === "/it/stampa-e-gioca/" || pathname === "/it/stampa-e-gioca") {
+    return "/en/print-and-play/";
   }
 
   if (pathname.startsWith("/it/")) {

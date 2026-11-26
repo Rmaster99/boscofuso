@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<?xml version='1.0' encoding='utf-8'?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.boscofuso.com/it/</loc>
     <xhtml:link rel="alternate" hreflang="it" href="https://www.boscofuso.com/it/" />
@@ -62,6 +61,30 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.boscofuso.com/it/da-colorare/" />
   </url>
   <url>
+    <loc>https://www.boscofuso.com/it/stampa-e-gioca/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.boscofuso.com/it/stampa-e-gioca/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.boscofuso.com/en/print-and-play/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.boscofuso.com/it/stampa-e-gioca/" />
+  </url>
+  <url>
+    <loc>https://www.boscofuso.com/en/print-and-play/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.boscofuso.com/it/stampa-e-gioca/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.boscofuso.com/en/print-and-play/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.boscofuso.com/it/stampa-e-gioca/" />
+  </url>
+  <url>
+    <loc>https://www.boscofuso.com/it/tana-delle-astuzie/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.boscofuso.com/it/tana-delle-astuzie/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.boscofuso.com/en/clever-den/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.boscofuso.com/it/tana-delle-astuzie/" />
+  </url>
+  <url>
+    <loc>https://www.boscofuso.com/en/clever-den/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.boscofuso.com/it/tana-delle-astuzie/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.boscofuso.com/en/clever-den/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.boscofuso.com/it/tana-delle-astuzie/" />
+  </url>
+  <url>
     <loc>https://www.boscofuso.com/it/happy-edy/</loc>
     <xhtml:link rel="alternate" hreflang="it" href="https://www.boscofuso.com/it/happy-edy/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.boscofuso.com/en/happy-edy/" />
@@ -72,5 +95,41 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://www.boscofuso.com/it/happy-edy/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://www.boscofuso.com/en/happy-edy/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.boscofuso.com/it/happy-edy/" />
+  </url>
+  <url>
+    <loc>https://www.boscofuso.com/it/parole-di-seta/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.boscofuso.com/it/parole-di-seta/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.boscofuso.com/en/parole-di-seta/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.boscofuso.com/it/parole-di-seta/" />
+  </url>
+  <url>
+    <loc>https://www.boscofuso.com/en/parole-di-seta/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.boscofuso.com/it/parole-di-seta/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.boscofuso.com/en/parole-di-seta/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.boscofuso.com/it/parole-di-seta/" />
+  </url>
+  <url>
+    <loc>https://www.boscofuso.com/it/photo-grafika/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.boscofuso.com/it/photo-grafika/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.boscofuso.com/en/photo-grafika/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.boscofuso.com/it/photo-grafika/" />
+  </url>
+  <url>
+    <loc>https://www.boscofuso.com/en/photo-grafika/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.boscofuso.com/it/photo-grafika/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.boscofuso.com/en/photo-grafika/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.boscofuso.com/it/photo-grafika/" />
+  </url>
+  <url>
+    <loc>https://www.boscofuso.com/it/sca-publications/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.boscofuso.com/it/sca-publications/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.boscofuso.com/en/sca-publications/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.boscofuso.com/it/sca-publications/" />
+  </url>
+  <url>
+    <loc>https://www.boscofuso.com/en/sca-publications/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.boscofuso.com/it/sca-publications/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.boscofuso.com/en/sca-publications/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.boscofuso.com/it/sca-publications/" />
   </url>
 </urlset>
